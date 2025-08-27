@@ -1,0 +1,25 @@
+{
+  "title": "框架",
+  "description": "文档框架",
+  "icon": "Building",
+  "root": true,
+  "pages": [
+    "---介绍---",
+    "index",
+    "what-is-fumadocs",
+    "comparisons",
+    "---设置---",
+    "...",
+    "---编写---",
+    "page-conventions",
+    "markdown",
+    "navigation",
+    "---界面---",
+    "customisation",
+    "theme",
+    "search",
+    "components",
+    "mdx",
+    "layouts"
+  ]
+}
