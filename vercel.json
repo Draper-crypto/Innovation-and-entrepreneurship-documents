@@ -1,5 +1,0 @@
-{
-  "installCommand": "pnpm install --include=dev",
-  "buildCommand": "pnpm install && pnpm turbo build --filter=docs",
-  "outputDirectory": "apps/docs/.next"
-}
