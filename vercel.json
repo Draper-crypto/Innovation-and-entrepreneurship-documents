@@ -1,4 +1,5 @@
 {
-  "buildCommand": "pnpm install --no-frozen-lockfile && pnpm turbo build --filter=docs",
+  "installCommand": "pnpm install --include=dev",
+  "buildCommand": "pnpm install && pnpm turbo build --filter=docs",
   "outputDirectory": "apps/docs/.next"
 }
