@@ -1,37 +1,17 @@
-import '@/app/global.css';
-import 'katex/dist/katex.css';
-import { RootProvider } from 'fumadocs-ui/provider';
-import { Banner } from 'fumadocs-ui/components/banner';
-import { Inter } from 'next/font/google';
-import type { Metadata } from 'next';
-import Footer from '@/components/Footer';
+import './global.css';
 import LayoutWrapper from '@/components/LayoutWrapper';
+import { RootProvider } from 'fumadocs-ui/provider';
+import type { ReactNode } from 'react';
+import { provider } from '@/lib/i18n';
 
-const inter = Inter({
-  subsets: ['latin'],
-});
+export default function Layout({ children }: { children: ReactNode }) {
+  // 直接使用默认语言，避免 hydration 不匹配
+  const locale = 'zh';
 
-export const metadata: Metadata = {
-  alternates: {
-    types: {
-      'application/rss+xml': [
-        {
-          title: '创新创业工作坊',
-          url: '/rss.xml',
-        },
-      ],
-    },
-  },
-};
-
-export default function Layout({ children }: LayoutProps<'/'>) {
   return (
-    <html lang="en" className={inter.className} suppressHydrationWarning>
-      <body className="flex flex-col min-h-screen">
-        <RootProvider>
-          <Banner id="update-banner" variant="rainbow">
-            网站还在更新中
-          </Banner>
+    <html lang="zh-CN" suppressHydrationWarning>
+      <body>
+        <RootProvider i18n={provider(locale)}>
           <LayoutWrapper>{children}</LayoutWrapper>
         </RootProvider>
       </body>
