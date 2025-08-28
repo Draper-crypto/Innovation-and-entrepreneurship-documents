@@ -6,7 +6,7 @@ export default function HomePage() {
     <>
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center text-center px-6">
-        <div className="relative z-10 max-w-4xl mx-auto">
+        <div className="relative z-10 max-w-7xl mx-auto">
           <div className="inline-flex items-center bg-blue-600/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-blue-400/20">
             <div className="flex items-center space-x-2 text-blue-600">
               <span className="text-sm">🌟 受到 100+ 开发者的信赖</span>
@@ -41,7 +41,7 @@ export default function HomePage() {
 
       {/* Features Section as 6 flat cards */}
       <section className="py-20 px-6">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">跳过设置，专注于功能</h2>
             <p className="text-gray-600 max-w-3xl mx-auto">
@@ -75,10 +75,17 @@ export default function HomePage() {
                 title: '课程和教程',
                 desc: '专注于构建和发布生产就绪应用程序的实践、真实世界内容。',
               },
-            ].map((item) => (
-              <div key={item.title} className="rounded-2xl border border-gray-200 bg-transparent p-6 shadow-sm dark:border-gray-700">
-                <h3 className="text-lg font-semibold">{item.title}</h3>
-                <p className="mt-2 text-gray-600 text-sm dark:text-gray-300">{item.desc}</p>
+            ].map((item, index) => (
+              <div key={item.title} className="card">
+                <div className="card-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
               </div>
             ))}
           </div>
@@ -87,7 +94,7 @@ export default function HomePage() {
 
       {/* Projects Section (kept) */}
       <section className="py-20 px-6">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">生产就绪的入门项目</h2>
             <p className="text-gray-600">

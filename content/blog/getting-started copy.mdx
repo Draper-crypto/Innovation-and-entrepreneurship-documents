@@ -1,0 +1,114 @@
+---
+title: 张三222222
+description: 本文将详细介绍如何使用Fumadocs构建一个现代、美观的文档网站，包括基础设置、主题定制和内容管理。
+date: 2024-01-15
+category: 教程
+author: 开发团队
+---
+
+## 前言
+
+在当今的软件开发环境中，优质的文档是项目成功的关键要素之一。Fumadocs 作为一个现代化的文档解决方案，提供了强大而灵活的功能来帮助开发者构建出色的文档网站。
+
+## 为什么选择 Fumadocs？
+
+### 现代化的开发体验
+
+Fumadocs 基于 Next.js 15 构建，充分利用了 React Server Components 的优势：
+
+- **零配置启动**：开箱即用的配置
+- **类型安全**：完整的 TypeScript 支持
+- **性能优越**：静态生成和增量构建
+- **SEO 友好**：服务端渲染优化
+
+### 丰富的功能特性
+
+1. **MDX 支持**：在 Markdown 中使用 React 组件
+2. **主题系统**：浅色/深色模式自动切换
+3. **搜索功能**：内置全文搜索
+4. **国际化**：多语言支持
+5. **响应式设计**：完美适配移动设备
+
+## 快速开始
+
+### 安装
+
+```bash
+npm create fumadocs-app@latest
+```
+
+### 基础配置
+
+在 `source.config.ts` 中配置文档源：
+
+```typescript
+import { defineConfig, defineDocs } from 'fumadocs-mdx/config';
+
+export const docs = defineDocs({
+  docs: {
+    dir: 'content/docs',
+    schema: frontmatterSchema,
+  },
+});
+```
+
+### 内容结构
+
+推荐的目录结构：
+
+```
+content/
+├── docs/
+│   ├── index.mdx
+│   ├── getting-started.mdx
+│   └── advanced/
+└── blog/
+    ├── first-post.mdx
+    └── updates.mdx
+```
+
+## 高级功能
+
+### 自定义组件
+
+Fumadocs 允许在 MDX 中使用自定义 React 组件：
+
+```jsx
+import { Callout } from '@/components/ui/callout';
+
+<Callout type="warning">
+  这是一个警告提示框
+</Callout>
+```
+
+### 数学公式支持
+
+通过 KaTeX 支持数学公式渲染：
+
+$$
+E = mc^2
+$$
+
+### 代码高亮
+
+支持多种编程语言的语法高亮：
+
+```python
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+```
+
+## 最佳实践
+
+1. **内容组织**：保持清晰的目录结构
+2. **SEO 优化**：合理使用标题和描述
+3. **性能监控**：定期检查页面加载速度
+4. **用户体验**：确保导航简洁明了
+
+## 结语
+
+Fumadocs 为现代文档网站提供了完整的解决方案。通过其强大的功能和灵活的配置，你可以快速构建出专业级的文档站点。
+
+开始你的 Fumadocs 之旅吧！

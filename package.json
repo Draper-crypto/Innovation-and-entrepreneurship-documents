@@ -22,9 +22,12 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "rehype-katex": "^7.0.1",
-    "remark-math": "^6.0.0"
+    "remark": "^15.0.1",
+    "remark-math": "^6.0.0",
+    "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/postcss": "^4.1.12",
     "@types/mdx": "^2.0.13",
     "@types/node": "24.3.0",

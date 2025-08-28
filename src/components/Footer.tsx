@@ -4,7 +4,7 @@ import { IconBrandTwitter, IconBrandGithub, IconRss } from '@tabler/icons-react'
 export default function Footer() {
   return (
     <footer className="bg-transparent border-t border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 py-16 px-6">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           {/* Brand Column */}
           <div className="space-y-4">
