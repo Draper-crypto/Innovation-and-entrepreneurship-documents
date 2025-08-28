@@ -20,9 +20,18 @@ export function baseOptions(): BaseLayoutProps {
     },
     // see https://fumadocs.dev/docs/ui/navigation/links
     links: [
-        { text: '文档', url: '/docs', active: 'nested-url' },
-        { text: '博客', url: '/blog', active: 'nested-url' },
-        { text: '赞助商', url: '/sponsors', active: 'url' }
-      ],
+      {
+        text: '文档',
+        url: '/docs',
+      },
+      {
+        text: '博客',
+        url: '/blog',
+      },
+      {
+        text: '赞助商',
+        url: '/sponsors',
+      },
+    ],
   };
 }
