@@ -11,12 +11,7 @@ import { IconBrandTabler } from '@tabler/icons-react';
 export function baseOptions(): BaseLayoutProps {
   return {
     nav: {
-      title: (
-        <>
-          <IconBrandTabler className="w-6 h-6" />
-          ElexvxAI Lab
-        </>
-      ),
+      title: 'ElexvxAI Lab',
     },
     // see https://fumadocs.dev/docs/ui/navigation/links
     links: [

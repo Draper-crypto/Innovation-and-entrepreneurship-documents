@@ -18,7 +18,7 @@ export default function HomePage() {
             <AnimatedText />
           </h1>
 
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
             掌握使用 Expo SDK 51、TypeScript、应用内购买、CI/CD 自动化、E2E 测试、EAS 等进行应用程序开发。
           </p>
 
@@ -31,7 +31,7 @@ export default function HomePage() {
             </Link>
             <Link
               href="/blog"
-              className="relative inline-flex items-center justify-center rounded-full px-8 py-3 text-base font-semibold border border-gray-300 text-gray-900 hover:bg-gray-50 transition-colors"
+              className="relative inline-flex items-center justify-center rounded-full px-8 py-3 text-base font-semibold border border-gray-300 text-gray-900 hover:bg-gray-50 transition-colors dark:border-gray-600 dark:text-gray-100 dark:hover:bg-gray-800"
             >
               了解更多
             </Link>
