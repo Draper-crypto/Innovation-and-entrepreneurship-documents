@@ -8,6 +8,7 @@ interface PopupModalProps {
   onClose?: () => void;
 }
 
+// Top-fixed announcement banner shown on first visit
 const PopupModal: React.FC<PopupModalProps> = ({
   showOnFirstVisit = true,
   initialOpen = false,
@@ -16,41 +17,30 @@ const PopupModal: React.FC<PopupModalProps> = ({
   const [isOpen, setIsOpen] = useState(initialOpen);
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-
-    if (showOnFirstVisit) {
+    if (!showOnFirstVisit) return;
+    try {
       const hasVisited = localStorage.getItem('hasVisited');
       if (!hasVisited) {
         setIsOpen(true);
         localStorage.setItem('hasVisited', 'true');
       }
+    } catch {
+      // ignore storage errors
     }
-
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, [isOpen, showOnFirstVisit]);
+  }, [showOnFirstVisit]);
 
   const handleClose = () => {
     setIsOpen(false);
-    if (onClose) {
-      onClose();
-    }
+    onClose?.();
   };
 
-  if (!isOpen) {
-    return null;
-  }
+  if (!isOpen) return null;
 
   return (
-    <div className="popup-modal-overlay">
-      <div className="card">
+    <div className="popup-banner" role="status" aria-live="polite">
+      <div className="banner-card">
         <div className="header">
-          <span className="icon">
+          <span className="icon" aria-hidden>
             <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <path
                 clipRule="evenodd"
@@ -59,21 +49,17 @@ const PopupModal: React.FC<PopupModalProps> = ({
               ></path>
             </svg>
           </span>
-          <p className="alert">新消息！</p>
+          <p className="alert">站点已升级</p>
         </div>
 
         <p className="message">
-          我们使用全新的框架，重构了整个网站！<br />
-          但是因为时间的问题，我们还在调整内容，现在的内容时不完善的，请谅解！
+          我们重构了网站并持续完善内容，部分页面仍在更新中。
         </p>
 
         <div className="actions">
-          <a className="read" href="#" onClick={handleClose}>
-            我已知晓，继续
-          </a>
-
+          <button className="read" onClick={handleClose}>我已知晓，继续浏览</button>
           <a className="mark-as-read" href="https://cn.bing.com/" onClick={handleClose}>
-            我不同意，返回
+            我不同意，返回上一页
           </a>
         </div>
       </div>
@@ -82,3 +68,4 @@ const PopupModal: React.FC<PopupModalProps> = ({
 };
 
 export default PopupModal;
+

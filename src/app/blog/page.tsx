@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { blogSource } from '@/lib/blog-source'
 
 // 生成渐变色背景
@@ -21,7 +22,7 @@ export default function BlogPage() {
     <main className="mx-auto w-full max-w-[var(--fd-layout-width)] px-6 py-12">
       <header className="mb-12">
         <h1 className="text-4xl font-bold tracking-tight">博客</h1>
-        <p className="mt-3 text-lg text-fd-muted-foreground">关于本网站与 Fumadocs 的动态与思考</p>
+        <p className="mt-3 text-lg text-fd-muted-foreground">关于本站与实践方法论的记录与思考。</p>
       </header>
 
       <section className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -30,14 +31,28 @@ export default function BlogPage() {
             key={post.url}
             className="group overflow-hidden rounded-2xl border border-fd-border bg-fd-card/70 shadow-sm backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:scale-[1.02]"
           >
-            {/* 渐变色图片占位 */}
-            <div className={`relative h-48 w-full bg-gradient-to-br ${generateGradient(index)} flex items-center justify-center`}>
-              <div className="text-white/90 text-center">
-                <div className="text-2xl font-bold mb-2">{post.data.category ?? '文章'}</div>
-                <div className="text-sm opacity-80">{new Date(post.data.date || Date.now()).toLocaleDateString()}</div>
+            {/* 封面图片（每篇文章可自定义），若缺省则使用渐变占位 */}
+            {post.data.cover ? (
+              <div className="relative h-48 w-full overflow-hidden">
+                <Image
+                  src={post.data.cover}
+                  alt={post.data.coverAlt || post.data.title}
+                  fill
+                  sizes="(max-width:768px) 100vw, 33vw"
+                  className="object-cover"
+                  style={{ objectPosition: (post.data as any).coverPosition || 'center' }}
+                />
+                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" />
               </div>
-              <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" />
-            </div>
+            ) : (
+              <div className={`relative h-48 w-full bg-gradient-to-br ${generateGradient(index)} flex items-center justify-center`}>
+                <div className="text-white/90 text-center">
+                  <div className="text-2xl font-bold mb-2">{post.data.category ?? '文章'}</div>
+                  <div className="text-sm opacity-80">{new Date(post.data.date || Date.now()).toLocaleDateString()}</div>
+                </div>
+                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" />
+              </div>
+            )}
             
             <div className="flex flex-1 flex-col p-6">
               <h2 className="text-xl font-semibold mb-3 line-clamp-2 min-h-[3.5rem]">

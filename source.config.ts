@@ -28,6 +28,11 @@ export const blog = defineDocs({
     schema: frontmatterSchema.extend({
       category: z.string().optional(),
       author: z.string().optional(),
+      // Custom image parameters per post
+      cover: z.string().optional(), // image path or URL
+      coverAlt: z.string().optional(),
+      coverPosition: z.string().optional(), // e.g. 'center', 'top', 'bottom'
+      coverHeight: z.number().optional(), // px height for list & post header
     }),
   },
   meta: {

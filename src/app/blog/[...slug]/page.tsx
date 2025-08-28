@@ -2,6 +2,7 @@ import { blogSource } from '@/lib/blog-source';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { IconArrowLeft } from '@tabler/icons-react';
 import { getMDXComponents } from '@/mdx-components';
 
@@ -27,6 +28,18 @@ export default async function BlogPost(props: { params: Promise<{ slug: string[]
 
       {/* Article header */}
       <div className="mb-12 border-b border-fd-border pb-8">
+        {page.data.cover && (
+          <div className="relative mb-8 h-56 w-full overflow-hidden rounded-xl border border-fd-border bg-fd-card">
+            <Image
+              src={page.data.cover}
+              alt={page.data.coverAlt || page.data.title}
+              fill
+              sizes="100vw"
+              className="object-cover"
+              style={{ objectPosition: (page.data as any).coverPosition || 'center' }}
+            />
+          </div>
+        )}
         <div className="mb-6 flex items-center gap-4 text-sm">
           {page.data.category && (
             <span className="rounded-full bg-fd-primary/10 px-4 py-2 text-fd-primary font-medium">
