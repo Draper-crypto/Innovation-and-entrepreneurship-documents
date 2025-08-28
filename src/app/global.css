@@ -2,6 +2,20 @@
 @import 'fumadocs-ui/css/neutral.css';
 @import 'fumadocs-ui/css/preset.css';
 
+/* 布局最大宽度设置，与导航栏保持一致 */
+:root {
+  --fd-layout-width: 1400px !important;
+}
+
+/* 导航栏文字加大 */
+[data-nav] {
+  font-size: 1.1rem !important;
+}
+
+[data-nav] a {
+  font-size: 1.1rem !important;
+}
+
 /* 博客页面优化样式 */
 .line-clamp-2 {
   display: -webkit-box;
@@ -135,7 +149,7 @@ html {
   padding: 1.5rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 2px solid rgba(59, 130, 246, 0.3);
+  border: 1px solid hsl(var(--fd-border));
   position: relative;
   overflow: hidden;
 }
@@ -143,56 +157,28 @@ html {
 .card:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  border: 2px solid rgba(59, 130, 246, 0.8);
+  border-color: hsl(var(--fd-primary));
 }
 
 /* 日月切换效果 */
-@media (prefers-color-scheme: dark) {
-  .card {
-    background: rgba(17, 24, 39, 0.1);
-    border-color: rgba(59, 130, 246, 0.4);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-  }
-  
-  .card:hover {
-    border-color: rgba(59, 130, 246, 1);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
-  }
-  
-  .card h3 {
-    color: #f9fafb;
-  }
-  
-  .card p {
-    color: #d1d5db;
-  }
+html.dark .card {
+  background: hsl(var(--fd-card));
+  border-color: hsl(var(--fd-border));
 }
 
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #06b6d4, #3b82f6, #8b5cf6);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.card:hover::before {
-  opacity: 1;
+html.dark .card:hover {
+  border-color: hsl(var(--fd-primary));
 }
 
 .card h3 {
-  color: #1f2937;
+  color: hsl(var(--fd-foreground));
   font-weight: 600;
   font-size: 1.125rem;
   margin-bottom: 0.5rem;
 }
 
 .card p {
-  color: #6b7280;
+  color: hsl(var(--fd-muted-foreground));
   font-size: 0.875rem;
   line-height: 1.5;
   margin: 0;

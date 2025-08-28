@@ -4,7 +4,7 @@ import { sponsorItems } from '@/data/sponsors';
 
 export default function SponsorsPage() {
   return (
-    <main className="mx-auto w-full max-w-7xl px-6 py-12">
+    <main className="mx-auto w-full max-w-[var(--fd-layout-width)] px-6 py-12">
       <header className="mb-12">
         <h1 className="text-4xl font-bold tracking-tight">赞助商</h1>
         <p className="mt-3 text-lg text-fd-muted-foreground">感谢以下合作伙伴对 Elexvx Lab 的支持。</p>

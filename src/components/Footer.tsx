@@ -1,10 +1,14 @@
+'use client';
+
 import Link from 'next/link';
 import { IconBrandTwitter, IconBrandGithub, IconRss } from '@tabler/icons-react';
+
+
 
 export default function Footer() {
   return (
     <footer className="bg-transparent border-t border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 py-16 px-6">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-[min(1200px,var(--fd-layout-width))] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           {/* Brand Column */}
           <div className="space-y-4">
@@ -65,7 +69,7 @@ export default function Footer() {
         <div className="border-t border-gray-200 dark:border-gray-700 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             {/* Social Icons */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center gap-4">
               <Link href="https://twitter.com" target="_blank" className="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors">
                 <IconBrandTwitter size={20} />
               </Link>

@@ -18,7 +18,7 @@ export default function BlogPage() {
   const posts = blogSource.getPages()
 
   return (
-    <main className="mx-auto w-full max-w-7xl px-6 py-12">
+    <main className="mx-auto w-full max-w-[var(--fd-layout-width)] px-6 py-12">
       <header className="mb-12">
         <h1 className="text-4xl font-bold tracking-tight">博客</h1>
         <p className="mt-3 text-lg text-fd-muted-foreground">关于本网站与 Fumadocs 的动态与思考</p>

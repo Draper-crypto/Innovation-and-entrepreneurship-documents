@@ -13,7 +13,7 @@ import {
 // see https://fumadocs.dev/docs/mdx/collections#define-docs
 export const docs = defineDocs({
   docs: {
-    dir: 'content/docs',
+    dir: 'content/innovation',
     schema: frontmatterSchema,
   },
   meta: {
