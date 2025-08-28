@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 export default function AnimatedText() {
-  const words = ['drives revenue', 'scales easily'];
+  const words = ['价值', '效率', '创新'];
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
 
   useEffect(() => {
