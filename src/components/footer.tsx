@@ -17,10 +17,11 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <div className="font-medium mb-3 text-foreground">联系</div>
+            <div className="font-medium mb-3 text-foreground">链接</div>
             <ul className="space-y-2">
-              <li><a className="hover:underline" target="_blank" rel="noreferrer" href="https://github.com/">GitHub</a></li>
-              <li><a className="hover:underline" target="_blank" rel="noreferrer" href="mailto:hi@example.com">hi@example.com</a></li>
+              <li><a className="hover:underline" href="/docs">文档</a></li>
+              <li><a className="hover:underline" href="/blog">博客</a></li>
+              <li><a className="hover:underline" href="/sponsors">赞助商</a></li>
             </ul>
           </div>
         </div>

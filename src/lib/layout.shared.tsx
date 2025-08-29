@@ -1,5 +1,5 @@
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
-import { IconHome, IconBook, IconNotes, IconHeart } from '@tabler/icons-react';
+import { IconHome, IconBook, IconNotes, IconHeart, IconCompass } from '@tabler/icons-react';
 
 /**
  * Shared layout configurations
@@ -59,6 +59,17 @@ export function baseOptions(): BaseLayoutProps {
             <a href="/sponsors" className="hover:underline">赞助商</a>
           </div>
         ),
+      },
+      {
+        // 新增：外链图标按钮 — 放在导航栏右侧区域
+        type: 'icon',
+        on: 'nav',
+        url: 'https://www.elexvx.com',
+        external: true,
+        label: '访问 Elexvx 官网',
+        icon: <IconCompass size={24} />,
+        text: 'Elexvx 官网',
+        secondary: true,
       },
     ],
   };
