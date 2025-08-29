@@ -1,4 +1,5 @@
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
+import { IconHome, IconBook } from '@tabler/icons-react';
 
 /**
  * Shared layout configurations
@@ -20,11 +21,23 @@ export function baseOptions(): BaseLayoutProps {
           >
             <circle cx={12} cy={12} r={12} fill="currentColor" />
           </svg>
-          My App
+          Elexvx Lab
         </>
       ),
     },
-    // see https://fumadocs.dev/docs/ui/navigation/links
-    links: [],
+    links: [
+      {
+        icon: <IconHome size={20} />,
+        text: '首页',
+        url: '/',
+        active: 'nested-url',
+      },
+      {
+        icon: <IconBook size={20} />,
+        text: '文档',
+        url: '/docs',
+        active: 'nested-url',
+      },
+    ],
   };
 }

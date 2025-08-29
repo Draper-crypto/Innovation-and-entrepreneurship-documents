@@ -1,0 +1,13 @@
+{
+  "title": "文档",
+  "description": "Elexvx Lab 技术文档",
+  "pages": [
+    "---指南---",
+    "index",
+    "---示例---",
+    "math-example",
+    "mermaid-example",
+    "twoslash-example",
+    "test"
+  ]
+}

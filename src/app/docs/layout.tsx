@@ -30,7 +30,16 @@ export const metadata: Metadata = {
 
 export default function Layout({ children }: LayoutProps<'/docs'>) {
   return (
-    <DocsLayout tree={source.pageTree} {...baseOptions()}>
+    <DocsLayout 
+      tree={source.pageTree} 
+      {...baseOptions()}
+      nav={{
+        ...baseOptions().nav,
+        title: '文档',
+        url: '/',
+        // children: <LanguageSelector />,
+      }}
+    >
       {children}
     </DocsLayout>
   );
