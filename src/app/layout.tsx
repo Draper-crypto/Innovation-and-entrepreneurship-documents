@@ -11,7 +11,7 @@ const inter = Inter({
 
 const zh: Partial<Translations> = {
   search: '搜索',
-  toc: '本页内容',
+  toc: '目录',
 };
 
 const locales = [

@@ -1,0 +1,215 @@
+---
+title: Twoslash 示例
+description: 使用 Twoslash 增强 TypeScript 代码显示
+---
+
+# TypeScript Twoslash示例
+
+本文档展示了如何在Fumadocs中使用Twoslash功能来提供TypeScript代码高亮和实时类型检查。
+
+## 基本用法
+
+在代码块中添加 `twoslash` 元数据字符串即可启用Twoslash功能：
+
+```ts twoslash
+console.log('Hello World');
+```
+
+## 类型检查示例
+
+### 基本类型检查
+
+```ts twoslash
+// @errors: 2304 2588
+interface Player {
+  name: string;
+}
+
+const player: Player = { name: 'Hello World' };
+//       ^?
+const a = '123';
+a = 132; // Error: Cannot assign to 'a' because it is a constant.
+```
+
+### 接口定义和使用
+
+```ts twoslash
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  age?: number;
+}
+
+const user: User = {
+  id: '123',
+  name: '张三',
+  email: 'zhangsan@example.com',
+};
+
+console.log(user.name);
+```
+
+### 泛型示例
+
+```ts twoslash
+function identity<T>(arg: T): T {
+  return arg;
+}
+
+const result = identity<string>('hello');
+//    ^?
+```
+
+### 错误提示
+
+```ts twoslash
+// @errors: 2322 2353
+interface ApiResponse {
+  success: boolean;
+  data: {
+    id: number;
+    title: string;
+  };
+}
+
+const response: ApiResponse = {
+  success: true,
+  data: {
+    id: 1,
+    title: '示例标题',
+    extra: '多余属性', // Error: Object literal may only specify known properties
+  },
+};
+```
+
+## 高级功能
+
+### 类型推断
+
+```ts twoslash
+type Point = { x: number; y: number };
+
+function createPoint(x: number, y: number): Point {
+  return { x, y };
+}
+
+const point = createPoint(10, 20);
+//    ^?
+```
+
+### 联合类型
+
+```ts twoslash
+type Status = 'loading' | 'success' | 'error';
+
+function handleStatus(status: Status) {
+  switch (status) {
+    case 'loading':
+      return '加载中...';
+    case 'success':
+      return '操作成功';
+    case 'error':
+      return '操作失败';
+    default:
+      const _exhaustiveCheck: never = status;
+      return _exhaustiveCheck;
+  }
+}
+```
+
+### 工具类型
+
+```ts twoslash
+interface Todo {
+  id: number;
+  title: string;
+  completed: boolean;
+  createdAt: Date;
+}
+
+type TodoPreview = Pick<Todo, 'id' | 'title' | 'completed'>;
+type TodoWithoutId = Omit<Todo, 'id'>;
+
+const todo: TodoPreview = {
+  id: 1,
+  title: '学习TypeScript',
+  completed: false,
+};
+```
+
+## 导入和模块
+
+### 使用导入
+
+```ts twoslash
+// @filename: utils.ts
+export function formatDate(date: Date): string {
+  return date.toLocaleDateString();
+}
+
+export function capitalize(str: string): string {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+// @filename: main.ts
+import { formatDate, capitalize } from './utils';
+
+const today = new Date();
+const formatted = formatDate(today);
+const capitalized = capitalize('hello world');
+
+console.log(formatted, capitalized);
+```
+
+## 使用说明
+
+### 启用Twoslash
+
+在代码块的开始处添加 `twoslash` 元数据：
+
+```markdown
+```ts twoslash
+// 你的TypeScript代码
+```
+```
+
+### 显示类型信息
+
+使用 `// ^?` 注释来显示变量或表达式的类型：
+
+```ts twoslash
+const user = { name: '张三', age: 25 };
+//    ^?
+```
+
+### 错误高亮
+
+Twoslash会自动检测并高亮TypeScript错误：
+
+```ts twoslash
+// @errors: 2322
+let count: number = '123'; // Error: Type 'string' is not assignable to type 'number'
+```
+
+### 多文件示例
+
+使用 `@filename` 注释来创建多个文件：
+
+```ts twoslash
+// @filename: types.ts
+export interface Person {
+  name: string;
+  age: number;
+}
+
+// @filename: main.ts
+import type { Person } from './types';
+
+const person: Person = {
+  name: '李四',
+  age: 30,
+};
+```
+
+现在你可以在Fumadocs文档中享受完整的TypeScript开发体验，包括智能类型提示、错误检查和代码补全！

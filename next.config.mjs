@@ -9,3 +9,6 @@ const config = {
 };
 
 export default withMDX(config);
+
+// Disable Turbopack for better compatibility if issues arise
+// module.exports = withMDX(config);

@@ -34,12 +34,21 @@ export default function Layout({ children }: LayoutProps<'/docs'>) {
     <DocsLayout 
       tree={source.pageTree} 
       {...baseOptions()}
-      links={[]}
-      nav={{
-        ...baseOptions().nav,
-        title: '文档',
-        url: '/',
-        // children: <LanguageSelector />,
+      // 显式声明 Sidebar Tabs，确保显示为下拉样式，并在 /docs 首页也可见
+      sidebar={{
+        tabs: [
+          {
+            title: '指南',
+            description: '入门与概念',
+            url: '/docs/guide',
+            urls: new Set(['/docs', '/docs/guide']),
+          },
+          {
+            title: '示例',
+            description: '代码示例与演示',
+            url: '/docs/examples',
+          },
+        ],
       }}
       footer={<Footer />}
     >

@@ -27,28 +27,30 @@ export function baseOptions(): BaseLayoutProps {
     },
     links: [
       {
-        icon: <IconHome size={20} />,
-        text: '首页',
-        url: '/',
-        active: 'nested-url',
-      },
-      {
-        icon: <IconBook size={20} />,
+        type: 'menu',
         text: '文档',
-        url: '/docs',
-        active: 'nested-url',
+        items: [
+          {
+            text: '指南',
+            description: '入门与概念',
+            url: '/docs/guide',
+          },
+          {
+            text: '示例',
+            description: '代码示例与演示',
+            url: '/docs/examples',
+          },
+        ],
       },
       {
-        icon: <IconNotes size={20} />,
-        text: '博客',
-        url: '/blog',
-        active: 'nested-url',
-      },
-      {
-        icon: <IconHeart size={20} />,
-        text: '赞助商',
-        url: '/sponsors',
-        active: 'nested-url',
+        type: 'custom',
+        on: 'nav',
+        children: (
+          <div className="flex items-center gap-4">
+            <a href="/blog" className="hover:underline">博客</a>
+            <a href="/sponsors" className="hover:underline">赞助商</a>
+          </div>
+        ),
       },
     ],
   };

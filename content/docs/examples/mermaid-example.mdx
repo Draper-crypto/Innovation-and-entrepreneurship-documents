@@ -1,0 +1,144 @@
+---
+title: Mermaid 图表示例
+description: 在文档中使用 Mermaid 图表
+---
+
+# Mermaid图表示例
+
+本文档展示了如何在Fumadocs中使用Mermaid图表功能。
+
+## 流程图示例
+
+### 简单流程图
+
+<Mermaid
+  chart={`graph TD;
+  A[开始] --> B{条件判断};
+  B -->|是| C[执行操作];
+  B -->|否| D[结束];
+  C --> D;`}
+/>
+
+### 复杂系统架构图
+
+<Mermaid
+  chart={`graph TD;
+subgraph 客户端
+  A[Web应用];
+  B[移动应用];
+  C[API客户端];
+end
+
+subgraph 服务层
+  D[负载均衡器];
+  E[API网关];
+  F[认证服务];
+  G[业务服务];
+end
+
+subgraph 数据层
+  H[PostgreSQL];
+  I[Redis缓存];
+  J[对象存储];
+end
+
+A --> D;
+B --> D;
+C --> D;
+D --> E;
+E --> F;
+E --> G;
+G --> H;
+G --> I;
+G --> J;`}
+/>
+
+## 时序图示例
+
+<Mermaid
+  chart={`sequenceDiagram
+  participant 用户
+  participant 前端
+  participant API
+  participant 数据库
+
+  用户->>前端: 点击登录按钮
+  前端->>API: POST /api/login
+  API->>数据库: 查询用户信息
+  数据库-->>API: 返回用户数据
+  API-->>前端: 返回JWT令牌
+  前端-->>用户: 显示登录成功`}
+/>
+
+## 类图示例
+
+<Mermaid
+  chart={`classDiagram
+  class User {
+    +String id
+    +String username
+    +String email
+    +Date createdAt
+    +login()
+    +logout()
+  }
+
+  class Post {
+    +String id
+    +String title
+    +String content
+    +Date publishedAt
+    +publish()
+    +update()
+  }
+
+  class Comment {
+    +String id
+    +String content
+    +Date createdAt
+    +create()
+  }
+
+  User "1" --> "*" Post : writes
+  User "1" --> "*" Comment : makes
+  Post "1" --> "*" Comment : has`}
+/>
+
+## 状态图示例
+
+<Mermaid
+  chart={`stateDiagram-v2
+  [*] --> 待处理
+  待处理 --> 处理中: 开始处理
+  处理中 --> 已完成: 处理完成
+  处理中 --> 失败: 处理错误
+  已完成 --> [*]
+  失败 --> 待处理: 重新处理`}
+/>
+
+## 甘特图示例
+
+<Mermaid
+  chart={`gantt
+  title 项目开发计划
+  dateFormat YYYY-MM-DD
+  section 设计阶段
+  需求分析    :a1, 2024-01-01, 7d
+  系统设计    :a2, after a1, 10d
+  section 开发阶段
+  前端开发    :b1, 2024-01-15, 15d
+  后端开发    :b2, 2024-01-15, 20d
+  测试        :b3, after b2, 5d
+  section 部署阶段
+  部署准备    :c1, after b3, 3d
+  上线        :c2, after c1, 1d`}
+/>
+
+## 使用说明
+
+在MDX文件中使用Mermaid组件时，需要注意：
+
+1. 使用`<Mermaid>`标签包裹图表定义
+2. `chart`属性包含图表的Mermaid语法
+3. 图表语法中的换行符需要使用`\n`进行转义
+4. 支持响应式设计，会自动适应亮色/暗色主题

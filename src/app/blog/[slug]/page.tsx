@@ -4,6 +4,7 @@ import { InlineTOC } from 'fumadocs-ui/components/inline-toc';
 import { blog } from '@/lib/source';
 import { getMDXComponents } from '@/mdx-components';
 import { createRelativeLink } from 'fumadocs-ui/mdx';
+import type { Metadata } from 'next';
 
 export default function Page({ params }: { params: { slug: string } }) {
   const page = blog.getPage([params.slug]);
@@ -47,6 +48,7 @@ export default function Page({ params }: { params: { slug: string } }) {
         </article>
         <aside className="hidden lg:block">
           <div className="sticky top-24">
+            <p className="mb-2 text-sm font-semibold text-fd-muted-foreground">目录</p>
             <InlineTOC items={page.data.toc} />
           </div>
         </aside>
@@ -59,7 +61,7 @@ export function generateStaticParams(): { slug: string }[] {
   return blog.getPages().map((page) => ({ slug: page.slugs[0] }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }) {
+export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const page = blog.getPage([params.slug]);
   if (!page) notFound();
 
