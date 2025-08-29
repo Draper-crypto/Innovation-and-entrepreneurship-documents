@@ -12,8 +12,8 @@ import {
 // You can customise Zod schemas for frontmatter and `meta.json` here
 // see https://fumadocs.dev/docs/mdx/collections#define-docs
 export const docs = defineDocs({
+  dir: 'content/innovation',
   docs: {
-    dir: 'content/innovation',
     schema: frontmatterSchema,
   },
   meta: {
@@ -23,11 +23,12 @@ export const docs = defineDocs({
 
 // Define blog collection
 export const blog = defineDocs({
+  dir: 'content/blog',
   docs: {
-    dir: 'content/blog',
     schema: frontmatterSchema.extend({
       category: z.string().optional(),
       author: z.string().optional(),
+      date: z.string().optional(),
       // Custom image parameters per post
       cover: z.string().optional(), // image path or URL
       coverAlt: z.string().optional(),
