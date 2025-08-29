@@ -32,7 +32,7 @@ export function getRSS() {
             email: 'team@elexvx.com',
           },
         ],
-        category: page.slugs.length > 1 ? [page.slugs[0]] : ['documentation'],
+        category: page.slugs.length > 1 ? [{ name: page.slugs[0] }] : [{ name: 'documentation' }],
       });
     }
   }
@@ -68,7 +68,7 @@ export function getAtom() {
             email: 'team@elexvx.com',
           },
         ],
-        category: page.slugs.length > 1 ? [page.slugs[0]] : ['documentation'],
+        category: page.slugs.length > 1 ? [{ name: page.slugs[0] }] : [{ name: 'documentation' }],
       });
     }
   }
@@ -104,7 +104,7 @@ export function getJSON() {
             email: 'team@elexvx.com',
           },
         ],
-        category: page.slugs.length > 1 ? [page.slugs[0]] : ['documentation'],
+        category: page.slugs.length > 1 ? [{ name: page.slugs[0] }] : [{ name: 'documentation' }],
       });
     }
   }
