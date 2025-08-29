@@ -35,7 +35,12 @@ export default function Footer() {
             <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-700 dark:text-gray-300">社区</h3>
             <div className="space-y-3">
               {footer.community.map((i) => (
-                <Link key={i.label} href={i.href} target={i.external ? '_blank' : undefined} className="block text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 text-sm transition-colors">
+                <Link
+                  key={i.label}
+                  href={i.href}
+                  target={'external' in i && i.external ? '_blank' : undefined}
+                  className="block text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 text-sm transition-colors"
+                >
                   {i.label}
                 </Link>
               ))}

@@ -15,14 +15,10 @@ export const { provider } = defineI18nUI(i18n, {
       toc: '目录',
       lastUpdate: '最后更新',
       searchNoResult: '没有找到结果',
-      searchLoadingText: '加载中...',
-      searchPlaceholder: '搜索文档...',
       tocNoHeadings: '没有标题',
       editOnGithub: '在 GitHub 上编辑此页',
-      footer: {
-        previous: '上一页',
-        next: '下一页',
-      },
+      previousPage: '上一页',
+      nextPage: '下一页',
     },
     en: {
       displayName: 'English',
@@ -30,14 +26,10 @@ export const { provider } = defineI18nUI(i18n, {
       toc: 'Table of Contents',
       lastUpdate: 'Last updated',
       searchNoResult: 'No results found',
-      searchLoadingText: 'Loading...',
-      searchPlaceholder: 'Search docs...',
       tocNoHeadings: 'No Headings',
       editOnGithub: 'Edit this page on GitHub',
-      footer: {
-        previous: 'Previous',
-        next: 'Next',
-      },
+      previousPage: 'Previous',
+      nextPage: 'Next',
     },
   },
 });
@@ -50,7 +42,7 @@ export function detectLanguage(): string {
   
   // 优先从 localStorage 读取用户选择的语言
   const storedLang = localStorage.getItem('fumadocs-language');
-  if (storedLang && i18n.languages.includes(storedLang)) {
+  if (storedLang && (i18n.languages as string[]).includes(storedLang)) {
     return storedLang;
   }
   
@@ -64,7 +56,7 @@ export function detectLanguage(): string {
 }
 
 export function setLanguage(locale: string) {
-  if (typeof window !== 'undefined' && i18n.languages.includes(locale)) {
+  if (typeof window !== 'undefined' && (i18n.languages as string[]).includes(locale)) {
     localStorage.setItem('fumadocs-language', locale);
   }
 }

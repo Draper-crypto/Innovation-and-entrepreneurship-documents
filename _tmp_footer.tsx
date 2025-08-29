@@ -16,7 +16,9 @@ export default function Footer() {
               {/* 杩欓噷鍙互鏀剧疆涓€涓疄闄呯殑Logo缁勪欢鎴栧浘鐗?*/}
               <span className="text-xl font-bold">ElexvxAI Lab</span>
             </div>
-            <p className="text-gray-600 dark:text-gray-400 text-sm">鏋勫缓鐪熷疄鐨勭Щ鍔ㄥ簲鐢ㄧ▼搴?/p>
+            <p className="text-gray-600 dark:text-gray-400 text-sm">
+              鏋勫缓鐪熷疄鐨勭Щ鍔ㄥ簲鐢ㄧ▼搴?
+            </p>
           </div>
 
           {/* PRODUCT Column */}
