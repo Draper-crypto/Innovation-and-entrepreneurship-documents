@@ -48,7 +48,6 @@ export default function Page({ params }: { params: { slug: string } }) {
         </article>
         <aside className="hidden lg:block">
           <div className="sticky top-24">
-            <p className="mb-2 text-sm font-semibold text-fd-muted-foreground">目录</p>
             <InlineTOC items={page.data.toc} />
           </div>
         </aside>

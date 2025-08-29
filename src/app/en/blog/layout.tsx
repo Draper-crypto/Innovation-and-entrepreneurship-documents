@@ -1,5 +1,7 @@
 import { BlogCard, type BlogPost } from '../../../components/blog-card';
 import { blogSourceEn } from '@/lib/source';
+import { HomeLayout } from 'fumadocs-ui/layouts/home';
+import { baseOptions } from '@/lib/layout.shared';
 
 export const metadata = {
   title: 'Blog',
@@ -29,8 +31,9 @@ function getBlogPosts(): BlogPost[] {
 }
 
 export default function BlogLayout({ children }: { children: React.ReactNode }) {
+  const base = baseOptions();
   if (children) {
-    return <>{children}</>;
+    return <HomeLayout {...base}>{children}</HomeLayout>;
   }
 
   const posts = getBlogPosts();
@@ -38,39 +41,41 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
   const regularPosts = posts.filter(post => !post.featured);
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-2">Blog</h1>
-        <p className="text-lg text-muted-foreground">
-          Latest insights and thoughts on innovation and entrepreneurship
-        </p>
-      </div>
+    <HomeLayout {...base}>
+      <div className="container mx-auto px-4 py-8">
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold mb-2">Blog</h1>
+          <p className="text-lg text-muted-foreground">
+            Latest insights and thoughts on innovation and entrepreneurship
+          </p>
+        </div>
 
-      {featuredPosts.length > 0 && (
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6">Featured Posts</h2>
+        {featuredPosts.length > 0 && (
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold mb-6">Featured Posts</h2>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {featuredPosts.map((post) => (
+                <BlogCard key={post.url} post={post} />
+              ))}
+            </div>
+          </section>
+        )}
+
+        <section>
+          <h2 className="text-2xl font-bold mb-6">Latest Posts</h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {featuredPosts.map((post) => (
+            {regularPosts.map((post) => (
               <BlogCard key={post.url} post={post} />
             ))}
           </div>
         </section>
-      )}
 
-      <section>
-        <h2 className="text-2xl font-bold mb-6">Latest Posts</h2>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {regularPosts.map((post) => (
-            <BlogCard key={post.url} post={post} />
-          ))}
-        </div>
-      </section>
-
-      {posts.length === 0 && (
-        <div className="text-center py-12">
-          <p className="text-muted-foreground">No posts yet</p>
-        </div>
-      )}
-    </div>
+        {posts.length === 0 && (
+          <div className="text-center py-12">
+            <p className="text-muted-foreground">No posts yet</p>
+          </div>
+        )}
+      </div>
+    </HomeLayout>
   );
 }

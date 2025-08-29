@@ -31,14 +31,22 @@ export function baseOptions(): BaseLayoutProps {
         text: '文档',
         items: [
           {
+            text: '概览',
+            description: '文档首页与索引，快速了解站点结构',
+            url: '/docs',
+            icon: <IconHome size={16} />,
+          },
+          {
             text: '指南',
-            description: '入门与概念',
+            description: '入门、核心概念与最佳实践',
             url: '/docs/guide',
+            icon: <IconBook size={16} />,
           },
           {
             text: '示例',
-            description: '代码示例与演示',
+            description: '可运行的代码示例与演示',
             url: '/docs/examples',
+            icon: <IconNotes size={16} />,
           },
         ],
       },
