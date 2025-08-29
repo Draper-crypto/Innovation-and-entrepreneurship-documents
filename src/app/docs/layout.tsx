@@ -33,9 +33,6 @@ export default function Layout({ children }: LayoutProps<'/docs'>) {
     <DocsLayout 
       tree={source.pageTree} 
       {...baseOptions()}
-      toc={{
-        enabled: true,
-      }}
       nav={{
         ...baseOptions().nav,
         title: '文档',
