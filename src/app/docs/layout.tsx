@@ -2,6 +2,7 @@ import { DocsLayout } from 'fumadocs-ui/layouts/docs';
 import { baseOptions } from '@/lib/layout.shared';
 import { source } from '@/lib/source';
 import type { Metadata } from 'next';
+import { Footer } from '@/components/footer';
 
 export const metadata: Metadata = {
   alternates: {
@@ -33,12 +34,14 @@ export default function Layout({ children }: LayoutProps<'/docs'>) {
     <DocsLayout 
       tree={source.pageTree} 
       {...baseOptions()}
+      links={[]}
       nav={{
         ...baseOptions().nav,
         title: '文档',
         url: '/',
         // children: <LanguageSelector />,
       }}
+      footer={<Footer />}
     >
       {children}
     </DocsLayout>

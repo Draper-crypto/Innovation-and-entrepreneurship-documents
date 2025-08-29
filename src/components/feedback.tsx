@@ -94,7 +94,7 @@ export function Rate({
       className="border-y py-3"
     >
       <div className="flex flex-row items-center gap-2">
-        <p className="text-sm font-medium pe-2">How is this guide?</p>
+        <p className="text-sm font-medium pe-2">这篇指南对你有帮助吗？</p>
         <button
           disabled={previous !== null}
           className={cn(
@@ -107,7 +107,7 @@ export function Rate({
           }}
         >
           <ThumbsUp />
-          Good
+          有帮助
         </button>
         <button
           disabled={previous !== null}
@@ -121,13 +121,13 @@ export function Rate({
           }}
         >
           <ThumbsDown />
-          Bad
+          没有帮助
         </button>
       </div>
       <CollapsibleContent className="mt-3">
         {previous ? (
           <div className="px-3 py-6 flex flex-col items-center gap-3 bg-fd-card text-fd-muted-foreground text-sm text-center rounded-xl">
-            <p>Thank you for your feedback!</p>
+            <p>感谢你的反馈！</p>
             <div className="flex flex-row items-center gap-2">
               <a
                 href={previous.response?.githubUrl}
@@ -140,7 +140,7 @@ export function Rate({
                   'text-xs',
                 )}
               >
-                View on GitHub
+                在 GitHub 查看
               </a>
 
               <button
@@ -155,7 +155,7 @@ export function Rate({
                   setPrevious(null);
                 }}
               >
-                Submit Again
+                再次提交
               </button>
             </div>
           </div>
@@ -167,7 +167,7 @@ export function Rate({
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               className="border rounded-lg bg-fd-secondary text-fd-secondary-foreground p-3 resize-none focus-visible:outline-none placeholder:text-fd-muted-foreground"
-              placeholder="Leave your feedback..."
+              placeholder="请留下你的反馈..."
               onKeyDown={(e) => {
                 if (
                   e.key === 'Enter' &&
@@ -189,7 +189,7 @@ export function Rate({
                   'text-xs',
                 )}
               >
-                {isPending ? 'Sending...' : 'Send'}
+                {isPending ? '发送中...' : '发送'}
               </button>
             </div>
           </form>

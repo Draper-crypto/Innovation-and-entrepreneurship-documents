@@ -1,5 +1,5 @@
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
-import { IconHome, IconBook } from '@tabler/icons-react';
+import { IconHome, IconBook, IconNotes, IconHeart } from '@tabler/icons-react';
 
 /**
  * Shared layout configurations
@@ -36,6 +36,18 @@ export function baseOptions(): BaseLayoutProps {
         icon: <IconBook size={20} />,
         text: '文档',
         url: '/docs',
+        active: 'nested-url',
+      },
+      {
+        icon: <IconNotes size={20} />,
+        text: '博客',
+        url: '/blog',
+        active: 'nested-url',
+      },
+      {
+        icon: <IconHeart size={20} />,
+        text: '赞助商',
+        url: '/sponsors',
         active: 'nested-url',
       },
     ],

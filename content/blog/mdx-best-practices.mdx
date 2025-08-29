@@ -1,0 +1,32 @@
+---
+title: MDX 最佳实践：组件化写作与可复用模式
+description: 总结在技术博客与文档站中使用 MDX 的最佳实践，包括组件复用、交互增强与可维护性。
+author: 王五
+date: 2025-03-08
+cover: https://picsum.photos/id/1043/1200/630
+---
+
+MDX 让我们可以在 Markdown 中使用 React 组件，既保留了良好的写作体验，又带来了高可扩展性。
+
+## 模块化组件
+
+- 用 Callout、Tabs、CodeBlock 等组件封装“可复用结构”；
+- 将交互脚本封装为轻组件，避免在正文内直接写复杂逻辑。
+
+## 内容组织
+
+- 约定 frontmatter 字段：title/description/author/date/cover；
+- 通过目录（TOC）与相对链接组织跨页阅读。
+
+## 示例：Mermaid 与公式
+
+```mermaid
+flowchart TD
+  A[Start] --> B{MDX}
+  B -->|Components| C[UI]
+  B -->|Markdown| D[Content]
+```
+
+行内公式示例：$E=mc^2$。
+
+> 建议：将“内容模型”与“渲染组件”解耦，长期收益显著。
