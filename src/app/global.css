@@ -2,3 +2,93 @@
 @import 'fumadocs-ui/css/neutral.css';
 @import 'fumadocs-ui/css/preset.css';
 @import 'fumadocs-twoslash/twoslash.css';
+
+/* Forward Fumadocs color tokens to Tailwind CSS global colors (per Fumadocs v15) */
+@theme {
+  /* Brand primary color: #6A66F4 */
+  --color-fd-primary: #6A66F4;
+  /* Optional contrast/hover shades derived automatically by Tailwind, keep minimal override */
+  /* You can also tweak secondary/accent if needed later */
+
+  /* Forwarding so regular --color-primary utilities read fd-primary */
+  --color-primary: var(--color-fd-primary);
+}
+
+:root {
+  /* In case components reference CSS variables directly */
+  --color-fd-primary: #6A66F4;
+}
+
+.dark {
+  /* Keep same brand hue in dark mode; adjust if needed later */
+  --color-fd-primary: #6A66F4;
+}
+
+/* ---- Docs TOC 样式（按参考图改造为“时间线/导轨”风格） ---- */
+:root {
+  --toc-accent: var(--color-fd-primary);
+  --toc-rail: color-mix(in oklab, var(--color-fd-primary) 20%, transparent);
+}
+
+/* 兼容中英文 aria-label */
+nav[aria-label="Table of contents"],
+nav[aria-label="目录"] {
+  --_toc-rail: var(--toc-rail);
+  --_toc-accent: var(--toc-accent);
+}
+
+nav[aria-label="Table of contents"] ol,
+nav[aria-label="目录"] ol {
+  position: relative;
+  margin-left: 12px;
+  border-left: 1.5px solid var(--_toc-rail);
+  padding-left: 0;
+}
+
+nav[aria-label="Table of contents"] li,
+nav[aria-label="目录"] li {
+  list-style: none;
+  position: relative;
+  padding-left: 12px;
+  margin: 8px 0;
+}
+
+/* 圆点节点 */
+nav[aria-label="Table of contents"] li::before,
+nav[aria-label="目录"] li::before {
+  content: '';
+  position: absolute;
+  left: -9px;
+  top: 0.9em;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: var(--_toc-accent);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--_toc-accent) 12%, transparent);
+}
+
+/* 文本与 hover/active 态 */
+nav[aria-label="Table of contents"] a,
+nav[aria-label="目录"] a {
+  display: inline-block;
+  color: var(--fd-muted-foreground, color-mix(in oklab, #000 55%, transparent));
+  text-decoration: none;
+  padding: 2px 0;
+}
+
+nav[aria-label="Table of contents"] a:hover,
+nav[aria-label="目录"] a:hover {
+  color: var(--_toc-accent);
+}
+
+/* 一些实现会用 aria-current 或 data-active 标记当前项，做兼容 */
+nav[aria-label="Table of contents"] a[aria-current],
+nav[aria-label="目录"] a[aria-current],
+nav[aria-label="Table of contents"] a[aria-current="page"],
+nav[aria-label="目录"] a[aria-current="page"],
+nav[aria-label="Table of contents"] a[data-active="true"],
+nav[aria-label="目录"] a[data-active="true"] {
+  color: var(--_toc-accent);
+  font-weight: 600;
+}

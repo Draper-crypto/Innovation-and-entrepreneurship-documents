@@ -5,7 +5,7 @@ export function Footer() {
       <div className="border-t bg-background/50">
         <div className="container mx-auto px-4 py-10 text-sm text-fd-muted-foreground grid gap-6 sm:grid-cols-3">
           <div className="space-y-2">
-            <div className="font-semibold text-foreground">Elexvx Lab</div>
+            <div className="font-semibold text-foreground">ElexvxAI Lab</div>
             <p className="leading-6">以工程化与产品思维打造更好的开发者体验。</p>
           </div>
           <div>

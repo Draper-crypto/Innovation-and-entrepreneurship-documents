@@ -2,7 +2,6 @@ import { DocsLayout } from 'fumadocs-ui/layouts/docs';
 import { baseOptions } from '@/lib/layout.shared';
 import { source } from '@/lib/source';
 import type { Metadata } from 'next';
-import { Footer } from '@/components/footer';
 import { IconHome, IconBook, IconNotes } from '@tabler/icons-react';
 
 export const metadata: Metadata = {
@@ -66,7 +65,6 @@ export default function Layout({ children }: LayoutProps<'/docs'>) {
       >
         {children}
       </DocsLayout>
-      <Footer />
     </>
   );
 }

@@ -4,6 +4,8 @@ import { RootProvider } from 'fumadocs-ui/provider';
 import type { Translations } from 'fumadocs-ui/i18n';
 import { Inter } from 'next/font/google';
 import { Banner } from 'fumadocs-ui/components/banner';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -27,11 +29,14 @@ export default function Layout({ children }: LayoutProps) {
     <html lang="zh" className={inter.className} suppressHydrationWarning>
       <body className="flex flex-col min-h-screen">
         <Banner id="welcome-banner" variant="rainbow">
-          🎉 欢迎来到 Elexvx Lab 文档站！探索我们的技术文档和示例代码。
+          🎉 欢迎来到文档站！探索技术文档与示例代码。
         </Banner>
         <RootProvider i18n={{ locale: 'zh', locales, translations: zh }}>
           {children}
         </RootProvider>
+        {/* Vercel Analytics & Speed Insights */}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

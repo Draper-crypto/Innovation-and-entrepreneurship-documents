@@ -5,13 +5,13 @@ const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
 
 export function getRSS() {
   const feed = new Feed({
-    title: 'Elexvx Lab Documentation',
-    description: 'Latest updates and documentation for Elexvx Lab',
+    title: 'ElexvxAI Lab Documentation',
+    description: 'Latest updates and documentation for ElexvxAI Lab',
     id: `${baseUrl}/docs`,
     link: `${baseUrl}/docs`,
     language: 'en',
     favicon: `${baseUrl}/favicon.ico`,
-    copyright: `All rights reserved ${new Date().getFullYear()}, Elexvx Lab`,
+    copyright: `All rights reserved ${new Date().getFullYear()}, ElexvxAI Lab`,
     generator: 'Fumadocs RSS Generator',
   });
 
@@ -28,7 +28,7 @@ export function getRSS() {
         date: new Date(page.data.lastModified || Date.now()),
         author: [
           {
-            name: 'Elexvx Lab Team',
+            name: 'ElexvxAI Lab Team',
             email: 'team@elexvx.com',
           },
         ],
@@ -42,13 +42,13 @@ export function getRSS() {
 
 export function getAtom() {
   const feed = new Feed({
-    title: 'Elexvx Lab Documentation',
-    description: 'Latest updates and documentation for Elexvx Lab',
+    title: 'ElexvxAI Lab Documentation',
+    description: 'Latest updates and documentation for ElexvxAI Lab',
     id: `${baseUrl}/docs`,
     link: `${baseUrl}/docs`,
     language: 'en',
     favicon: `${baseUrl}/favicon.ico`,
-    copyright: `All rights reserved ${new Date().getFullYear()}, Elexvx Lab`,
+    copyright: `All rights reserved ${new Date().getFullYear()}, ElexvxAI Lab`,
     generator: 'Fumadocs Atom Generator',
   });
 
@@ -64,7 +64,7 @@ export function getAtom() {
         date: new Date(page.data.lastModified || Date.now()),
         author: [
           {
-            name: 'Elexvx Lab Team',
+            name: 'ElexvxAI Lab Team',
             email: 'team@elexvx.com',
           },
         ],
@@ -78,13 +78,13 @@ export function getAtom() {
 
 export function getJSON() {
   const feed = new Feed({
-    title: 'Elexvx Lab Documentation',
-    description: 'Latest updates and documentation for Elexvx Lab',
+    title: 'ElexvxAI Lab Documentation',
+    description: 'Latest updates and documentation for ElexvxAI Lab',
     id: `${baseUrl}/docs`,
     link: `${baseUrl}/docs`,
     language: 'en',
     favicon: `${baseUrl}/favicon.ico`,
-    copyright: `All rights reserved ${new Date().getFullYear()}, Elexvx Lab`,
+    copyright: `All rights reserved ${new Date().getFullYear()}, ElexvxAI Lab`,
     generator: 'Fumadocs JSON Feed Generator',
   });
 
@@ -100,7 +100,7 @@ export function getJSON() {
         date: new Date(page.data.lastModified || Date.now()),
         author: [
           {
-            name: 'Elexvx Lab Team',
+            name: 'ElexvxAI Lab Team',
             email: 'team@elexvx.com',
           },
         ],
