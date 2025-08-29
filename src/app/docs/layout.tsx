@@ -34,37 +34,39 @@ export default function Layout({ children }: LayoutProps<'/docs'>) {
   const base = baseOptions();
 
   return (
-    <DocsLayout 
-      tree={source.pageTree}
-      {...base}
-      // 显式指定 Sidebar Tabs：标题/描述/URL/图标，统一所有文档页的切换方式与外观
-      sidebar={{
-        tabs: [
-          {
-            title: '概览',
-            description: '文档首页与索引，快速了解站点结构',
-            url: '/docs',
-            icon: <IconHome size={16} />,
-          },
-          {
-            title: '指南',
-            description: '入门、核心概念与最佳实践',
-            url: '/docs/guide',
-            icon: <IconBook size={16} />,
-          },
-          {
-            title: '示例',
-            description: '可运行的代码示例与演示',
-            url: '/docs/examples',
-            icon: <IconNotes size={16} />,
-          },
-        ],
-      }}
-      // 清空 links，避免重复渲染
-      links={[]}
-      footer={<Footer />}
-    >
-      {children}
-    </DocsLayout>
+    <>
+      <DocsLayout 
+        tree={source.pageTree}
+        {...base}
+        // 显式指定 Sidebar Tabs：标题/描述/URL/图标，统一所有文档页的切换方式与外观
+        sidebar={{
+          tabs: [
+            {
+              title: '概览',
+              description: '文档首页与索引，快速了解站点结构',
+              url: '/docs',
+              icon: <IconHome size={16} />,
+            },
+            {
+              title: '指南',
+              description: '入门、核心概念与最佳实践',
+              url: '/docs/guide',
+              icon: <IconBook size={16} />,
+            },
+            {
+              title: '示例',
+              description: '可运行的代码示例与演示',
+              url: '/docs/examples',
+              icon: <IconNotes size={16} />,
+            },
+          ],
+        }}
+        // 清空 links，避免重复渲染
+        links={[]}
+      >
+        {children}
+      </DocsLayout>
+      <Footer />
+    </>
   );
 }

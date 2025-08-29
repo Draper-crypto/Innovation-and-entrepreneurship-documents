@@ -6,8 +6,9 @@ import { getMDXComponents } from '@/mdx-components';
 import { createRelativeLink } from 'fumadocs-ui/mdx';
 import type { Metadata } from 'next';
 
-export default function Page({ params }: { params: { slug: string } }) {
-  const page = blog.getPage([params.slug]);
+export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const page = blog.getPage([slug]);
   if (!page) notFound();
 
   const Mdx = page.data.body;
@@ -56,12 +57,15 @@ export default function Page({ params }: { params: { slug: string } }) {
   );
 }
 
-export function generateStaticParams(): { slug: string }[] {
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
   return blog.getPages().map((page) => ({ slug: page.slugs[0] }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const page = blog.getPage([params.slug]);
+export async function generateMetadata(
+  { params }: { params: Promise<{ slug: string }> }
+): Promise<Metadata> {
+  const { slug } = await params;
+  const page = blog.getPage([slug]);
   if (!page) notFound();
 
   return {
