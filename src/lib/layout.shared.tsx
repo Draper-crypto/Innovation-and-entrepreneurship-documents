@@ -31,15 +31,9 @@ export function baseOptions(): BaseLayoutProps {
         text: '文档',
         items: [
           {
-            text: '概览',
-            description: '文档首页与索引，快速了解站点结构',
-            url: '/docs',
-            icon: <IconHome size={16} />,
-          },
-          {
-            text: '指南',
+            text: '创新大赛',
             description: '入门、核心概念与最佳实践',
-            url: '/docs/guide',
+            url: '/docs/innovation',
             icon: <IconBook size={16} />,
           },
           {

@@ -41,21 +41,15 @@ export default function Layout({ children }: LayoutProps<'/docs'>) {
         sidebar={{
           tabs: [
             {
-              title: '概览',
-              description: '文档首页与索引，快速了解站点结构',
-              url: '/docs',
-              icon: <IconHome size={16} />,
-            },
-            {
-              title: '大学生创新比赛',
-              description: '可运行的代码示例与演示',
+              title: '创新创业文档',
+              description: '创新创业文档',
               url: '/docs/innovation',
               icon: <IconNotes size={16} />,
             },
             {
-              title: '指南',
-              description: '入门、核心概念与最佳实践',
-              url: '/docs/guide',
+              title: '规范文档',
+              description: '规范文档',
+              url: '/docs/standards',
               icon: <IconBook size={16} />,
             },
           ],
