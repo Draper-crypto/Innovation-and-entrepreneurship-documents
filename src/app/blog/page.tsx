@@ -2,8 +2,21 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { blog } from '@/lib/source';
 
+function parseDate(d: unknown): number {
+  if (!d) return 0;
+  try {
+    const dt = typeof d === 'string' || typeof d === 'number' ? new Date(d) : (d as Date);
+    const t = +dt;
+    return Number.isFinite(t) ? t : 0;
+  } catch {
+    return 0;
+  }
+}
+
 export default function BlogIndexPage() {
-  const posts = blog.getPages();
+  const posts = blog
+    .getPages()
+    .toSorted((a, b) => parseDate((b.data as any).date) - parseDate((a.data as any).date));
 
   return (
     <main className="grow container mx-auto px-4 py-8">

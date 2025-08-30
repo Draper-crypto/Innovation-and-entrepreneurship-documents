@@ -45,17 +45,17 @@ export function TestimonialsMarquee({
   }, [speed]);
 
   const Card = ({ t }: { t: Testimonial }) => (
-    <div className="shrink-0 w-[360px] rounded-xl border bg-white p-4 shadow-sm dark:border-white/10 dark:bg-white/5">
-      <p className="text-sm text-gray-700 dark:text-gray-200">{t.content}</p>
+    <div className="shrink-0 w-[360px] rounded-xl border bg-fd-card text-fd-card-foreground p-4 shadow-sm dark:border-white/10">
+      <p className="text-sm text-fd-foreground/90">{t.content}</p>
       <div className="mt-4 flex items-center gap-3">
         {t.avatar ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={t.avatar} alt={t.author} className="h-8 w-8 rounded-full object-cover" />
         ) : (
-          <div className="h-8 w-8 rounded-full bg-gray-200 dark:bg-white/10" />
+          <div className="h-8 w-8 rounded-full bg-fd-secondary" />
         )}
-        <div className="text-xs text-gray-600 dark:text-gray-300">
-          <div className="font-medium text-gray-900 dark:text-gray-100">{t.author}</div>
+        <div className="text-xs text-fd-muted-foreground">
+          <div className="font-medium text-fd-foreground">{t.author}</div>
           {t.role ? <div>{t.role}</div> : null}
         </div>
       </div>
@@ -65,11 +65,11 @@ export function TestimonialsMarquee({
   const duplicated = [...items, ...items];
 
   return (
-    <section className="mx-auto mt-16 max-w-6xl px-4">
+    <section className="mx-auto mt-16 max-w-[var(--spacing-fd-container)] px-4 md:px-6">
       <div className="mb-6 flex items-center justify-between">
-        <h3 className="text-2xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">{title}</h3>
+        <h3 className="text-2xl font-semibold tracking-tight text-fd-foreground">{title}</h3>
       </div>
-      <div className="relative overflow-hidden rounded-2xl border border-black/10 p-4 dark:border-white/10">
+      <div className="relative overflow-hidden rounded-2xl border p-4 dark:border-white/10">
         <div
           ref={trackRef}
           className="flex gap-4 will-change-transform"

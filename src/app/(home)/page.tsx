@@ -7,6 +7,8 @@ import { useEffect, useRef, useState } from 'react';
 import { BlogCardsSection, type BlogCardItem } from '@/components/home/blog-cards-section';
 import { TestimonialsMarquee, type Testimonial } from '@/components/home/testimonials';
 import { Alert } from '@heroui/react';
+import { cn } from '@/lib/cn';
+import { buttonVariants } from 'fumadocs-ui/components/ui/button';
 
 // Count-up number with thousand separators, triggered when element enters viewport
 function CountUp({ value, duration = 1.6, delay = 0 }: { value: string | number; duration?: number; delay?: number }) {
@@ -44,9 +46,11 @@ export default function HomePage() {
 
   // 统一的卡片样式，两个网格公用，保证完全一致
   const cardCls =
-    'group flex h-[220px] flex-col rounded-2xl border border-black/10 bg-white p-6 shadow-sm ring-1 ring-black/5 transition hover:shadow-md dark:border-white/10 dark:bg-white/5 dark:ring-white/10';
+-    'group flex h-[220px] flex-col rounded-2xl border border-black/10 bg-white p-6 shadow-sm ring-1 ring-black/5 transition hover:shadow-md dark:border-white/10 dark:bg-white/5 dark:ring-white/10';
++    'group flex h-[220px] flex-col rounded-2xl border bg-fd-card p-6 text-fd-card-foreground shadow-sm ring-1 transition hover:shadow-md dark:border-white/10 ring-black/5';
   const iconBoxCls =
-    'mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-100 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-300';
+-    'mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-100 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-300';
++    'mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-fd-secondary text-fd-secondary-foreground';
 
   // 共享网格组件：标题、副标题、卡片项
   const FeatureGridSection = ({
@@ -58,7 +62,7 @@ export default function HomePage() {
     subtitle: string;
     items: { icon: string; title: string; desc: string }[];
   }) => (
-    <motion.section {...fadeIn} className="mx-auto mt-16 max-w-6xl px-4">
+    <motion.section {...fadeIn} className="mx-auto mt-16 max-w-[var(--spacing-fd-container)] px-4 md:px-6">
       <div className="mx-auto mb-8 max-w-3xl text-center">
         <h3 className="text-2xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">{title}</h3>
         <p className="mt-2 text-base text-gray-600 dark:text-gray-300">{subtitle}</p>
@@ -155,7 +159,7 @@ export default function HomePage() {
           }}
         />
 
-        <div className="relative z-10 mx-auto max-w-6xl px-4 pt-24 pb-20 text-center md:pt-28 md:pb-24">
+        <div className="relative z-10 mx-auto max-w-[var(--spacing-fd-container)] px-4 md:px-6 pt-24 pb-20 text-center md:pt-28 md:pb-24">
           {/* Badge pill */}
           <motion.div
             {...fadeIn}
@@ -181,7 +185,7 @@ export default function HomePage() {
           <motion.p
             {...fadeIn}
             transition={{ delay: 0.08 }}
-            className="mx-auto mt-5 max-w-3xl text-lg text-gray-600 dark:text-gray-300"
+            className="mx-auto mt-5 max-w-3xl text-lg text-fd-muted-foreground"
           >
             一个专注于「简单与高效」的开源项目管理平台。你可以自部署、深度定制，让它真正属于你。
           </motion.p>
@@ -194,14 +198,14 @@ export default function HomePage() {
           >
             <Link
               href="/docs"
-              className="inline-flex items-center justify-center rounded-full bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_30px_-10px_rgba(79,70,229,0.6)] transition hover:bg-indigo-500"
+              className={cn(buttonVariants({ color: 'primary' }), 'rounded-full px-6 py-3 text-sm font-semibold shadow-[0_10px_30px_-10px_rgba(79,70,229,0.6)]')}
             >
               <span className="mr-2">🔗</span>
               体验演示
             </Link>
             <Link
               href="/docs"
-              className="inline-flex items-center justify-center rounded-full border border-black/10 bg-white px-6 py-3 text-sm font-medium text-gray-900 shadow-sm transition hover:bg-gray-50 dark:border-white/15 dark:bg-transparent dark:text-gray-100"
+              className={cn(buttonVariants({ color: 'secondary' }), 'rounded-full px-6 py-3 text-sm')}
             >
               <span className="mr-2">›_</span>
               文档
@@ -210,7 +214,7 @@ export default function HomePage() {
         </div>
 
         {/* Showcase card -> 替换为演示图片 */}
-        <motion.div {...fadeIn} transition={{ delay: 0.18 }} className="relative mx-auto mt-2 w-full max-w-5xl px-4">
+        <motion.div {...fadeIn} transition={{ delay: 0.18 }} className="relative mx-auto mt-2 w-full max-w-[var(--spacing-fd-container)] px-4 md:px-6">
           <div className="rounded-3xl bg-gradient-to-r from-indigo-600 to-sky-500 p-1 shadow-xl">
             <div className="rounded-2xl bg-neutral-900 p-0.5 sm:p-2">
               <div className="aspect-[16/9] w-full overflow-hidden rounded-xl ring-1 ring-white/10">
@@ -246,7 +250,7 @@ export default function HomePage() {
       {/* CTA BOTTOM */}
       <motion.section
         {...fadeIn}
-        className="relative mx-auto mt-24 w-full max-w-none overflow-hidden border-y border-black/5 bg-white px-4 py-16 dark:border-white/10 dark:bg-transparent"
+        className="relative mx-auto mt-24 w-full max-w-none overflow-hidden border-y border-black/5 bg-fd-card px-6 py-16 dark:border-white/10 dark:bg-transparent"
       >
         {/* top blue glow */}
         <div
@@ -263,9 +267,9 @@ export default function HomePage() {
           }}
         />
 
-        <div className="relative z-10 mx-auto max-w-4xl text-center">
-          <h3 className="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white md:text-4xl">准备好加速了吗？</h3>
-          <p className="mx-auto mt-3 max-w-2xl text-sm text-gray-600 dark:text-gray-300">
+        <div className="relative z-10 mx-auto max-w-[var(--spacing-fd-container)] px-4 md:px-6 pt-24 pb-20 text-center md:pt-28 md:pb-24">
+          <h3 className="text-3xl font-extrabold tracking-tight text-fd-foreground md:text-4xl">准备好加速了吗？</h3>
+          <p className="mx-auto mt-3 max-w-2xl text-sm text-fd-muted-foreground">
             从免费账户开始构建。企业版需求可与我们的专家沟通。
           </p>
           <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -277,7 +281,7 @@ export default function HomePage() {
             </Link>
             <Link
               href="/sponsors"
-              className="inline-flex items-center justify-center rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 shadow-sm transition hover:bg-gray-50 dark:border-white/15 dark:bg-transparent dark:text-gray-100 dark:hover:bg-white/5"
+              className={cn(buttonVariants({ color: 'secondary' }), 'rounded-full px-5 py-2.5 text-sm')}
             >
               联系销售
             </Link>

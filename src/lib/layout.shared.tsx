@@ -48,9 +48,19 @@ export function baseOptions(): BaseLayoutProps {
         type: 'custom',
         on: 'nav',
         children: (
-          <div className="flex items-center gap-4">
-            <a href="/blog" className="hover:underline">博客</a>
-            <a href="/sponsors" className="hover:underline">赞助商</a>
+          <div className="flex items-center gap-2">
+            <a
+              href="/blog"
+              className="group inline-flex items-center rounded-lg px-3 py-1.5 text-sm transition hover:bg-fd-accent hover:text-fd-accent-foreground"
+            >
+              博客
+            </a>
+            <a
+              href="/sponsors"
+              className="group inline-flex items-center rounded-lg px-3 py-1.5 text-sm transition hover:bg-fd-accent hover:text-fd-accent-foreground"
+            >
+              赞助商
+            </a>
           </div>
         ),
       },
