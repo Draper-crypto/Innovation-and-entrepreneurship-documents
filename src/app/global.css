@@ -142,4 +142,29 @@ article.fd-article table thead th,
 .prose table thead th,
 article table thead th { font-weight: 400 !important; }
 
-.fd-article table :is(th, td) :is(strong, b) { font-weight: 700 !important; }
+/* 修正：使用更高优先级的选择器强制为表格内容区的 strong/b 标签加粗 */
+.fd-article table tbody tr td strong,
+.fd-article table tbody tr td b,
+.prose table tbody tr td strong,
+.prose table tbody tr td b,
+article table tbody tr td strong,
+article table tbody tr td b {
+  font-weight: 700 !important;
+}
+
+/* 新增：统一表头背景色与内容行一致 */
+.fd-article table thead th,
+article.fd-article table thead th,
+.prose table thead th,
+article table thead th { background-color: transparent !important; }
+
+/* Testimonials marquee keyframes */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee_reverse {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(50%); }
+}

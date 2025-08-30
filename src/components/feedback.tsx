@@ -107,7 +107,7 @@ export function Rate({
           }}
         >
           <ThumbsUp />
-          有帮助
+          有
         </button>
         <button
           disabled={previous !== null}
@@ -121,7 +121,7 @@ export function Rate({
           }}
         >
           <ThumbsDown />
-          没有帮助
+          没有
         </button>
       </div>
       <CollapsibleContent className="mt-3">

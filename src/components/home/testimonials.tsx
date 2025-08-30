@@ -25,22 +25,73 @@ export function TestimonialsMarquee({
     const el = trackRef.current;
     if (!el) return;
 
-    let start: number | null = null;
-    let rafId: number | null = null;
-    const totalWidth = el.scrollWidth / 2; // 我们会复制两份，实现循环
+    // 遵循系统“减少动态效果”设置
+    const mql = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (mql.matches) return;
 
-    const step = (ts: number) => {
-      if (start == null) start = ts;
-      const elapsed = ts - start;
-      const x = (elapsed / 1000) * speed; // 像素
-      const offset = x % totalWidth;
-      el.style.transform = `translateX(-${offset}px)`;
-      rafId = requestAnimationFrame(step);
+    let animation: Animation | null = null;
+    let rafId: number | null = null;
+
+    const startFallbackRAF = (totalWidth: number) => {
+      // Fallback: requestAnimationFrame（旧浏览器）
+      let start: number | null = null;
+      const loop = (ts: number) => {
+        if (start == null) start = ts;
+        const elapsed = ts - start;
+        const x = (elapsed / 1000) * speed;
+        const offset = x % totalWidth;
+        el.style.transform = `translate3d(-${offset}px,0,0)`;
+        rafId = requestAnimationFrame(loop);
+      };
+      rafId = requestAnimationFrame(loop);
     };
 
-    rafId = requestAnimationFrame(step);
+    const setup = () => {
+      // 重置并测量（含两份内容）
+      el.style.transform = 'translate3d(0,0,0)';
+      const totalWidth = el.scrollWidth / 2;
+      const duration = Math.max(1000, (totalWidth / speed) * 1000);
+
+      // 优先使用 Web Animations API，能在合成线程上运行，移动端更流畅
+      if ('animate' in el) {
+        animation?.cancel();
+        if (rafId) cancelAnimationFrame(rafId);
+        animation = el.animate(
+          [
+            { transform: 'translate3d(0,0,0)' },
+            { transform: `translate3d(-${totalWidth}px,0,0)` },
+          ],
+          {
+            duration,
+            iterations: Infinity,
+            easing: 'linear',
+          },
+        );
+      } else {
+        // 退化为 rAF
+        if (animation) animation.cancel();
+        if (rafId) cancelAnimationFrame(rafId);
+        startFallbackRAF(totalWidth);
+      }
+    };
+
+    // 监听容器尺寸变化与图片加载，防止图片加载后宽度变化导致的跳变和卡顿
+    const ro = new ResizeObserver(() => setup());
+    ro.observe(el);
+
+    const imgs = Array.from(el.querySelectorAll('img')) as HTMLImageElement[];
+    imgs.forEach((img) => {
+      if (img.complete) return;
+      img.addEventListener('load', setup, { once: true });
+      img.addEventListener('error', setup, { once: true });
+    });
+
+    setup();
+
     return () => {
+      animation?.cancel();
       if (rafId) cancelAnimationFrame(rafId);
+      ro.disconnect();
     };
   }, [speed]);
 
@@ -50,7 +101,15 @@ export function TestimonialsMarquee({
       <div className="mt-4 flex items-center gap-3">
         {t.avatar ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={t.avatar} alt={t.author} className="h-8 w-8 rounded-full object-cover" />
+          <img
+            src={t.avatar}
+            alt={t.author}
+            width={32}
+            height={32}
+            loading="lazy"
+            decoding="async"
+            className="h-8 w-8 rounded-full object-cover"
+          />
         ) : (
           <div className="h-8 w-8 rounded-full bg-fd-secondary" />
         )}
@@ -72,8 +131,8 @@ export function TestimonialsMarquee({
       <div className="relative overflow-hidden rounded-2xl border p-4 dark:border-white/10">
         <div
           ref={trackRef}
-          className="flex gap-4 will-change-transform"
-          style={{ transform: 'translateX(0)' }}
+          className="flex gap-4"
+          style={{ transform: 'translate3d(0,0,0)', willChange: 'transform' }}
         >
           {duplicated.map((t, idx) => (
             <Card key={`${t.id}-${idx}`} t={t} />
