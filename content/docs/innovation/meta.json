@@ -1,6 +1,12 @@
 {
   "title": "创新创业文档",
+  "description": "创新创业相关内容",
+  "root": true,
   "pages": [
-    "index"
+    "index",
+    "intro",
+    "math-example",
+    "mermaid-example",
+    "twoslash-example"
   ]
 }

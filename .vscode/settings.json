@@ -1,0 +1,12 @@
+{
+  // VS Code 语法服务默认不认识 Tailwind v4 的新 at-rules（@plugin/@source/@theme/@custom-variant），
+  // 这些仅是编辑器提示，不影响构建。以下设置用于消除黄色告警。
+  "css.lint.unknownAtRules": "ignore",
+  "scss.lint.unknownAtRules": "ignore",
+  "less.lint.unknownAtRules": "ignore",
+
+  // 将 *.css 视为 PostCSS，可改善与 Tailwind v4 的交互（尤其全局样式文件）。
+  "files.associations": {
+    "*.css": "postcss"
+  }
+}

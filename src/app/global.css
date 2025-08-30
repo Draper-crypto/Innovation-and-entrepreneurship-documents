@@ -1,47 +1,33 @@
 @import 'tailwindcss';
-@plugin './hero';
-@source '../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
+@plugin "./hero";
+@source "./**/*.{ts,tsx,mdx}" "../../content/**/*.{md,mdx}" "../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}";
 @custom-variant dark (&:is(.dark *));
 @import 'fumadocs-ui/css/neutral.css';
 @import 'fumadocs-ui/css/preset.css';
 @import 'fumadocs-twoslash/twoslash.css';
 
-/* Forward Fumadocs color tokens to Tailwind CSS global colors (per Fumadocs v15) */
 @theme {
-  /* Brand primary color: #6A66F4 */
   --color-fd-primary: #6A66F4;
-  /* Optional contrast/hover shades derived automatically by Tailwind, keep minimal override */
-  /* You can also tweak secondary/accent if needed later */
-
-  /* Forwarding so regular --color-primary utilities read fd-primary */
   --color-primary: var(--color-fd-primary);
 }
 
 :root {
-  /* In case components reference CSS variables directly */
   --color-fd-primary: #6A66F4;
-
-  /* System UI font stack (Apple-like) */
   --app-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Segoe UI', Roboto,
     'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
     'Noto Color Emoji', sans-serif;
 }
 
-.dark {
-  --color-fd-primary: #6A66F4;
-}
+.dark { --color-fd-primary: #6A66F4; }
 
-/* Apply global font */
 html { font-family: var(--app-sans); }
 body { font-feature-settings: 'ss01' on, 'cv05' on; }
 
-/* ---- Docs TOC 样式（按参考图改造为“时间线/导轨”风格） ---- */
 :root {
   --toc-accent: var(--color-fd-primary);
   --toc-rail: color-mix(in oklab, var(--color-fd-primary) 20%, transparent);
 }
 
-/* 兼容中英文 aria-label */
 nav[aria-label="Table of contents"],
 nav[aria-label="目录"] {
   --_toc-rail: var(--toc-rail);
@@ -64,7 +50,6 @@ nav[aria-label="目录"] li {
   margin: 8px 0;
 }
 
-/* 圆点节点 */
 nav[aria-label="Table of contents"] li::before,
 nav[aria-label="目录"] li::before {
   content: '';
@@ -79,7 +64,6 @@ nav[aria-label="目录"] li::before {
   box-shadow: 0 0 0 3px color-mix(in oklab, var(--_toc-accent) 12%, transparent);
 }
 
-/* 文本与 hover/active 态 */
 nav[aria-label="Table of contents"] a,
 nav[aria-label="目录"] a {
   display: inline-block;
@@ -89,11 +73,8 @@ nav[aria-label="目录"] a {
 }
 
 nav[aria-label="Table of contents"] a:hover,
-nav[aria-label="目录"] a:hover {
-  color: var(--_toc-accent);
-}
+nav[aria-label="目录"] a:hover { color: var(--_toc-accent); }
 
-/* 一些实现会用 aria-current 或 data-active 标记当前项，做兼容 */
 nav[aria-label="Table of contents"] a[aria-current],
 nav[aria-label="目录"] a[aria-current],
 nav[aria-label="Table of contents"] a[aria-current="page"],
@@ -103,12 +84,62 @@ nav[aria-label="目录"] a[data-active="true"] {
   color: var(--_toc-accent);
   font-weight: 600;
 }
+
 @keyframes gradient-x {
   0%,100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
 }
 
-.animate-gradient-x {
-  background-size: 200% 200%;
-  animation: gradient-x 6s ease infinite;
-}
+.animate-gradient-x { background-size: 200% 200%; animation: gradient-x 6s ease infinite; }
+
+/* MDX tables: do not bold the first row (thead headers) */
+/* stronger specificity to override preset */
+/* MDX tables: ensure the first row is not bold on all doc pages */
+/* 1) Normal thead/th case */
+.fd-article table thead th,
+article.fd-article table thead th,
+.prose table thead th,
+article table thead th { font-weight: 400 !important; }
+
+/* 2) Edge case: tables without thead, treat the first row as header in practice */
+.fd-article table tr:first-child > th,
+.fd-article table tr:first-child > td,
+.prose table tr:first-child > th,
+.prose table tr:first-child > td,
+article table tr:first-child > th,
+article table tr:first-child > td { font-weight: 400 !important; }
+
+/* Also normalize any remaining th if preset styles apply globally */
+.fd-article table th,
+article table th,
+.prose table th { font-weight: 400; }
+
+/* Zebra striping for tables in doc articles: first row gray, second white, alternating */
+:root { --table-zebra-bg: color-mix(in oklab, #000 6%, transparent); }
+.dark { --table-zebra-bg: color-mix(in oklab, #fff 8%, transparent); }
+
+/* 让所有文档正文区域表格都生效（包含有无 thead 的情况） */
+.fd-article table tbody tr:nth-child(odd),
+.prose table tbody tr:nth-child(odd),
+article table tbody tr:nth-child(odd) { background-color: transparent !important; }
+
+.fd-article table tbody tr:nth-child(even),
+.prose table tbody tr:nth-child(even),
+article table tbody tr:nth-child(even) { background-color: transparent !important; }
+
+.dark .fd-article table tbody tr:nth-child(even),
+.dark .prose table tbody tr:nth-child(even),
+.dark article table tbody tr:nth-child(even) { background-color: transparent !important; }
+
+/* 没有 thead 的表格，第一行保持默认背景 */
+.fd-article table:not(:has(thead)) tr:nth-child(odd),
+.prose table:not(:has(thead)) tr:nth-child(odd),
+article table:not(:has(thead)) tr:nth-child(odd) { background-color: transparent !important; }
+
+/* 保留：表头不加粗；单元格内 strong 加粗 */
+.fd-article table thead th,
+article.fd-article table thead th,
+.prose table thead th,
+article table thead th { font-weight: 400 !important; }
+
+.fd-article table :is(th, td) :is(strong, b) { font-weight: 700 !important; }

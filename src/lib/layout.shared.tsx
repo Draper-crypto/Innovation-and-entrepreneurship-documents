@@ -1,5 +1,8 @@
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
 import { IconHome, IconBook, IconNotes, IconHeart, IconCompass } from '@tabler/icons-react';
+import * as React from 'react';
+import Link from 'next/link';
+import { cn } from '@/lib/cn';
 
 /**
  * Shared layout configurations
@@ -77,4 +80,29 @@ export function baseOptions(): BaseLayoutProps {
       },
     ],
   };
+}
+
+export function MainNav() {
+  return (
+    <nav className="flex items-center gap-2 md:gap-3">
+      <Link
+        href="/docs"
+        className="rounded-full px-3 py-1.5 text-sm text-fd-muted-foreground transition hover:bg-fd-accent hover:text-fd-accent-foreground"
+      >
+        文档
+      </Link>
+      <Link
+        href="/blog"
+        className="rounded-full px-3 py-1.5 text-sm text-fd-muted-foreground transition hover:bg-fd-accent hover:text-fd-accent-foreground"
+      >
+        博客
+      </Link>
+      <Link
+        href="/sponsors"
+        className="rounded-full px-3 py-1.5 text-sm text-fd-muted-foreground transition hover:bg-fd-accent hover:text-fd-accent-foreground"
+      >
+        赞助商
+      </Link>
+    </nav>
+  );
 }

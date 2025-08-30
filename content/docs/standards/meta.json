@@ -1,6 +1,12 @@
 {
   "title": "规范文档",
+  "description": "规范与标准相关内容",
+  "root": true,
   "pages": [
-    "index"
+    "index",
+    "math-example",
+    "mermaid-example",
+    "twoslash-example",
+    "test"
   ]
 }

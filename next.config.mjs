@@ -6,6 +6,13 @@ const withMDX = createMDX();
 const config = {
   reactStrictMode: true,
   serverExternalPackages: ['typescript', 'twoslash'],
+  webpack: (cfg, { dev }) => {
+    // Use in-memory cache in development to avoid Windows FS rename issues
+    if (dev) {
+      cfg.cache = { type: 'memory' };
+    }
+    return cfg;
+  },
 };
 
 export default withMDX(config);

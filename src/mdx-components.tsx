@@ -3,6 +3,7 @@ import { Mermaid } from '@/components/mdx/mermaid';
 
 import * as Twoslash from 'fumadocs-twoslash/ui';
 import type { MDXComponents } from 'mdx/types';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 // use this function to get MDX components, you will need it for rendering MDX
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
@@ -16,6 +17,10 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     ...base,
     Mermaid,
     ...Twoslash,
+    Tabs,
+    TabsList,
+    TabsTrigger,
+    TabsContent,
     ...components,
   } as MDXComponents;
 }

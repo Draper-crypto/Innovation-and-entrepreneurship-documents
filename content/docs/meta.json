@@ -1,5 +1,8 @@
 {
   "title": "文档",
   "description": "ElexvxAI Lab 技术文档",
-  "pages": []
+  "pages": [
+    "innovation",
+    "standards"
+  ]
 }

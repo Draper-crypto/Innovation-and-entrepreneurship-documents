@@ -21,6 +21,15 @@ export function BlogCardsSection({
   posts: BlogCardItem[];
   emptyText?: string;
 }) {
+  const items = posts
+    .slice()
+    .sort((a, b) => {
+      const da = a.date ? +new Date(a.date) : 0;
+      const db = b.date ? +new Date(b.date) : 0;
+      return db - da;
+    })
+    .slice(0, 3);
+
   return (
     <section className="mx-auto mt-16 max-w-[var(--spacing-fd-container)] px-4 md:px-6">
       <div className="mx-auto mb-8 max-w-3xl text-center">
@@ -28,11 +37,11 @@ export function BlogCardsSection({
         <p className="mt-2 text-base text-fd-muted-foreground">{subtitle}</p>
       </div>
 
-      {posts.length === 0 ? (
+      {items.length === 0 ? (
         <p className="text-center text-sm text-fd-muted-foreground">{emptyText}</p>
       ) : (
         <div className="grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post) => (
+          {items.map((post) => (
             <Link
               key={post.url}
               href={post.url}

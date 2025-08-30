@@ -46,11 +46,9 @@ export default function HomePage() {
 
   // 统一的卡片样式，两个网格公用，保证完全一致
   const cardCls =
--    'group flex h-[220px] flex-col rounded-2xl border border-black/10 bg-white p-6 shadow-sm ring-1 ring-black/5 transition hover:shadow-md dark:border-white/10 dark:bg-white/5 dark:ring-white/10';
-+    'group flex h-[220px] flex-col rounded-2xl border bg-fd-card p-6 text-fd-card-foreground shadow-sm ring-1 transition hover:shadow-md dark:border-white/10 ring-black/5';
+    'group flex h-[220px] flex-col rounded-2xl border bg-fd-card p-6 text-fd-card-foreground shadow-sm ring-1 transition hover:shadow-md dark:border-white/10 ring-black/5';
   const iconBoxCls =
--    'mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-100 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-300';
-+    'mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-fd-secondary text-fd-secondary-foreground';
+    'mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-fd-secondary text-fd-secondary-foreground';
 
   // 共享网格组件：标题、副标题、卡片项
   const FeatureGridSection = ({
@@ -64,8 +62,8 @@ export default function HomePage() {
   }) => (
     <motion.section {...fadeIn} className="mx-auto mt-16 max-w-[var(--spacing-fd-container)] px-4 md:px-6">
       <div className="mx-auto mb-8 max-w-3xl text-center">
-        <h3 className="text-2xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">{title}</h3>
-        <p className="mt-2 text-base text-gray-600 dark:text-gray-300">{subtitle}</p>
+        <h3 className="text-2xl font-semibold tracking-tight text-fd-foreground">{title}</h3>
+        <p className="mt-2 text-base text-fd-muted-foreground">{subtitle}</p>
       </div>
       <div className="grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((it) => (
@@ -73,8 +71,8 @@ export default function HomePage() {
             <div className={iconBoxCls}>
               <span className="text-lg">{it.icon}</span>
             </div>
-            <div className="text-base font-semibold text-gray-900 dark:text-gray-100">{it.title}</div>
-            <div className="mt-2 text-sm leading-6 text-gray-600 dark:text-gray-300">{it.desc}</div>
+            <div className="text-base font-semibold text-fd-foreground">{it.title}</div>
+            <div className="mt-2 text-sm leading-6 text-fd-muted-foreground">{it.desc}</div>
             <div className="mt-auto" />
           </div>
         ))}
