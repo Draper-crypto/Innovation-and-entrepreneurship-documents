@@ -1,4 +1,7 @@
 @import 'tailwindcss';
+@plugin './hero';
+@source '../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
+@custom-variant dark (&:is(.dark *));
 @import 'fumadocs-ui/css/neutral.css';
 @import 'fumadocs-ui/css/preset.css';
 @import 'fumadocs-twoslash/twoslash.css';
@@ -17,12 +20,20 @@
 :root {
   /* In case components reference CSS variables directly */
   --color-fd-primary: #6A66F4;
+
+  /* System UI font stack (Apple-like) */
+  --app-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji', sans-serif;
 }
 
 .dark {
-  /* Keep same brand hue in dark mode; adjust if needed later */
   --color-fd-primary: #6A66F4;
 }
+
+/* Apply global font */
+html { font-family: var(--app-sans); }
+body { font-feature-settings: 'ss01' on, 'cv05' on; }
 
 /* ---- Docs TOC 样式（按参考图改造为“时间线/导轨”风格） ---- */
 :root {

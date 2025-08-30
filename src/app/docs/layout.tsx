@@ -47,16 +47,16 @@ export default function Layout({ children }: LayoutProps<'/docs'>) {
               icon: <IconHome size={16} />,
             },
             {
+              title: '大学生创新比赛',
+              description: '可运行的代码示例与演示',
+              url: '/docs/innovation',
+              icon: <IconNotes size={16} />,
+            },
+            {
               title: '指南',
               description: '入门、核心概念与最佳实践',
               url: '/docs/guide',
               icon: <IconBook size={16} />,
-            },
-            {
-              title: '示例',
-              description: '可运行的代码示例与演示',
-              url: '/docs/examples',
-              icon: <IconNotes size={16} />,
             },
           ],
         }}

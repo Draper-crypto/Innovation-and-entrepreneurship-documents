@@ -43,9 +43,9 @@ export function baseOptions(): BaseLayoutProps {
             icon: <IconBook size={16} />,
           },
           {
-            text: '示例',
-            description: '可运行的代码示例与演示',
-            url: '/docs/examples',
+            text: '编写规范',
+            description: '编写文档的规范与指南',
+            url: '/docs/standards',
             icon: <IconNotes size={16} />,
           },
         ],
