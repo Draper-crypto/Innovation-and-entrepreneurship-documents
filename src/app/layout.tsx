@@ -31,7 +31,10 @@ export default function Layout({ children }: LayoutProps) {
         <Banner id="welcome-banner" variant="rainbow">
           🎉 欢迎来到文档站！探索技术文档与示例代码。
         </Banner>
-        <RootProvider i18n={{ locale: 'zh', locales, translations: zh }}>
+        <RootProvider
+          i18n={{ locale: 'zh', locales, translations: zh }}
+          theme={{ defaultTheme: 'light', attribute: 'class' }}
+        >
           {children}
         </RootProvider>
         {/* Vercel Analytics & Speed Insights */}
