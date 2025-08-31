@@ -205,7 +205,7 @@ export default function HomePage() {
               <span>创赛指南全新上线，快去看看吧~</span>
             </motion.div>
 
-            <motion.h1 {...fadeIn} className="max-w-xl text-5xl font-semibold leading-[1.08] tracking-tight text-gray-900 dark:text-white md:text-7xl">
+            <motion.h1 {...fadeIn} className="max-w-xl text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold leading-[1.08] tracking-tight text-gray-900 dark:text-white">
               <span className="block">技术的价值</span>
               <span className="block">让每个人都能<span className="bg-gradient-to-r from-fuchsia-500 to-sky-400 bg-clip-text text-transparent">平等</span>迈向数字化未来</span>
             </motion.h1>
@@ -215,15 +215,13 @@ export default function HomePage() {
             </motion.p>
 
             <motion.div {...fadeIn} transition={{ delay: 0.12 }} className="mt-8 flex w-full flex-col items-start gap-4 sm:flex-row">
-              <Link href="/docs" className={cn(buttonVariants({ color: 'primary' }), 'rounded-full px-6 py-3 text-sm font-semibold shadow-[0_10px_30px_-10px_rgba(99,102,241,0.45)]',)}>
-                开始使用
-              </Link>
+              
             </motion.div>
           </div>
 
           {/* RIGHT: Collage */}
           <div className="relative h-[380px] w-full md:h-[460px]">
-            <div className="absolute inset-0 rounded-3xl border bg-white/90 p-2 shadow-xl ring-1 ring-black/5 dark:bg-white/5">
+            <div className="absolute inset-0 rounded-3xl p-2">
               <Image 
                 src="/images/hero/banner.svg" 
                 alt="数字化未来" 
