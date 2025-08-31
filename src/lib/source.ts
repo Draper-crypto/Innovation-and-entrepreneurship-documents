@@ -9,8 +9,7 @@ export const source = loader({
   // it assigns a URL to your pages
   baseUrl: '/docs',
   source: docs.toFumadocsSource(),
-  icon: (options: { icon?: string }) => {
-    const icon = options?.icon; // 安全地访问 icon 属性
+  icon: (icon: string | undefined) => {
     if (!icon) return undefined;
     const iconMap = TablerIcons as any;
     const Cmp = iconMap[icon] || iconMap.IconBulb; // 安全兜底
