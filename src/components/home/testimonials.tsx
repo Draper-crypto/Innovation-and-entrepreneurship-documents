@@ -33,10 +33,11 @@ export function TestimonialsMarquee({
     // @ts-expect-error: CSS custom property
     '--marquee-duration': `${Math.round(durationSec)}s`,
   };
+
   const Card = ({ t }: { t: Testimonial }) => (
-    <div className="shrink-0 w-[160px] sm:w-[200px] md:w-[260px] rounded-xl border bg-fd-card text-fd-card-foreground p-4 shadow-sm dark:border-white/10">
-      <p className="text-sm text-fd-foreground/90">{t.content}</p>
-      <div className="mt-4 flex items-center gap-3">
+    <div className="shrink-0 w-[160px] sm:w-[200px] md:w-[260px]">
+      <p>{t.content}</p>
+      <div>
         {t.avatar ? (
           <Image
             src={t.avatar}
@@ -44,13 +45,12 @@ export function TestimonialsMarquee({
             width={32}
             height={32}
             loading="lazy"
-            className="h-8 w-8 rounded-full object-cover"
           />
         ) : (
-          <div className="h-8 w-8 rounded-full bg-fd-secondary" />
+          <div />
         )}
-        <div className="text-xs text-fd-muted-foreground">
-          <div className="font-medium text-fd-foreground">{t.author}</div>
+        <div>
+          <div>{t.author}</div>
           {t.role ? <div>{t.role}</div> : null}
         </div>
       </div>
@@ -60,27 +60,25 @@ export function TestimonialsMarquee({
   const duplicated = [...items, ...items];
 
   return (
-    <section className="mx-auto mt-16 max-w-[var(--spacing-fd-container)] px-4 md:px-6">
+    <section>
       {title ? (
-        <div className="mx-auto mb-6 max-w-3xl text-center md:mb-8">
-          <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-fd-foreground md:text-5xl">{title}</h2>
+        <div>
+          <h2>{title}</h2>
           {subtitle ? (
-            <p className="mt-2 text-sm text-fd-muted-foreground md:text-base">{subtitle}</p>
+            <p>{subtitle}</p>
           ) : null}
         </div>
       ) : null}
-      <div className="group relative overflow-hidden rounded-xl sm:rounded-2xl border p-2 dark:border-white/10">
-        <div className="snap-x snap-mandatory overflow-x-auto no-scrollbar">
-          <div className="flex w-max gap-2 md:animate-marquee will-change-transform" style={trackStyle}>
+      <div className="overflow-hidden">
+        <div>
+          <div className="flex w-max gap-2 animate-marquee" style={trackStyle}>
             {duplicated.map((t, idx) => (
-              <div key={`${t.id}-${idx}`} className="snap-start">
+              <div key={`${t.id}-${idx}`}>
                 <Card t={t} />
               </div>
             ))}
           </div>
         </div>
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-white to-transparent dark:from-[rgb(14,14,18)]" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-white to-transparent dark:from-[rgb(14,14,18)]" />
       </div>
     </section>
   );

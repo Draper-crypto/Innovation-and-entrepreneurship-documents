@@ -24,23 +24,14 @@ import { motion, animate, useInView } from 'framer-motion';
 //   ssr: false
 // });
 
-const TestimonialsMarquee = dynamic(() => import('@/components/home/testimonials').then(mod => mod.TestimonialsMarquee), {
-  ssr: false,
-  loading: () => <div className="h-32 animate-pulse bg-gray-200 dark:bg-gray-700 rounded" />
-});
+
 
 const ThemeToggle = dynamic(() => import('@/components/theme-toggle').then(mod => mod.ThemeToggle), {
   ssr: false,
   loading: () => <div className="w-8 h-8 animate-pulse bg-gray-200 dark:bg-gray-700 rounded" />
 });
 
-// 类型定义
-type Testimonial = {
-  id: string;
-  content: string;
-  author: string;
-  role: string;
-};
+
 
 // Count-up number with thousand separators, triggered when element enters viewport
 function CountUp({
@@ -86,19 +77,28 @@ export default function HomePage() {
 
   const stats = [
     {
-      icon: <Github />,
-      value: '1,968',
-      label: 'GitHub 星标',
-    },
-    {
-      icon: <GitFork />,
-      value: '141',
-      label: 'GitHub 派生',
-    },
-    {
       icon: <Users />,
-      value: '24',
-      label: '贡献者',
+      value: '5',
+      label: '累计用户',
+      suffix: 'K+',
+    },
+    {
+      icon: <FolderKanban />,
+      value: '100',
+      label: '成功案例',
+      suffix: '+',
+    },
+    {
+      icon: <Globe />,
+      value: '12',
+      label: '合作院校',
+      suffix: '+',
+    },
+    {
+      icon: <UserCheck />,
+      value: '95',
+      label: '满意度',
+      suffix: '%',
     },
   ];
 
@@ -141,28 +141,26 @@ export default function HomePage() {
     },
   ];
 
-  const testimonials: Testimonial[] = [
-    { id: 't1', content: 'Fumadocs 让文档构建变得简单；组件既美观又具备良好组合性。', author: '开源开发者', role: 'Frontend Dev' },
-    { id: 't2', content: '开发体验极佳，我在一天内就重构完文档。', author: '前端工程师', role: 'React Engineer' },
-    { id: 't3', content: '默认的可访问性与主题支持非常棒，几乎不用操心细节。', author: '产品工程师', role: 'Product Engineer' },
-    { id: 't4', content: '性能与易用性兼顾，迁移成本低，强烈推荐。', author: '技术写作者', role: 'Tech Writer' },
-    { id: 't5', content: 'API 直观，组件可组合性强，扩展也方便。', author: '全栈开发者', role: 'Full-stack' },
-    { id: 't6', content: '设计系统与令牌体系完善，很容易统一品牌风格。', author: '设计工程师', role: 'Design Engineer' },
-  ];
+
 
   const StatsCard = ({
     icon,
     value,
     label,
+    suffix,
   }: {
     icon: React.ReactNode;
     value: string;
     label: string;
+    suffix?: string;
   }) => (
     <div className="flex flex-col items-center gap-2 p-6 text-center">
       <div className="text-fd-muted-foreground">{icon}</div>
       <div className="text-4xl font-semibold md:text-5xl">
         <CountUp value={value} />
+        {suffix ? (
+          <span className="ml-1 align-top text-[0.7em] font-semibold text-fd-foreground">{suffix}</span>
+        ) : null}
       </div>
       <div className="text-sm text-fd-muted-foreground">{label}</div>
     </div>
@@ -189,7 +187,7 @@ export default function HomePage() {
   );
 
   return (
-    <main className="flex flex-1 flex-col bg-white pb-8 dark:bg-[rgb(14,14,18)] md:pb-12">
+    <main data-home className="flex flex-1 flex-col bg-white pb-8 dark:bg-[rgb(14,14,18)] md:pb-12">
       {/* Top controls */}
       <div className="absolute right-4 top-4 z-20">
         {/* <ThemeToggle /> */}
@@ -205,12 +203,12 @@ export default function HomePage() {
               <span>创赛指南全新上线，快去看看吧~</span>
             </motion.div>
 
-            <motion.h1 {...fadeIn} className="max-w-xl text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold leading-[1.08] tracking-tight text-gray-900 dark:text-white">
-              <span className="block">技术的价值</span>
+            <motion.h1 {...fadeIn} className="max-w-xl text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold leading-[1.08] tracking-tight text-[#1D1D1F] dark:text-white">
+              <span className="block bg-gradient-to-r from-fuchsia-500 to-sky-400 bg-clip-text text-transparent">技术的价值</span>
               <span className="block">让每个人都能<span className="bg-gradient-to-r from-fuchsia-500 to-sky-400 bg-clip-text text-transparent">平等</span>迈向数字化未来</span>
             </motion.h1>
 
-            <motion.p {...fadeIn} transition={{ delay: 0.08 }} className="mt-5 max-w-xl text-lg text-fd-muted-foreground">
+            <motion.p {...fadeIn} transition={{ delay: 0.08 }} className="mt-5 max-w-xl text-sm sm:text-base text-fd-muted-foreground">
               现代、快速、可定制的 React UI 组件库，助你构建易用与可访问的 Web 应用。
             </motion.p>
 
@@ -220,18 +218,18 @@ export default function HomePage() {
           </div>
 
           {/* RIGHT: Collage */}
-          <div className="relative h-[380px] w-full md:h-[460px]">
+          <motion.div {...fadeIn} transition={{ delay: 0.04 }} className="relative h-[380px] w-full md:h-[460px]">
             <div className="absolute inset-0 rounded-3xl p-2">
               <Image 
                 src="/images/hero/banner.svg" 
                 alt="数字化未来" 
                 fill
                 className="rounded-2xl object-contain object-center" 
-                loading="lazy"
+                priority
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* HERO bottom: 四张卡片（示意图风格） */}
@@ -273,14 +271,13 @@ export default function HomePage() {
         </div>
       </motion.section>
 
-      {/* TESTIMONIALS MARQUEE (Good reviews) */}
-      {/* <TestimonialsMarquee title="来自社区的声音" subtitle="真实反馈，帮助你更好地判断与选择" items={testimonials} speed={50} /> */}
+
 
       {/* SHOWCASE: Theming (代码与案例占位) */}
       <section className="mx-auto mt-16 md:mt-24 w-full max-w-[var(--spacing-fd-container)] px-4 md:px-6">
         <div className="flex flex-col items-center gap-8">
           <div className="w-full text-center">
-            <h2 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white md:text-5xl">
+            <h2 className="text-4xl font-semibold tracking-tight text-[#1D1D1F] dark:text-white md:text-5xl">
               按照你的品牌与审美，自由定义<span className="bg-gradient-to-r from-fuchsia-500 to-sky-400 bg-clip-text text-transparent">主题</span>。
             </h2>
             <p className="mt-3 max-w-lg mx-auto text-fd-muted-foreground">使用 Tailwind 与主题令牌打造你的品牌；切换主题轻而易举。</p>
@@ -318,7 +315,7 @@ export default function HomePage() {
       <section className="mx-auto mt-16 md:mt-24 w-full max-w-[var(--spacing-fd-container)] px-4 md:px-6">
         <div className="flex flex-col items-center gap-8">
           <div className="w-full text-center">
-            <h2 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white md:text-5xl">暗色模式，<span className="bg-gradient-to-r from-orange-400 to-pink-500 bg-clip-text text-transparent">轻松</span>适配。</h2>
+            <h2 className="text-4xl font-semibold tracking-tight text-[#1D1D1F] dark:text-white md:text-5xl">暗色模式，<span className="bg-gradient-to-r from-orange-400 to-pink-500 bg-clip-text text-transparent">轻松</span>适配。</h2>
             <p className="mt-3 max-w-lg mx-auto text-fd-muted-foreground">自动检测系统暗色偏好，组件完整适配主题，风格统一。</p>
             <div className="mt-6 flex justify-center gap-3">
               <Link href="/docs" className={cn(buttonVariants({ color: 'primary' }), 'rounded-full px-5')}>了解更多</Link>
@@ -357,13 +354,13 @@ export default function HomePage() {
       >
         <div className="mx-auto mb-8 max-w-3xl text-center">
           <h2 className="text-4xl font-semibold tracking-tight text-fd-foreground md:text-5xl">
-            为开发者而生
+            平台数据
           </h2>
           <p className="mt-2 text-base text-fd-muted-foreground">
             加入不断成长的开源社区，共同塑造项目管理的未来
           </p>
         </div>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 sm:gap-4">
           {stats.map((stat) => (
             <StatsCard key={stat.label} {...stat} />
           ))}

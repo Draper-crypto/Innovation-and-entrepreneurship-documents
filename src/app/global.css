@@ -186,3 +186,24 @@ article table tbody tr td strong {
   -ms-overflow-style: none; /* IE/Edge */
   scrollbar-width: none;    /* Firefox */
 }
+
+/* Home page light-mode typography color overrides */
+:root :is(main[data-home]) {
+  /* Base text color */
+  color: #1D1D1F;
+}
+
+/* Ensure typical text utility variables align with this base where used by Fumadocs */
+:root :is(main[data-home]) {
+  --fd-foreground: #1D1D1F;
+  --fd-card-foreground: #1D1D1F;
+  --fd-muted-foreground: color-mix(in oklab, #1D1D1F 60%, transparent);
+}
+
+/* Do not affect dark mode */
+.dark :is(main[data-home]) {
+  color: inherit;
+  --fd-foreground: inherit;
+  --fd-card-foreground: inherit;
+  --fd-muted-foreground: inherit;
+}
