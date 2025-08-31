@@ -1,0 +1,74 @@
+---
+title: 编写指南（支持的格式与插件）
+description: 介绍文档站支持的 Markdown/MDX 语法与可用插件，并提供示例与最佳实践。
+---
+
+> 本页汇总最常用的写法与扩展，示例均可直接复制使用。
+
+## 基本 Markdown
+- 段落、标题、列表、链接、图片按标准 Markdown 书写。
+- 中文语境下，注意空格与标点规范。
+
+## 表格（Table）
+本站已统一表格视觉：
+- 首行/表头背景色为 #F1F1F1，文字加粗。
+- 表格正文（tbody）背景透明，移除卡片底色。
+
+示例：
+
+| 列 | 说明 |
+| --- | --- |
+| A | 表头为浅灰色 (#F1F1F1) |
+| B | 正文透明背景 |
+
+## 代码块与语法高亮
+```ts
+export const hello = (name: string) => `Hello ${name}`
+```
+
+## 数学公式（KaTeX）
+- 行内：`$E=mc^2$`
+- 块级：
+
+$$
+\int_0^1 x^2 \, dx = \frac{1}{3}
+$$
+
+## Mermaid 流程图
+通过自定义 MDX 组件使用：
+
+<Mermaid chart={"graph TD; A[开始] --> B{条件?}; B -- 是 --> C[处理]; B -- 否 --> D[结束];"} />
+
+> 组件会根据站点明/暗主题自动渲染，且对相同图进行结果缓存。
+
+## Tabs 选项卡
+
+<Tabs defaultValue="one">
+  <TabsList>
+    <TabsTrigger value="one">方案 A</TabsTrigger>
+    <TabsTrigger value="two">方案 B</TabsTrigger>
+  </TabsList>
+  <TabsContent value="one">内容 A</TabsContent>
+  <TabsContent value="two">内容 B</TabsContent>
+</Tabs>
+
+## Twoslash（TypeScript 注释）
+在代码块语言后加上 `twoslash`：
+
+```ts twoslash
+const msg = 'hi'
+msg // hover 查看推断类型
+```
+
+---
+
+## 扩展/插件开发简要
+- 新增 MDX 组件：在 src/components/mdx 下创建文件（如 my-component.tsx），然后到 src/mdx-components.tsx 将其加入 getMDXComponents 返回对象中，之后即可在 .mdx 中直接使用 <MyComponent />。
+- Mermaid：组件位于 src/components/mdx/mermaid.tsx，传入 `chart` 字符串即可。
+- 数学：已启用 remark-math 与 rehype-katex，直接使用 `$...$` 或 `$$...$$`。
+- Twoslash：已集成 fumadocs-twoslash，代码块写法参考上文示例。
+
+最佳实践：
+- 一页一个主题，使用二/三级标题组织内容；
+- 表格仅承载结构化信息，避免大段文本；
+- 静态资源放在 public/ 下，优先使用可编辑的 SVG。

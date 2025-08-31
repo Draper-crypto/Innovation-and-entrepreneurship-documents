@@ -1,4 +1,5 @@
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
+import Image from 'next/image';
 import { IconHome, IconBook, IconNotes, IconHeart, IconCompass } from '@tabler/icons-react';
 import * as React from 'react';
 import Link from 'next/link';
@@ -17,13 +18,13 @@ export function baseOptions(): BaseLayoutProps {
       title: (
         <span className="inline-flex items-center gap-2">
           {/* Use project logo instead of text + placeholder icon */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="/images/favicon.svg"
             alt="Site Logo"
             width={96}
             height={28}
             className="h-7 w-[96px] object-contain"
+            priority
           />
         </span>
       ),

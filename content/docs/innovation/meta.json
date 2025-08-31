@@ -2,6 +2,7 @@
   "title": "创新创业文档",
   "description": "创新创业相关内容",
   "root": true,
+  "icon": "IconSparkles",
   "pages": [
     "index",
     "math-example",

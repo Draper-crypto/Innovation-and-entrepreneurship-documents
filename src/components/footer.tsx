@@ -27,7 +27,7 @@ export function Footer() {
   if (pathname?.startsWith('/docs')) return null
 
   return (
-    <footer className="mt-16 md:mt-20 border-t bg-fd-card text-fd-card-foreground dark:border-neutral-800">
+    <footer className="mt-0 border-t bg-fd-card text-fd-card-foreground dark:border-neutral-800">
       <div className="mx-auto max-w-[var(--spacing-fd-container)] px-4 py-10 md:px-6">
         {/* Upper grid: brand + quick links */}
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
@@ -76,9 +76,8 @@ export function Footer() {
         </div>
 
         {/* Bottom bar: copyright */}
-        <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t pt-6 text-center text-sm text-muted-foreground sm:flex-row dark:border-neutral-800">
-          <div>© {new Date().getFullYear()} ElexvxAI Lab. All rights reserved.</div>
-          <div className="text-xs opacity-80">Made with Fumadocs & Next.js</div>
+        <div className="mt-8 flex flex-col items-center justify-center gap-4 border-t pt-6 text-center text-sm text-muted-foreground dark:border-neutral-800">
+          <div className="w-full">© 2025 ElexvxAI Lab. All rights reserved.</div>
         </div>
       </div>
     </footer>

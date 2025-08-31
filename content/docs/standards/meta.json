@@ -4,6 +4,7 @@
   "root": true,
   "pages": [
     "index",
+    "writing-guide",
     "math-example",
     "mermaid-example",
     "twoslash-example",

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export type BlogCardItem = {
   title: string;
@@ -49,8 +50,14 @@ export function BlogCardsSection({
             >
               {post.cover ? (
                 <div className="relative aspect-[16/9] w-full overflow-hidden">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={post.cover} alt={post.title} className="h-full w-full object-cover" />
+                  <Image 
+                    src={post.cover} 
+                    alt={post.title} 
+                    fill
+                    className="object-cover" 
+                    loading="lazy"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
                 </div>
               ) : null}
               <div className="p-5">

@@ -26,8 +26,11 @@ body { font-feature-settings: 'ss01' on, 'cv05' on; }
 :root {
   --toc-accent: var(--color-fd-primary);
   --toc-rail: color-mix(in oklab, var(--color-fd-primary) 20%, transparent);
+  /* 表头背景（固定为 #F1F1F1） */
+  --table-header-bg: #F1F1F1;
 }
 
+/* =============== Inline TOC 目录凹凸线条样式（恢复） =============== */
 nav[aria-label="Table of contents"],
 nav[aria-label="目录"] {
   --_toc-rail: var(--toc-rail);
@@ -42,12 +45,34 @@ nav[aria-label="目录"] ol {
   padding-left: 0;
 }
 
+/* 二级目录：在自身也绘制竖线，并通过“弯折线”连接，形成阶梯凹凸效果 */
+nav[aria-label="Table of contents"] ol ol,
+nav[aria-label="目录"] ol ol {
+  margin-left: 18px;
+  border-left: 1.5px solid var(--_toc-rail);
+}
+
 nav[aria-label="Table of contents"] li,
 nav[aria-label="目录"] li {
   list-style: none;
   position: relative;
   padding-left: 12px;
   margin: 8px 0;
+}
+
+/* 连接弯折线：仅对二级及以上层级 li 生效 */
+nav[aria-label="Table of contents"] ol ol > li::after,
+nav[aria-label="目录"] ol ol > li::after {
+  content: '';
+  position: absolute;
+  left: -18px; /* 与上面 ol ol 的 margin-left 呼应 */
+  top: 0.9em; /* 与圆点对齐 */
+  width: 18px;
+  height: 18px;
+  border-top: 1.5px solid var(--_toc-rail);
+  border-left: 1.5px solid var(--_toc-rail);
+  border-top-left-radius: 10px; /* 圆角转弯，形成“凸起”的视觉 */
+  transform: translateY(-50%);
 }
 
 nav[aria-label="Table of contents"] li::before,
@@ -85,57 +110,40 @@ nav[aria-label="目录"] a[data-active="true"] {
   font-weight: 600;
 }
 
-/* MDX tables: do not bold the first row (thead headers) */
-/* stronger specificity to override preset */
-/* MDX tables: ensure the first row is not bold on all doc pages */
-/* 1) Normal thead/th case */
+/* =============== 表格样式 =============== */
+/* 说明：Fumadocs Typography 默认使用 roundedTable，会给 table 设置灰色卡片背景。
+   这里强制移除 table 背景，保留你指定的表头色（#F1F1F1），正文透明。*/
+
+/* 去除容器灰背景（覆盖 roundedTable 的 table 背景） */
+.prose table,
+.fd-article table,
+article table { background-color: transparent !important; background: none !important; }
+
+/* 表头（或首行）灰色 + 加粗 */
 .fd-article table thead th,
 article.fd-article table thead th,
 .prose table thead th,
-article table thead th { font-weight: 400 !important; }
+article table thead th { font-weight: 700 !important; background-color: var(--table-header-bg) !important; }
 
-/* 2) Edge case: tables without thead, treat the first row as header in practice */
-.fd-article table tr:first-child > th,
-.fd-article table tr:first-child > td,
-.prose table tr:first-child > th,
-.prose table tr:first-child > td,
-article table tr:first-child > th,
-article table tr:first-child > td { font-weight: 400 !important; }
-
-/* Also normalize any remaining th if preset styles apply globally */
-.fd-article table th,
-article table th,
-.prose table th { font-weight: 400; }
-
-/* Zebra striping for tables in doc articles: first row gray, second white, alternating */
-:root { --table-zebra-bg: color-mix(in oklab, #000 6%, transparent); }
-.dark { --table-zebra-bg: color-mix(in oklab, #fff 8%, transparent); }
-
-/* 让所有文档正文区域表格都生效（包含有无 thead 的情况） */
-.fd-article table tbody tr:nth-child(odd),
-.prose table tbody tr:nth-child(odd),
-article table tbody tr:nth-child(odd) { background-color: transparent !important; }
-
-.fd-article table tbody tr:nth-child(even),
-.prose table tbody tr:nth-child(even),
-article table tbody tr:nth-child(even) { background-color: transparent !important; }
-
-.dark .fd-article table tbody tr:nth-child(even),
-.dark .prose table tbody tr:nth-child(even),
-.dark article table tbody tr:nth-child(even) { background-color: transparent !important; }
-
-/* 没有 thead 的表格，第一行保持默认背景 */
+/* 无 thead 时，将第一行视作表头 */
+.fd-article table:not(:has(thead)) tr:first-child > th,
 .fd-article table:not(:has(thead)) tr:first-child > td,
+.prose table:not(:has(thead)) tr:first-child > th,
 .prose table:not(:has(thead)) tr:first-child > td,
-article table:not(:has(thead)) tr:first-child > td { background-color: transparent !important; }
+article table:not(:has(thead)) tr:first-child > th,
+article table:not(:has(thead)) tr:first-child > td { font-weight: 700 !important; background-color: var(--table-header-bg) !important; }
 
-/* 保留：表头不加粗；单元格内 strong 加粗 */
-.fd-article table thead th,
-article.fd-article table thead th,
-.prose table thead th,
-article table thead th { font-weight: 400 !important; }
+/* 正文无背景 */
+.fd-article table tbody tr,
+.prose table tbody tr,
+article table tbody tr { background-color: transparent !important; }
 
-/* 修正：使用更高优先级的选择器强制为表格内容区的 strong/b 标签加粗 */
+/* 兜底：清除单元格上的背景，避免第三方样式在 td 上着色 */
+.fd-article table tbody td,
+.prose table tbody td,
+article table tbody td { background-color: transparent !important; }
+
+/* 保持单元格内 strong/b 加粗不变 */
 .fd-article table tbody tr td strong,
 .fd-article table tbody tr td b,
 .prose table tbody tr td b,
@@ -145,12 +153,7 @@ article table tbody tr td strong {
   font-weight: 700 !important;
 }
 
-/* 新增：统一表头背景色与内容行一致 */
-.fd-article table thead th,
-article.fd-article table thead th,
-.prose table thead th,
-article table thead th { background-color: transparent !important; }
-
+/* =============== 其他通用样式 =============== */
 .animate-marquee {
   animation: marquee var(--marquee-duration, 40s) linear infinite;
 }

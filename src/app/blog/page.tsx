@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import Image from 'next/image';
 import { blog } from '@/lib/source';
 
 function parseDate(d: unknown): number {
@@ -36,8 +37,14 @@ export default function BlogIndexPage() {
             >
               {cover ? (
                 <div className="relative aspect-[16/9]">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={cover} alt={post.data.title} className="h-full w-full object-cover" />
+                  <Image 
+                    src={cover} 
+                    alt={post.data.title} 
+                    fill
+                    className="object-cover" 
+                    loading="lazy"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
                 </div>
               ) : null}
               <div className="p-5">

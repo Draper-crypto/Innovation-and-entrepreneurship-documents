@@ -1,13 +1,46 @@
 'use client';
 
 import Link from 'next/link';
-import { motion, animate, useInView } from 'framer-motion';
-import { ThemeToggle } from '@/components/theme-toggle';
+import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import { useEffect, useRef } from 'react';
 import { cn } from '@/lib/cn';
 import { buttonVariants } from 'fumadocs-ui/components/ui/button';
 import { GitFork, Github, Users, FolderKanban, Shield, Lock, Target, Globe, UserCheck } from 'lucide-react';
-import { TestimonialsMarquee, type Testimonial } from '@/components/home/testimonials';
+import { motion, animate, useInView } from 'framer-motion';
+
+// 懒加载重型组件
+// Removed incorrect dynamic import of framer-motion. 'motion' must be the named export object.
+// const motion = dynamic(() => import('framer-motion').then(mod => mod.default), {
+//   ssr: false,
+//   loading: () => <div className="animate-pulse bg-gray-200 dark:bg-gray-700 rounded" />
+// });
+
+// const animate = dynamic(() => import('framer-motion').then(mod => mod.animate), {
+//   ssr: false
+// });
+
+// const useInView = dynamic(() => import('framer-motion').then(mod => mod.useInView), {
+//   ssr: false
+// });
+
+const TestimonialsMarquee = dynamic(() => import('@/components/home/testimonials').then(mod => mod.TestimonialsMarquee), {
+  ssr: false,
+  loading: () => <div className="h-32 animate-pulse bg-gray-200 dark:bg-gray-700 rounded" />
+});
+
+const ThemeToggle = dynamic(() => import('@/components/theme-toggle').then(mod => mod.ThemeToggle), {
+  ssr: false,
+  loading: () => <div className="w-8 h-8 animate-pulse bg-gray-200 dark:bg-gray-700 rounded" />
+});
+
+// 类型定义
+type Testimonial = {
+  id: string;
+  content: string;
+  author: string;
+  role: string;
+};
 
 // Count-up number with thousand separators, triggered when element enters viewport
 function CountUp({
@@ -169,11 +202,12 @@ export default function HomePage() {
           <div className="text-left">
             <motion.div {...fadeIn} className="mb-6 inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/90 px-4 py-2 text-xs font-medium text-gray-700 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5 dark:text-gray-300">
               <span className="text-yellow-500">✨</span>
-              <span>开源且对开发者友好</span>
+              <span>创赛指南全新上线，快去看看吧~</span>
             </motion.div>
 
             <motion.h1 {...fadeIn} className="max-w-xl text-5xl font-semibold leading-[1.08] tracking-tight text-gray-900 dark:text-white md:text-7xl">
-              无论是否具备设计经验，都能快速构建<span className="bg-gradient-to-r from-fuchsia-500 to-sky-400 bg-clip-text text-transparent">精美</span>网站。
+              <span className="block">技术的价值</span>
+              <span className="block">让每个人都能<span className="bg-gradient-to-r from-fuchsia-500 to-sky-400 bg-clip-text text-transparent">平等</span>迈向数字化未来</span>
             </motion.h1>
 
             <motion.p {...fadeIn} transition={{ delay: 0.08 }} className="mt-5 max-w-xl text-lg text-fd-muted-foreground">
@@ -190,7 +224,14 @@ export default function HomePage() {
           {/* RIGHT: Collage */}
           <div className="relative h-[380px] w-full md:h-[460px]">
             <div className="absolute inset-0 rounded-3xl border bg-white/90 p-2 shadow-xl ring-1 ring-black/5 dark:bg-white/5">
-              <img src="https://images.unsplash.com/photo-1600267175160-1c1a4c66fbc0?q=80&w=1200&auto=format&fit=crop" alt="产品预览" className="h-full w-full rounded-2xl object-cover" loading="lazy" />
+              <Image 
+                src="/images/hero/banner.svg" 
+                alt="数字化未来" 
+                fill
+                className="rounded-2xl object-contain object-center" 
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
             </div>
           </div>
         </div>
@@ -251,11 +292,25 @@ export default function HomePage() {
             </div>
           </div>
           <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
-            <div className="rounded-2xl border bg-fd-card shadow-sm overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1200&auto=format&fit=crop" alt="界面示例" className="h-64 w-full object-cover" />
+            <div className="rounded-2xl border bg-fd-card shadow-sm overflow-hidden relative h-64">
+              <Image 
+                src="https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1200&auto=format&fit=crop" 
+                alt="界面示例" 
+                fill
+                className="object-cover" 
+                loading="lazy"
+                sizes="(max-width: 640px) 100vw, 50vw"
+              />
             </div>
-            <div className="rounded-2xl border bg-fd-card shadow-sm overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1517433456452-f9633a875f6f?q=80&w=1200&auto=format&fit=crop" alt="代码示例" className="h-64 w-full object-cover" />
+            <div className="rounded-2xl border bg-fd-card shadow-sm overflow-hidden relative h-64">
+              <Image 
+                src="https://images.unsplash.com/photo-1517433456452-f9633a875f6f?q=80&w=1200&auto=format&fit=crop" 
+                alt="代码示例" 
+                fill
+                className="object-cover" 
+                loading="lazy"
+                sizes="(max-width: 640px) 100vw, 50vw"
+              />
             </div>
           </div>
         </div>
@@ -273,11 +328,25 @@ export default function HomePage() {
             </div>
           </div>
           <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
-            <div className="rounded-2xl border bg-fd-card shadow-sm overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1516251193007-45ef944ab0c6?q=80&w=1200&auto=format&fit=crop" alt="音乐卡片" className="h-64 w-full object-cover" />
+            <div className="rounded-2xl border bg-fd-card shadow-sm overflow-hidden relative h-64">
+              <Image 
+                src="https://images.unsplash.com/photo-1516251193007-45ef944ab0c6?q=80&w=1200&auto=format&fit=crop" 
+                alt="音乐卡片" 
+                fill
+                className="object-cover" 
+                loading="lazy"
+                sizes="(max-width: 640px) 100vw, 50vw"
+              />
             </div>
-            <div className="rounded-2xl border bg-fd-card shadow-sm overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200&auto=format&fit=crop" alt="代码暗色模式" className="h-64 w-full object-cover" />
+            <div className="rounded-2xl border bg-fd-card shadow-sm overflow-hidden relative h-64">
+              <Image 
+                src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200&auto=format&fit=crop" 
+                alt="代码暗色模式" 
+                fill
+                className="object-cover" 
+                loading="lazy"
+                sizes="(max-width: 640px) 100vw, 50vw"
+              />
             </div>
           </div>
         </div>

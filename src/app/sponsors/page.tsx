@@ -1,23 +1,12 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 const sponsors = [
   {
-    name: 'OpenAlternative',
-    description: 'Discover open source alternatives to popular software',
-    cover: 'https://i.imgur.com/3P6Jw2R.png',
-    url: 'https://openalternative.co',
-  },
-  {
-    name: 'Awesome OSS',
-    description: 'A curated list of awesome open-source tools',
-    cover: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop',
-    url: 'https://example.com',
-  },
-  {
-    name: 'Dev Productivity',
-    description: 'Improve your developer productivity with modern tools',
-    cover: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop',
-    url: 'https://example.com',
+    name: 'Elexvx Inc',
+    description: '发起公司、主要投资方',
+    cover: '/images/sponsors/elexvx.svg',
+    url: 'https://www.elexvx.com/',
   },
 ];
 
@@ -25,17 +14,23 @@ export default function SponsorsPage() {
   return (
     <main className="grow container mx-auto px-4 py-8">
       <h1 className="text-3xl md:text-4xl font-bold mb-2">赞助商</h1>
-      <p className="text-fd-muted-foreground mb-8">感谢以下优秀项目/伙伴的支持</p>
+      <p className="text-fd-muted-foreground mb-8">感谢以下合作伙伴的支持</p>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {sponsors.map((s) => (
           <div
             key={s.name}
-            className="group rounded-2xl border bg-background overflow-hidden hover:shadow-md transition-shadow"
+            className="group rounded-2xl border bg-fd-card text-fd-card-foreground overflow-hidden shadow-sm hover:shadow-md transition-shadow dark:border-white/10"
           >
             <div className="relative aspect-[16/9]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={s.cover} alt={s.name} className="h-full w-full object-cover" />
+              <Image 
+                src={s.cover} 
+                alt={s.name} 
+                fill
+                className="object-cover" 
+                loading="lazy"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              />
             </div>
             <div className="p-5">
               <h2 className="text-xl font-semibold mb-2 group-hover:underline">{s.name}</h2>

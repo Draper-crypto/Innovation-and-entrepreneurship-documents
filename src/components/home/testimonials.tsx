@@ -1,6 +1,7 @@
 "use client";
 
 import type React from "react";
+import Image from "next/image";
 
 export type Testimonial = {
   id: string;
@@ -37,14 +38,12 @@ export function TestimonialsMarquee({
       <p className="text-sm text-fd-foreground/90">{t.content}</p>
       <div className="mt-4 flex items-center gap-3">
         {t.avatar ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <Image
             src={t.avatar}
             alt={t.author}
             width={32}
             height={32}
             loading="lazy"
-            decoding="async"
             className="h-8 w-8 rounded-full object-cover"
           />
         ) : (
