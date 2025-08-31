@@ -1,5 +1,8 @@
+'use client'
+
 import { Twitter, Github, Disc } from 'lucide-react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 const socials = [
   {
@@ -20,8 +23,11 @@ const socials = [
 ]
 
 export function Footer() {
+  const pathname = usePathname()
+  if (pathname?.startsWith('/docs')) return null
+
   return (
-    <footer className="mt-24 md:mt-32 border-t bg-fd-card text-fd-card-foreground dark:border-neutral-800">
+    <footer className="mt-16 md:mt-20 border-t bg-fd-card text-fd-card-foreground dark:border-neutral-800">
       <div className="mx-auto max-w-[var(--spacing-fd-container)] px-4 py-10 md:px-6">
         {/* Upper grid: brand + quick links */}
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">

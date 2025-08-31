@@ -30,17 +30,19 @@ export default function Layout({ children }: LayoutProps) {
         <Banner id="welcome-banner" variant="rainbow">
           🎉 欢迎来到文档站！探索技术文档与示例代码。
         </Banner>
-        <Theme>
-          <HeroUIProvider>
-            <RootProvider
-              i18n={{ locale: 'zh', locales, translations: zh }}
-              theme={{ defaultTheme: 'light', attribute: 'class' }}
-            >
-              <div className="flex-1">{children}</div>
-              <Footer />
-            </RootProvider>
-          </HeroUIProvider>
-        </Theme>
+        <div className="flex flex-1 flex-col">
+          <Theme>
+            <HeroUIProvider>
+              <RootProvider
+                i18n={{ locale: 'zh', locales, translations: zh }}
+                theme={{ defaultTheme: 'light', attribute: 'class' }}
+              >
+                <div className="flex-1">{children}</div>
+              </RootProvider>
+            </HeroUIProvider>
+          </Theme>
+          <Footer />
+        </div>
         {/* Vercel Analytics & Speed Insights */}
         <Analytics />
         <SpeedInsights />

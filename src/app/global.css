@@ -85,13 +85,6 @@ nav[aria-label="目录"] a[data-active="true"] {
   font-weight: 600;
 }
 
-@keyframes gradient-x {
-  0%,100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-.animate-gradient-x { background-size: 200% 200%; animation: gradient-x 6s ease infinite; }
-
 /* MDX tables: do not bold the first row (thead headers) */
 /* stronger specificity to override preset */
 /* MDX tables: ensure the first row is not bold on all doc pages */
@@ -132,9 +125,9 @@ article table tbody tr:nth-child(even) { background-color: transparent !importan
 .dark article table tbody tr:nth-child(even) { background-color: transparent !important; }
 
 /* 没有 thead 的表格，第一行保持默认背景 */
-.fd-article table:not(:has(thead)) tr:nth-child(odd),
-.prose table:not(:has(thead)) tr:nth-child(odd),
-article table:not(:has(thead)) tr:nth-child(odd) { background-color: transparent !important; }
+.fd-article table:not(:has(thead)) tr:first-child > td,
+.prose table:not(:has(thead)) tr:first-child > td,
+article table:not(:has(thead)) tr:first-child > td { background-color: transparent !important; }
 
 /* 保留：表头不加粗；单元格内 strong 加粗 */
 .fd-article table thead th,
@@ -145,10 +138,10 @@ article table thead th { font-weight: 400 !important; }
 /* 修正：使用更高优先级的选择器强制为表格内容区的 strong/b 标签加粗 */
 .fd-article table tbody tr td strong,
 .fd-article table tbody tr td b,
-.prose table tbody tr td strong,
 .prose table tbody tr td b,
+article table tbody tr td b,
 article table tbody tr td strong,
-article table tbody tr td b {
+article table tbody tr td strong {
   font-weight: 700 !important;
 }
 
@@ -158,13 +151,35 @@ article.fd-article table thead th,
 .prose table thead th,
 article table thead th { background-color: transparent !important; }
 
-/* Testimonials marquee keyframes */
+.animate-marquee {
+  animation: marquee var(--marquee-duration, 40s) linear infinite;
+}
+
+.group:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
 @keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes marquee_reverse {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(50%); }
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Hide scrollbars for horizontal snapping containers on mobile */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none;    /* Firefox */
 }
