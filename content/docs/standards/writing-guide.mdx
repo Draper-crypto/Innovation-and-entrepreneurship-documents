@@ -63,7 +63,7 @@ msg // hover 查看推断类型
 ---
 
 ## 扩展/插件开发简要
-- 新增 MDX 组件：在 src/components/mdx 下创建文件（如 my-component.tsx），然后到 src/mdx-components.tsx 将其加入 getMDXComponents 返回对象中，之后即可在 .mdx 中直接使用 <MyComponent />。
+- 新增 MDX 组件：在 src/components/mdx 下创建文件（如 my-component.tsx），然后到 src/mdx-components.tsx 将其加入 getMDXComponents 返回对象中，之后即可在 .mdx 中直接使用该组件。
 - Mermaid：组件位于 src/components/mdx/mermaid.tsx，传入 `chart` 字符串即可。
 - 数学：已启用 remark-math 与 rehype-katex，直接使用 `$...$` 或 `$$...$$`。
 - Twoslash：已集成 fumadocs-twoslash，代码块写法参考上文示例。
