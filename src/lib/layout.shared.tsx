@@ -46,12 +46,10 @@ export function baseOptions(): BaseLayoutProps {
         ],
       },
       {
-        on: 'nav',
         text: '博客',
         url: '/blog',
       },
       {
-        on: 'nav',
         text: '赞助商',
         url: '/sponsors',
       },

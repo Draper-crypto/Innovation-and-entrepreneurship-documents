@@ -5,7 +5,7 @@ import { Theme } from '@radix-ui/themes'
 import { HeroUIProvider } from '@heroui/react'
 import { RootProvider } from 'fumadocs-ui/provider'
 import type { Translations } from 'fumadocs-ui/i18n'
-import { Banner } from 'fumadocs-ui/components/banner'
+import { AutoCloseBanner } from '@/components/auto-close-banner'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Footer } from '@/components/footer'
@@ -27,9 +27,14 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <html lang="zh" className="font-sans" suppressHydrationWarning>
       <body className="flex min-h-screen flex-col">
-        <Banner id="welcome-banner" variant="rainbow">
+        <AutoCloseBanner 
+          id="welcome-banner" 
+          variant="rainbow" 
+          className="sticky top-0 z-50"
+          autoCloseDelay={5000}
+        >
           🎉 欢迎来到文档站！探索技术文档与示例代码。
-        </Banner>
+        </AutoCloseBanner>
         <div className="flex flex-1 flex-col">
           <Theme>
             <HeroUIProvider>
