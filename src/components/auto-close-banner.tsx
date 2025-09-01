@@ -3,10 +3,11 @@
 import { useState, useEffect } from 'react';
 import { Banner } from 'fumadocs-ui/components/banner';
 import { cn } from '@/lib/cn';
+import type { ComponentProps } from 'react';
 
 interface AutoCloseBannerProps {
   id: string;
-  variant?: 'default' | 'outline' | 'rainbow';
+  variant?: any;
   className?: string;
   children: React.ReactNode;
   autoCloseDelay?: number; // 自动关闭延迟时间（毫秒）
@@ -14,7 +15,7 @@ interface AutoCloseBannerProps {
 
 export function AutoCloseBanner({
   id,
-  variant = 'default',
+  variant,
   className,
   children,
   autoCloseDelay = 5000, // 默认5秒
