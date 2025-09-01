@@ -16,12 +16,12 @@ const config = {
       { protocol: 'https', hostname: 'picsum.photos' }
     ],
   },
-  
+
   // 性能优化设置
   experimental: {
     optimizeCss: true,
   },
-  
+
   // 编译器优化
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
@@ -31,7 +31,7 @@ const config = {
     if (dev) {
       cfg.cache = { type: 'memory' };
     }
-    
+
     // 启用代码分割优化
     if (!dev) {
       cfg.optimization = {
@@ -48,12 +48,9 @@ const config = {
         },
       };
     }
-    
+
     return cfg;
   },
 };
 
 export default withMDX(config);
-
-// Disable Turbopack for better compatibility if issues arise
-// module.exports = withMDX(config);
