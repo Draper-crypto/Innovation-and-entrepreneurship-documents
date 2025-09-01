@@ -1,9 +1,6 @@
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
 import Image from 'next/image';
-import { IconHome, IconBook, IconNotes, IconHeart, IconCompass } from '@tabler/icons-react';
-import * as React from 'react';
-import Link from 'next/link';
-import { cn } from '@/lib/cn';
+import { IconBook, IconNotes, IconCompass } from '@tabler/icons-react';
 
 /**
  * Shared layout configurations
@@ -49,24 +46,14 @@ export function baseOptions(): BaseLayoutProps {
         ],
       },
       {
-        type: 'custom',
         on: 'nav',
-        children: (
-          <div className="flex items-center gap-2">
-            <a
-              href="/blog"
-              className="group inline-flex items-center rounded-lg px-3 py-1.5 text-sm transition hover:bg-fd-accent hover:text-fd-accent-foreground"
-            >
-              博客
-            </a>
-            <a
-              href="/sponsors"
-              className="group inline-flex items-center rounded-lg px-3 py-1.5 text-sm transition hover:bg-fd-accent hover:text-fd-accent-foreground"
-            >
-              赞助商
-            </a>
-          </div>
-        ),
+        text: '博客',
+        url: '/blog',
+      },
+      {
+        on: 'nav',
+        text: '赞助商',
+        url: '/sponsors',
       },
       {
         // 新增：外链图标按钮 — 放在导航栏右侧区域
@@ -79,31 +66,6 @@ export function baseOptions(): BaseLayoutProps {
         text: 'Elexvx 官网',
         secondary: true,
       },
-    ],
-  };
-}
-
-export function MainNav() {
-  return (
-    <nav className="flex items-center gap-2 md:gap-3">
-      <Link
-        href="/docs"
-        className="rounded-full px-3 py-1.5 text-sm text-fd-muted-foreground transition hover:bg-fd-accent hover:text-fd-accent-foreground"
-      >
-        文档
-      </Link>
-      <Link
-        href="/blog"
-        className="rounded-full px-3 py-1.5 text-sm text-fd-muted-foreground transition hover:bg-fd-accent hover:text-fd-accent-foreground"
-      >
-        博客
-      </Link>
-      <Link
-        href="/sponsors"
-        className="rounded-full px-3 py-1.5 text-sm text-fd-muted-foreground transition hover:bg-fd-accent hover:text-fd-accent-foreground"
-      >
-        赞助商
-      </Link>
-    </nav>
-  );
+      ],
+    };
 }
