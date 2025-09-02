@@ -12,6 +12,7 @@ import { getMDXComponents } from '@/mdx-components';
 import { LLMCopyButton, ViewOptions } from '@/components/page-actions';
 import { Rate } from '@/components/feedback';
 import Link from 'next/link';
+import { headers } from 'next/headers';
 
 export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
   const params = await props.params;
@@ -94,7 +95,12 @@ export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
       <Rate
         onRateAction={async (url, feedback) => {
           'use server';
-          const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/feedback`, {
+          const hdrs = await headers();
+          const originFromHeaders = hdrs.get('origin');
+          const vercelUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined;
+          const origin = originFromHeaders || process.env.NEXT_PUBLIC_BASE_URL || vercelUrl || 'http://localhost:3000';
+
+          const response = await fetch(`${origin}/api/feedback`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

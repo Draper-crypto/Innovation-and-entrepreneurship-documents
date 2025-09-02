@@ -105,37 +105,37 @@ export default function HomePage() {
   const features = [
     {
       icon: <FolderKanban className="h-5 w-5" />,
-      title: '可视化任务管理',
-      desc: '采用直观的看板界面组织任务；拖拽排序、设置优先级并跟踪进度。',
+      title: '清晰的文档分类',
+      desc: '采用清晰的文档分类，帮助用户快速找到所需内容。',
       gradient: 'bg-gradient-to-tr from-fuchsia-200 to-sky-200 text-fuchsia-700 dark:from-fuchsia-500/20 dark:to-sky-500/20 dark:text-fuchsia-300',
     },
     {
       icon: <Shield className="h-5 w-5" />,
-      title: '自托管与安全',
-      desc: '在自有基础设施上部署，完全掌控数据与个性化配置。',
+      title: '开源且免费',
+      desc: '项目框架遵循MIT原则，您可以自由的二次开发和分享',
       gradient: 'bg-gradient-to-tr from-emerald-200 to-teal-200 text-emerald-700 dark:from-emerald-500/20 dark:to-teal-500/20 dark:text-emerald-300',
     },
-    {
-      icon: <Lock className="h-5 w-5" />,
-      title: '数据隐私',
-      desc: '以安全为核心构建，您的数据始终私密并受到完善的保护。',
-      gradient: 'bg-gradient-to-tr from-rose-200 to-orange-200 text-rose-700 dark:from-rose-500/20 dark:to-orange-500/20 dark:text-rose-300',
-    },
-    {
-      icon: <Target className="h-5 w-5" />,
-      title: '主题令牌',
-      desc: '使用设计令牌在全局统一品牌与组件风格。',
-      gradient: 'bg-gradient-to-tr from-indigo-200 to-violet-200 text-indigo-700 dark:from-indigo-500/20 dark:to-violet-500/20 dark:text-indigo-300',
-    },
-    {
-      icon: <Globe className="h-5 w-5" />,
-      title: '国际化支持',
-      desc: '内置良好的 i18n 结构，轻松面向全球用户。',
-      gradient: 'bg-gradient-to-tr from-cyan-200 to-blue-200 text-cyan-700 dark:from-cyan-500/20 dark:to-blue-500/20 dark:text-cyan-300',
-    },
+    // {
+    //   icon: <Lock className="h-5 w-5" />,
+    //   title: '数据隐私',
+    //   desc: '以安全为核心构建，您的数据始终私密并受到完善的保护。',
+    //   gradient: 'bg-gradient-to-tr from-rose-200 to-orange-200 text-rose-700 dark:from-rose-500/20 dark:to-orange-500/20 dark:text-rose-300',
+    // },
+    // {
+    //   icon: <Target className="h-5 w-5" />,
+    //   title: '主题令牌',
+    //   desc: '使用设计令牌在全局统一品牌与组件风格。',
+    //   gradient: 'bg-gradient-to-tr from-indigo-200 to-violet-200 text-indigo-700 dark:from-indigo-500/20 dark:to-violet-500/20 dark:text-indigo-300',
+    // },
+    // {
+    //   icon: <Globe className="h-5 w-5" />,
+    //   title: '国际化支持',
+    //   desc: '内置良好的 i18n 结构，轻松面向全球用户。',
+    //   gradient: 'bg-gradient-to-tr from-cyan-200 to-blue-200 text-cyan-700 dark:from-cyan-500/20 dark:to-blue-500/20 dark:text-cyan-300',
+    // },
     {
       icon: <UserCheck className="h-5 w-5" />,
-      title: '体验优化',
+      title: '出色的用户体验',
       desc: '遵循良好的用户体验实践，键盘导航与交互无缝支持。',
       gradient: 'bg-gradient-to-tr from-lime-200 to-green-200 text-lime-700 dark:from-lime-500/20 dark:to-green-500/20 dark:text-lime-300',
     },
@@ -281,12 +281,9 @@ export default function HomePage() {
               按照你的品牌与审美，自由定义<span className="bg-gradient-to-r from-fuchsia-500 to-sky-400 bg-clip-text text-transparent">主题</span>。
             </h2>
             <p className="mt-3 max-w-lg mx-auto text-fd-muted-foreground">使用 Tailwind 与主题令牌打造你的品牌；切换主题轻而易举。</p>
-            <div className="mt-6 flex justify-center gap-3">
-              <Link href="/docs" className={cn(buttonVariants({ color: 'primary' }), 'rounded-full px-5')}>了解更多</Link>
-              <Link href="/docs" className={cn(buttonVariants({ color: 'secondary' }), 'rounded-full px-5')}>文档</Link>
-            </div>
+            {/* 按要求移除按钮 */}
           </div>
-          <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
+          <div className="w-full">
             <div className="rounded-2xl border bg-fd-card shadow-sm overflow-hidden relative h-64">
               <Image 
                 src="https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1200&auto=format&fit=crop" 
@@ -294,17 +291,7 @@ export default function HomePage() {
                 fill
                 className="object-cover" 
                 loading="lazy"
-                sizes="(max-width: 640px) 100vw, 50vw"
-              />
-            </div>
-            <div className="rounded-2xl border bg-fd-card shadow-sm overflow-hidden relative h-64">
-              <Image 
-                src="https://images.unsplash.com/photo-1517433456452-f9633a875f6f?q=80&w=1200&auto=format&fit=crop" 
-                alt="代码示例" 
-                fill
-                className="object-cover" 
-                loading="lazy"
-                sizes="(max-width: 640px) 100vw, 50vw"
+                sizes="100vw"
               />
             </div>
           </div>
@@ -317,12 +304,9 @@ export default function HomePage() {
           <div className="w-full text-center">
             <h2 className="text-4xl font-semibold tracking-tight text-[#1D1D1F] dark:text-white md:text-5xl">暗色模式，<span className="bg-gradient-to-r from-orange-400 to-pink-500 bg-clip-text text-transparent">轻松</span>适配。</h2>
             <p className="mt-3 max-w-lg mx-auto text-fd-muted-foreground">自动检测系统暗色偏好，组件完整适配主题，风格统一。</p>
-            <div className="mt-6 flex justify-center gap-3">
-              <Link href="/docs" className={cn(buttonVariants({ color: 'primary' }), 'rounded-full px-5')}>了解更多</Link>
-              <Link href="/docs" className={cn(buttonVariants({ color: 'secondary' }), 'rounded-full px-5')}>文档</Link>
-            </div>
+            {/* 按要求移除按钮 */}
           </div>
-          <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
+          <div className="w-full">
             <div className="rounded-2xl border bg-fd-card shadow-sm overflow-hidden relative h-64">
               <Image 
                 src="https://images.unsplash.com/photo-1516251193007-45ef944ab0c6?q=80&w=1200&auto=format&fit=crop" 
@@ -330,17 +314,7 @@ export default function HomePage() {
                 fill
                 className="object-cover" 
                 loading="lazy"
-                sizes="(max-width: 640px) 100vw, 50vw"
-              />
-            </div>
-            <div className="rounded-2xl border bg-fd-card shadow-sm overflow-hidden relative h-64">
-              <Image 
-                src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200&auto=format&fit=crop" 
-                alt="代码暗色模式" 
-                fill
-                className="object-cover" 
-                loading="lazy"
-                sizes="(max-width: 640px) 100vw, 50vw"
+                sizes="100vw"
               />
             </div>
           </div>
