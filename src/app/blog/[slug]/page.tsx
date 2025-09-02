@@ -49,7 +49,12 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
         </article>
         <aside className="hidden lg:block">
           <div className="sticky top-24">
-            <InlineTOC items={page.data.toc} />
+            <div className="mb-4">
+              <h3 className="text-sm font-semibold text-fd-muted-foreground">目录</h3>
+            </div>
+            <div className="[&>h3]:hidden [&>h4]:hidden [&>[data-title]]:hidden">
+              <InlineTOC items={page.data.toc} />
+            </div>
           </div>
         </aside>
       </div>

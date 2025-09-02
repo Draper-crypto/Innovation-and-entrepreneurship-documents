@@ -236,7 +236,7 @@ export default function HomePage() {
         <motion.div {...fadeIn} className="relative z-10 mx-auto mt-8 w-full max-w-[var(--spacing-fd-container)] px-4 md:mt-10 md:px-6">
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 sm:gap-4">
             {[
-              { icon: '🎨', title: '主题化', desc: '自定义主题令牌' },
+              { icon: '🎨', title: '开源免费', desc: '基于 MIT 协议开源' },
               { icon: '⚡', title: '高性能', desc: '零样式运行时' },
               { icon: '🌓', title: '明暗适配', desc: '自动跟随系统' },
               { icon: '🔌', title: '易扩展', desc: '按需组合组件' },

@@ -207,3 +207,34 @@ article table tbody tr td strong {
   --fd-card-foreground: inherit;
   --fd-muted-foreground: inherit;
 }
+
+/* =============== Markdown 列表样式 =============== */
+/* 有序列表序号颜色 */
+.prose ol > li::marker,
+.fd-article ol > li::marker,
+article ol > li::marker {
+  color: #6A66F4;
+}
+
+/* 无序列表符号颜色 */
+.prose ul > li::marker,
+.fd-article ul > li::marker,
+article ul > li::marker {
+  color: #6A66F4;
+}
+
+/* 嵌套列表也应用相同样式 */
+.prose ol ol > li::marker,
+.prose ol ul > li::marker,
+.prose ul ol > li::marker,
+.prose ul ul > li::marker,
+.fd-article ol ol > li::marker,
+.fd-article ol ul > li::marker,
+.fd-article ul ol > li::marker,
+.fd-article ul ul > li::marker,
+article ol ol > li::marker,
+article ol ul > li::marker,
+article ul ol > li::marker,
+article ul ul > li::marker {
+  color: #6A66F4;
+}

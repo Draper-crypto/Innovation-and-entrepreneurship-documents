@@ -8,6 +8,12 @@ const sponsors = [
     cover: '/images/sponsors/elexvx.svg',
     url: 'https://www.elexvx.com/',
   },
+  {
+    name: '全国大学生创新创业实践大赛',
+    description: '合作伙伴',
+    cover: '/images/sponsors/cxcysj.svg',
+    url: 'https://new.saikr.com/vse/51382?type=notice&id=32747',
+  },
 ];
 
 export default function SponsorsPage() {

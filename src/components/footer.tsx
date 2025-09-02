@@ -1,24 +1,25 @@
 'use client'
 
-import { Twitter, Github, Disc } from 'lucide-react'
+import { Github, MessageCircle } from 'lucide-react'
+import { IconBrandX } from '@tabler/icons-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 const socials = [
   {
-    href: 'https://twitter.com/example',
-    icon: <Twitter className="h-5 w-5" />,
-    label: 'Twitter',
+    href: 'https://x.com/elexvx',
+    icon: <IconBrandX className="h-5 w-5" />,
+    label: 'X',
   },
   {
-    href: 'https://github.com/example/repo',
+    href: 'https://github.com/elexvx',
     icon: <Github className="h-5 w-5" />,
     label: 'GitHub',
   },
   {
-    href: 'https://discord.gg/example',
-    icon: <Disc className="h-5 w-5" />,
-    label: 'Discord',
+    href: 'http://weixin.qq.com/r/mp/1BeIkJDEes0FrdTz90LG',
+    icon: <MessageCircle className="h-5 w-5" />,
+    label: '微信公众号',
   },
 ]
 
@@ -30,12 +31,25 @@ export function Footer() {
     <footer className="mt-0 border-t bg-fd-card text-fd-card-foreground dark:border-neutral-800">
       <div className="mx-auto max-w-[var(--spacing-fd-container)] px-4 py-6 md:px-6">
         {/* Upper grid: brand + quick links */}
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           <div>
             <div className="text-lg font-semibold">ElexvxAI Lab</div>
             <p className="mt-2 max-w-xs text-sm text-fd-muted-foreground">
               Elexvx用人工智能驱动创新、知产、人才、供应链，面向全球企业提供数字化增长动力
             </p>
+            <div className="mt-4 flex items-center gap-4">
+              {socials.map((s) => (
+                <Link
+                  key={s.label}
+                  href={s.href}
+                  aria-label={s.label}
+                  target="_blank"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border hover:bg-white/60 dark:hover:bg-white/10"
+                >
+                  {s.icon}
+                </Link>
+              ))}
+            </div>
           </div>
           <div>
             <div className="text-sm font-medium">导航</div>
@@ -57,21 +71,31 @@ export function Footer() {
               </li>
             </ul>
           </div>
+
           <div>
-            <div className="text-sm font-medium">社区</div>
-            <div className="mt-3 flex items-center gap-4">
-              {socials.map((s) => (
-                <Link
-                  key={s.label}
-                  href={s.href}
-                  aria-label={s.label}
-                  target="_blank"
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border hover:bg-white/60 dark:hover:bg-white/10"
-                >
-                  {s.icon}
+            <div className="text-sm font-medium">资源</div>
+            <ul className="mt-3 space-y-2 text-sm text-fd-muted-foreground">
+              <li>
+                <Link href="/tutorials" className="hover:text-fd-foreground">
+                  教程指南
                 </Link>
-              ))}
-            </div>
+              </li>
+              <li>
+                <Link href="/examples" className="hover:text-fd-foreground">
+                  示例代码
+                </Link>
+              </li>
+              <li>
+                <Link href="/api" className="hover:text-fd-foreground">
+                  API 文档
+                </Link>
+              </li>
+              <li>
+                <Link href="/changelog" className="hover:text-fd-foreground">
+                  更新日志
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
 
