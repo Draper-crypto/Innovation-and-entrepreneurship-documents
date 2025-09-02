@@ -34,6 +34,16 @@ export const blog = defineCollections({
   }),
 });
 
+// 新增：Changelog 集合（每日一个 MDX 文件）
+export const changelog = defineCollections({
+  type: 'doc',
+  dir: 'content/changelog',
+  schema: frontmatterSchema.extend({
+    date: z.union([z.string(), z.date()]),
+    tags: z.array(z.string()).optional(),
+  }),
+});
+
 export default defineConfig({
   mdxOptions: {
     remarkPlugins: [remarkGfm, remarkMath],

@@ -6,7 +6,7 @@ import {
   DocsTitle,
 } from 'fumadocs-ui/page';
 import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import { createRelativeLink } from 'fumadocs-ui/mdx';
 import { getMDXComponents } from '@/mdx-components';
 import { LLMCopyButton, ViewOptions } from '@/components/page-actions';
@@ -16,6 +16,12 @@ import Link from 'next/link';
 export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
   const params = await props.params;
   const slug = params.slug;
+
+  // 当访问 /docs 根路径时，重定向到默认分区（创新文档）
+  if (!slug) {
+    redirect('/docs/innovation');
+  }
+
   const page = source.getPage(slug);
 
   // Fallback: when visiting a directory like /docs/innovation without an index.mdx,

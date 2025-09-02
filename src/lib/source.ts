@@ -22,3 +22,10 @@ export const blog = loader({
   baseUrl: '/blog',
   source: createMDXSource(blogPosts),
 });
+
+// 新增：changelog 源
+import { changelog as changelogPosts } from '@/.source';
+export const changelog = loader({
+  baseUrl: '/changelog',
+  source: createMDXSource(changelogPosts),
+});

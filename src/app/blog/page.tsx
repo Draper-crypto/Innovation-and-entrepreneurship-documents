@@ -14,9 +14,9 @@ function parseDate(d: unknown): number {
 }
 
 export default function BlogIndexPage() {
-  const posts = blog
-    .getPages()
-    .toSorted((a, b) => parseDate((b.data as any).date) - parseDate((a.data as any).date));
+  const posts = [...blog.getPages()].sort(
+    (a, b) => parseDate((b.data as any).date) - parseDate((a.data as any).date)
+  );
 
   return (
     <main className="grow container mx-auto px-4 py-8">

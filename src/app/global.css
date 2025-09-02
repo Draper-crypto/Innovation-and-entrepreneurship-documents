@@ -30,6 +30,9 @@ body { font-feature-settings: 'ss01' on, 'cv05' on; }
   --table-header-bg: #F1F1F1;
 }
 
+/* 暗色模式下的表头背景，避免出现白底白字 */
+.dark { --table-header-bg: color-mix(in oklab, white 8%, transparent); }
+
 /* =============== Inline TOC 目录凹凸线条样式（恢复） =============== */
 nav[aria-label="Table of contents"],
 nav[aria-label="目录"] {
@@ -125,6 +128,12 @@ article.fd-article table thead th,
 .prose table thead th,
 article table thead th { font-weight: 700 !important; background-color: var(--table-header-bg) !important; }
 
+/* 暗色模式下，确保表头文字颜色对比充分 */
+.dark :is(.fd-article table thead th,
+article.fd-article table thead th,
+.prose table thead th,
+article table thead th) { color: var(--fd-foreground, #fff) !important; }
+
 /* 无 thead 时，将第一行视作表头 */
 .fd-article table:not(:has(thead)) tr:first-child > th,
 .fd-article table:not(:has(thead)) tr:first-child > td,
@@ -132,6 +141,14 @@ article table thead th { font-weight: 700 !important; background-color: var(--ta
 .prose table:not(:has(thead)) tr:first-child > td,
 article table:not(:has(thead)) tr:first-child > th,
 article table:not(:has(thead)) tr:first-child > td { font-weight: 700 !important; background-color: var(--table-header-bg) !important; }
+
+/* 暗色模式下，首行视作表头时也保持足够的文字对比度 */
+.dark :is(.fd-article table:not(:has(thead)) tr:first-child > th,
+.fd-article table:not(:has(thead)) tr:first-child > td,
+.prose table:not(:has(thead)) tr:first-child > th,
+.prose table:not(:has(thead)) tr:first-child > td,
+article table:not(:has(thead)) tr:first-child > th,
+article table:not(:has(thead)) tr:first-child > td) { color: var(--fd-foreground, #fff) !important; }
 
 /* 正文无背景 */
 .fd-article table tbody tr,

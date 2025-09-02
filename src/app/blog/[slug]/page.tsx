@@ -19,7 +19,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
     <>
       {/* 返回按钮放在标题区上方，并与内容对齐 */}
       <div className="container px-4 pt-6">
-        <Link href="/blog" className="text-sm text-fd-muted-foreground hover:underline">返回列表</Link>
+        <Link href="/" className="text-sm text-fd-muted-foreground hover:underline">返回首页</Link>
       </div>
 
       {/* 标题区：对齐并在顶部预留距离，将作者与发布时间放入其中 */}

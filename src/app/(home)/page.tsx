@@ -209,7 +209,7 @@ export default function HomePage() {
             </motion.h1>
 
             <motion.p {...fadeIn} transition={{ delay: 0.08 }} className="mt-5 max-w-xl text-sm sm:text-base text-fd-muted-foreground">
-              现代、快速、可定制的 React UI 组件库，助你构建易用与可访问的 Web 应用。
+              AI 赋能，让我们的产品更合心意，助力用户挥洒创意、提升效率、拓展知识、高效学习，真正满足用户需求。
             </motion.p>
 
             <motion.div {...fadeIn} transition={{ delay: 0.12 }} className="mt-8 flex w-full flex-col items-start gap-4 sm:flex-row">

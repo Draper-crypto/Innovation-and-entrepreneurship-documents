@@ -50,6 +50,10 @@ export function baseOptions(): BaseLayoutProps {
         url: '/blog',
       },
       {
+        text: '更新日志',
+        url: '/changelog',
+      },
+      {
         text: '赞助商',
         url: '/sponsors',
       },

@@ -43,11 +43,6 @@ export default function Layout({ children }: LayoutProps<'/docs'>) {
       <DocsLayout 
         tree={source.pageTree}
         {...base}
-        // 添加中文国际化配置
-        i18n={{
-          locale: 'zh',
-          translations: zh,
-        }}
         // 显式指定 Sidebar Tabs：标题/描述/URL/图标，统一所有文档页的切换方式与外观
         sidebar={{
           tabs: [
@@ -65,8 +60,8 @@ export default function Layout({ children }: LayoutProps<'/docs'>) {
             },
           ],
         }}
-        // 清空 links，避免重复渲染
-        links={[]}
+        // 使用共享的导航链接，确保“更新日志”等入口在文档页可见
+        links={base.links}
       >
         {children}
       </DocsLayout>

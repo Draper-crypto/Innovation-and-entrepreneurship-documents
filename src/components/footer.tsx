@@ -17,9 +17,9 @@ const socials = [
     label: 'GitHub',
   },
   {
-    href: 'http://weixin.qq.com/r/mp/1BeIkJDEes0FrdTz90LG',
+    href: 'https://weixin.qq.com/',
     icon: <MessageCircle className="h-5 w-5" />,
-    label: '微信公众号',
+    label: '微信',
   },
 ]
 
