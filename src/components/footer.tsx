@@ -52,42 +52,27 @@ export function Footer() {
             </div>
           </div>
           <div>
-            <div className="text-sm font-medium">导航</div>
+            <div className="text-sm font-medium">文档</div>
             <ul className="mt-3 space-y-2 text-sm text-fd-muted-foreground">
               <li>
-                <Link href="/docs" className="hover:text-fd-foreground">
-                  文档
+                <Link href="/docs/innovation" className="hover:text-fd-foreground">
+                  创赛指南
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="hover:text-fd-foreground">
-                  博客
-                </Link>
-              </li>
-              <li>
-                <Link href="/sponsors" className="hover:text-fd-foreground">
-                  赞助
+                <Link href="/docs/standards" className="hover:text-fd-foreground">
+                  规范文档
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <div className="text-sm font-medium">资源</div>
+            <div className="text-sm font-medium">访问</div>
             <ul className="mt-3 space-y-2 text-sm text-fd-muted-foreground">
               <li>
-                <Link href="/tutorials" className="hover:text-fd-foreground">
-                  教程指南
-                </Link>
-              </li>
-              <li>
-                <Link href="/examples" className="hover:text-fd-foreground">
-                  示例代码
-                </Link>
-              </li>
-              <li>
-                <Link href="/api" className="hover:text-fd-foreground">
-                  API 文档
+                <Link href="/blog" className="hover:text-fd-foreground">
+                  博客
                 </Link>
               </li>
               <li>
@@ -95,12 +80,17 @@ export function Footer() {
                   更新日志
                 </Link>
               </li>
+              <li>
+                <Link href="/sponsors" className="hover:text-fd-foreground">
+                  赞助商
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
 
         {/* Bottom bar: copyright */}
-        <div className="mt-6 flex flex-col items-center justify-center gap-3 border-t pt-4 text-center text-sm text-muted-foreground dark:border-neutral-800">
+        <div className="mt-6 flex flex-col items-center justify-center gap-1 border-t pt-4 text-center text-sm text-muted-foreground dark:border-neutral-800">
           <div className="w-full">本站许可遵循 <a className="text-blue-500 underline" href='https://creativecommons.org/licenses/by-nc-nd/4.0/' target="_blank"> CC BY-NC-ND 4.0</a> 协议 | 网站状态：<a className="text-blue-500 underline" href='https://status.elexvx.com/'>正常</a></div>
           <div className="w-full">Copyright © 2024 ElexvxAI Lab | 隶属于 <a className="text-blue-500 underline" href='https://www.elexvx.com/'>宏翔商道（南京）科技发展有限公司</a> | ICP备案：<a className="text-blue-500 underline" href='https://beian.miit.gov.cn/'>苏ICP备2025160017号</a></div>
         </div>

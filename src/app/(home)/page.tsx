@@ -276,18 +276,17 @@ export default function HomePage() {
         <div className="flex flex-col items-center gap-8">
           <div className="w-full text-center">
             <h2 className="text-4xl font-semibold tracking-tight text-[#1D1D1F] dark:text-white md:text-5xl">
-              按照你的品牌与审美，自由定义<span className="bg-gradient-to-r from-fuchsia-500 to-sky-400 bg-clip-text text-transparent">主题</span>。
+              网站精心设计<span className="bg-gradient-to-r from-fuchsia-500 to-sky-400 bg-clip-text text-transparent">排版精美</span>
             </h2>
-            <p className="mt-3 max-w-lg mx-auto text-fd-muted-foreground">使用 Tailwind 与主题令牌打造你的品牌；切换主题轻而易举。</p>
-            {/* 按要求移除按钮 */}
+            <p className="mt-3 max-w-lg mx-auto text-fd-muted-foreground">网站支持响应式设计，适配PC端与移动端。</p>
           </div>
           <div className="w-full">
-            <div className="rounded-2xl border bg-fd-card shadow-sm overflow-hidden relative h-64">
+            <div className="relative w-full aspect-[2417/1228] max-h-[640px] md:max-h-[720px]">
               <Image 
-                src="https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1200&auto=format&fit=crop" 
+                src="/images/top/top1.svg" 
                 alt="界面示例" 
                 fill
-                className="object-cover" 
+                className="object-contain" 
                 loading="lazy"
                 sizes="100vw"
               />
@@ -296,15 +295,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SHOWCASE: Dark mode */}
-      <section className="mx-auto mt-16 md:mt-24 w-full max-w-[var(--spacing-fd-container)] px-4 md:px-6">
+
+      {/* <section className="mx-auto mt-16 md:mt-24 w-full max-w-[var(--spacing-fd-container)] px-4 md:px-6">
         <div className="flex flex-col items-center gap-8">
           <div className="w-full text-center">
             <h2 className="text-4xl font-semibold tracking-tight text-[#1D1D1F] dark:text-white md:text-5xl"> 
               <span className="bg-gradient-to-r from-orange-400 to-pink-500 bg-clip-text text-transparent">创新创业</span>研究与人才培养
             </h2>
             <p className="mt-3 max-w-lg mx-auto text-fd-muted-foreground">构建方法论与课程体系，培养具备产品化与产业化能力的复合型人才，促进科研成果转化。</p>
-            {/* 按要求移除按钮 */}
           </div>
           <div className="w-full">
             <div className="rounded-2xl border bg-fd-card shadow-sm overflow-hidden relative h-64">
@@ -319,7 +317,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* BUILT FOR DEVELOPERS at bottom */}
       <motion.section
@@ -327,16 +325,18 @@ export default function HomePage() {
         className="mx-auto mt-16 md:mt-24 max-w-[var(--spacing-fd-container)] px-4 md:px-6"
       >
         <div className="mx-auto mb-8 max-w-3xl text-center">
-          <h2 className="text-4xl font-semibold tracking-tight text-fd-foreground md:text-5xl">
+          <h2 className="text-4xl font-semibold tracking-tight text-[#1D1D1F] dark:text-white md:text-5xl">
             合作与影响
           </h2>
           <p className="mt-2 text-base text-fd-muted-foreground">
             与高校、企业及投资机构共建生态，推动技术创新、产业落地与长期价值增长。
           </p>
         </div>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 sm:gap-4">
+        <div className="grid grid-cols-2 gap-6 md:flex md:justify-between md:gap-8 lg:gap-12">
           {stats.map((stat) => (
-            <StatsCard key={stat.label} {...stat} />
+            <div key={stat.label} className="md:w-[220px] lg:w-[240px] xl:w-[260px]">
+              <StatsCard {...stat} />
+            </div>
           ))}
         </div>
       </motion.section>

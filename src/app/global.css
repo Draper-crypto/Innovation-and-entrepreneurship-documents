@@ -255,3 +255,21 @@ article ul ol > li::marker,
 article ul ul > li::marker {
   color: #6A66F4;
 }
+
+/* =============== Blockquote 引用样式 - 去除引号 =============== */
+/* 覆盖 Fumadocs UI 预设的 blockquote 引号样式 */
+.prose blockquote,
+.fd-article blockquote,
+article blockquote {
+  quotes: none !important;
+}
+
+.prose blockquote::before,
+.prose blockquote::after,
+.fd-article blockquote::before,
+.fd-article blockquote::after,
+article blockquote::before,
+article blockquote::after {
+  content: none !important;
+  display: none !important;
+}

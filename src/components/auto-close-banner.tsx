@@ -23,25 +23,16 @@ export function AutoCloseBanner({
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    // 检查localStorage中是否已经关闭过这个banner
-    const dismissed = localStorage.getItem(`banner-dismissed-${id}`);
-    if (dismissed) {
-      setIsVisible(false);
-      return;
-    }
-
-    // 设置自动关闭定时器
+    // 设置自动关闭定时器，每次页面加载都显示指定时间
     const timer = setTimeout(() => {
       setIsVisible(false);
-      localStorage.setItem(`banner-dismissed-${id}`, 'true');
     }, autoCloseDelay);
 
     return () => clearTimeout(timer);
-  }, [id, autoCloseDelay]);
+  }, [autoCloseDelay]);
 
   const handleDismiss = () => {
     setIsVisible(false);
-    localStorage.setItem(`banner-dismissed-${id}`, 'true');
   };
 
   if (!isVisible) {
