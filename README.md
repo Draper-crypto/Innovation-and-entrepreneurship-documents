@@ -81,3 +81,41 @@ resources:
   features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 - [Fumadocs](https://fumadocs.vercel.app) - learn about Fumadocs
+
+## 文档自动化与目录管理指南
+
+本项目已内置自动生成侧边栏与 meta.json 的脚本，减少手工维护成本。
+
+- 常用脚本：
+  - 生成/更新目录与类型：
+    - npm run prepare:docs（推荐，一次性执行：生成/更新 meta.json → 生成 .source）
+    - npm run meta（仅更新 meta.json，不生成 .source）
+  - 开发：
+    - npm run dev（如果已有开发服务器在运行，请勿重复启动。建议复用现有终端）
+  - 构建自检：
+    - npm run build（每次提交前建议执行一次，确保无错误）
+
+- 约定与规则（generate-meta.mjs）：
+  - 目录扫描范围：content/docs
+  - 排序：支持数字前缀（如 01-、02_、003.），仅用于排序，不影响最终页面路径
+  - pages 生成：
+    1) 若存在 index.mdx，会被排在当前目录的第一项
+    2) 先列出包含 MDX 的子目录，再列出同级 MDX 文件
+  - 标题：优先读取 index.mdx 的 frontmatter title，否则使用目录名
+  - 根目录 meta.json：自动更新 pages 为含 MDX 的一级子目录
+
+- 推荐工作流：
+  1) 在 content/docs 下新增、移动或重命名 MDX/目录
+  2) 运行 npm run prepare:docs 同步侧边栏与类型
+  3) 若在本地预览，确认已有 dev 服务器在运行；否则再执行 npm run dev
+  4) 提交前运行 npm run build 确认通过
+
+- 常见问题：
+  - MODULE_NOT_FOUND: Cannot find module '@/\.source'：
+    - 运行 npm run prepare:docs 或执行 fumadocs-mdx 生成 .source
+    - 若依赖安装被跳过，重新执行 npm install 触发 postinstall
+
+- 命名建议：
+  - 使用“数字前缀-中文标题.mdx”的格式，例如 01-摘要.mdx、02-产品与方案.mdx，便于排序与阅读
+
+更多脚本细节见 scripts/generate-meta.mjs。

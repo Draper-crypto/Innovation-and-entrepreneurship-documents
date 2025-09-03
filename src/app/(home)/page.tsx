@@ -79,65 +79,62 @@ export default function HomePage() {
     {
       icon: <Users />,
       value: '5',
-      label: '累计用户',
+      label: '服务用户',
       suffix: 'K+',
     },
     {
       icon: <FolderKanban />,
       value: '100',
-      label: '成功案例',
+      label: '研究项目',
       suffix: '+',
     },
     {
       icon: <Globe />,
       value: '12',
-      label: '合作院校',
+      label: '合作机构',
       suffix: '+',
     },
     {
       icon: <UserCheck />,
       value: '95',
-      label: '满意度',
+      label: '合作满意度',
       suffix: '%',
     },
   ];
 
   const features = [
     {
-      icon: <FolderKanban className="h-5 w-5" />,
-      title: '清晰的文档分类',
-      desc: '采用清晰的文档分类，帮助用户快速找到所需内容。',
-      gradient: 'bg-gradient-to-tr from-fuchsia-200 to-sky-200 text-fuchsia-700 dark:from-fuchsia-500/20 dark:to-sky-500/20 dark:text-fuchsia-300',
+      icon: <Target className="h-5 w-5" />,
+      title: (
+        <>
+          面向未来的<span className="bg-gradient-to-r from-fuchsia-500 to-sky-400 bg-clip-text text-transparent">多模态智能</span>
+        </>
+      ),
+      desc: '专注视觉、语音、文本等多模态协同理解与生成，驱动下一代智能应用。',
+      gradient:
+        'bg-gradient-to-tr from-fuchsia-200 to-sky-200 text-fuchsia-700 dark:from-fuchsia-500/20 dark:to-sky-500/20 dark:text-fuchsia-300',
+    },
+    {
+      icon: <Globe className="h-5 w-5" />,
+      title: (
+        <>
+          产业落地与<span className="bg-gradient-to-r from-emerald-500 to-teal-400 bg-clip-text text-transparent">创新创业</span>
+        </>
+      ),
+      desc: '链接高校与产业，构建从研究到产品的转化通道，推动技术赋能业务增长。',
+      gradient:
+        'bg-gradient-to-tr from-emerald-200 to-teal-200 text-emerald-700 dark:from-emerald-500/20 dark:to-teal-500/20 dark:text-emerald-300',
     },
     {
       icon: <Shield className="h-5 w-5" />,
-      title: '开源且免费',
-      desc: '项目框架遵循MIT原则，您可以自由的二次开发和分享',
-      gradient: 'bg-gradient-to-tr from-emerald-200 to-teal-200 text-emerald-700 dark:from-emerald-500/20 dark:to-teal-500/20 dark:text-emerald-300',
-    },
-    // {
-    //   icon: <Lock className="h-5 w-5" />,
-    //   title: '数据隐私',
-    //   desc: '以安全为核心构建，您的数据始终私密并受到完善的保护。',
-    //   gradient: 'bg-gradient-to-tr from-rose-200 to-orange-200 text-rose-700 dark:from-rose-500/20 dark:to-orange-500/20 dark:text-rose-300',
-    // },
-    // {
-    //   icon: <Target className="h-5 w-5" />,
-    //   title: '主题令牌',
-    //   desc: '使用设计令牌在全局统一品牌与组件风格。',
-    //   gradient: 'bg-gradient-to-tr from-indigo-200 to-violet-200 text-indigo-700 dark:from-indigo-500/20 dark:to-violet-500/20 dark:text-indigo-300',
-    // },
-    // {
-    //   icon: <Globe className="h-5 w-5" />,
-    //   title: '国际化支持',
-    //   desc: '内置良好的 i18n 结构，轻松面向全球用户。',
-    //   gradient: 'bg-gradient-to-tr from-cyan-200 to-blue-200 text-cyan-700 dark:from-cyan-500/20 dark:to-blue-500/20 dark:text-cyan-300',
-    // },
-    {
-      icon: <UserCheck className="h-5 w-5" />,
-      title: '出色的用户体验',
-      desc: '遵循良好的用户体验实践，键盘导航与交互无缝支持。',
-      gradient: 'bg-gradient-to-tr from-lime-200 to-green-200 text-lime-700 dark:from-lime-500/20 dark:to-green-500/20 dark:text-lime-300',
+      title: (
+        <>
+          自有资金<span className="bg-gradient-to-r from-lime-500 to-green-400 bg-clip-text text-transparent">投资与资产管理</span>
+        </>
+      ),
+      desc: '以稳健为核心，开展股权/项目投资与资产管理，助力长期价值创造。',
+      gradient:
+        'bg-gradient-to-tr from-lime-200 to-green-200 text-lime-700 dark:from-lime-500/20 dark:to-green-500/20 dark:text-lime-300',
     },
   ];
 
@@ -173,7 +170,7 @@ export default function HomePage() {
     gradient,
   }: {
     icon: React.ReactNode;
-    title: string;
+    title: React.ReactNode;
     desc: string;
     gradient?: string;
   }) => (
@@ -218,7 +215,7 @@ export default function HomePage() {
           </div>
 
           {/* RIGHT: Collage */}
-          <motion.div {...fadeIn} transition={{ delay: 0.04 }} className="relative h-[380px] w-full md:h-[460px]">
+          <motion.div {...fadeIn} transition={{ delay: 0.04 }} className="relative h-[460px] w-full md:h-[560px]">
             <div className="absolute inset-0 rounded-3xl p-2">
               <Image 
                 src="/images/hero/banner.svg" 
@@ -236,10 +233,10 @@ export default function HomePage() {
         <motion.div {...fadeIn} className="relative z-10 mx-auto mt-8 w-full max-w-[var(--spacing-fd-container)] px-4 md:mt-10 md:px-6">
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 sm:gap-4">
             {[
-              { icon: '🎨', title: '开源免费', desc: '基于 MIT 协议开源' },
-              { icon: '⚡', title: '高性能', desc: '零样式运行时' },
-              { icon: '🌓', title: '明暗适配', desc: '自动跟随系统' },
-              { icon: '🔌', title: '易扩展', desc: '按需组合组件' },
+              { icon: '🎨', title: '多模态智能', desc: '视觉、语音、文本一体化模型' },
+              { icon: '⚡', title: '创新创业', desc: '链接产业，快速孵化与落地' },
+              { icon: '🌓', title: '自有资金投资', desc: '长期主义、稳健回报' },
+              { icon: '🔌', title: '资产管理', desc: '结构化配置与风险控制' },
             ].map((i) => (
               <div key={i.title} className="rounded-xl border bg-fd-card p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md">
                  <div className="text-xl">{i.icon}</div>
@@ -258,15 +255,16 @@ export default function HomePage() {
       >
         <div className="mx-auto mb-8 max-w-3xl text-center">
           <h2 className="text-4xl font-semibold tracking-tight text-fd-foreground md:text-5xl">
-            简洁而强大
+            面向产业的
+            <span className="bg-gradient-to-r from-fuchsia-500 to-sky-400 bg-clip-text text-transparent">人工智能研究</span>
           </h2>
           <p className="mt-2 text-base text-fd-muted-foreground">
-            聚焦核心能力，快速上手构建
+            围绕多模态模型、产业落地、投研与资产管理四大方向，打造"研究—产品—资本"一体化能力矩阵。
           </p>
         </div>
         <div className="grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {features.map((feature) => (
-            <FeatureCard key={feature.title} {...feature} />
+          {features.map((feature, idx) => (
+            <FeatureCard key={idx} {...feature} />
           ))}
         </div>
       </motion.section>
@@ -302,8 +300,10 @@ export default function HomePage() {
       <section className="mx-auto mt-16 md:mt-24 w-full max-w-[var(--spacing-fd-container)] px-4 md:px-6">
         <div className="flex flex-col items-center gap-8">
           <div className="w-full text-center">
-            <h2 className="text-4xl font-semibold tracking-tight text-[#1D1D1F] dark:text-white md:text-5xl">暗色模式，<span className="bg-gradient-to-r from-orange-400 to-pink-500 bg-clip-text text-transparent">轻松</span>适配。</h2>
-            <p className="mt-3 max-w-lg mx-auto text-fd-muted-foreground">自动检测系统暗色偏好，组件完整适配主题，风格统一。</p>
+            <h2 className="text-4xl font-semibold tracking-tight text-[#1D1D1F] dark:text-white md:text-5xl"> 
+              <span className="bg-gradient-to-r from-orange-400 to-pink-500 bg-clip-text text-transparent">创新创业</span>研究与人才培养
+            </h2>
+            <p className="mt-3 max-w-lg mx-auto text-fd-muted-foreground">构建方法论与课程体系，培养具备产品化与产业化能力的复合型人才，促进科研成果转化。</p>
             {/* 按要求移除按钮 */}
           </div>
           <div className="w-full">
@@ -328,10 +328,10 @@ export default function HomePage() {
       >
         <div className="mx-auto mb-8 max-w-3xl text-center">
           <h2 className="text-4xl font-semibold tracking-tight text-fd-foreground md:text-5xl">
-            平台数据
+            合作与影响
           </h2>
           <p className="mt-2 text-base text-fd-muted-foreground">
-            加入不断成长的开源社区，共同塑造项目管理的未来
+            与高校、企业及投资机构共建生态，推动技术创新、产业落地与长期价值增长。
           </p>
         </div>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 sm:gap-4">

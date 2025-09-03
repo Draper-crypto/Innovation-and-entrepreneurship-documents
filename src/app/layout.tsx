@@ -5,10 +5,17 @@ import { Theme } from '@radix-ui/themes'
 import { HeroUIProvider } from '@heroui/react'
 import { RootProvider } from 'fumadocs-ui/provider'
 import type { Translations } from 'fumadocs-ui/i18n'
+import type { Metadata } from 'next'
 import { AutoCloseBanner } from '@/components/auto-close-banner'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Footer } from '@/components/footer'
+
+export const metadata: Metadata = {
+  title: 'ElexvxAI Lab - 宏翔商道创新研究中心',
+  description:
+    'ElexvxAI Lab（宏翔商道创新研究中心）成立于2025年7月，隶属于 宏翔商道（南京）科技发展有限公司，研究方向包括多模态智能模型、创新创业、自有资金投资、资产管理。',
+}
 
 const zh: Partial<Translations> = {
   search: '搜索',

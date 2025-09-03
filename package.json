@@ -6,7 +6,9 @@
     "build": "next build",
     "dev": "next dev",
     "start": "next start",
-    "postinstall": "fumadocs-mdx"
+    "postinstall": "fumadocs-mdx",
+    "meta": "node scripts/generate-meta.mjs",
+    "prepare:docs": "node scripts/generate-meta.mjs && fumadocs-mdx"
   },
   "dependencies": {
     "@heroui/react": "^2.8.2",

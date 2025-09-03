@@ -5,6 +5,7 @@
   "icon": "IconSparkles",
   "pages": [
     "index",
+    "businessplan",
     "math-example",
     "mermaid-example",
     "twoslash-example"
