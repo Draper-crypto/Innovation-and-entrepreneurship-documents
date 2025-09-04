@@ -191,7 +191,7 @@ export default function HomePage() {
       </div>
 
       {/* HERO: Left text + Right collage */}
-      <section className="relative overflow-hidden pt-24 pb-16 md:pt-28 md:pb-24">
+      <section className="relative overflow-hidden pt-10 pb-12 sm:pt-12 md:pt-16 lg:pt-24 md:pb-20">
         <div className="relative z-10 mx-auto grid max-w-[var(--spacing-fd-container)] grid-cols-1 items-center gap-10 px-4 md:grid-cols-2 md:gap-6 md:px-6">
           {/* LEFT: Heading & CTA */}
           <div className="text-left">
