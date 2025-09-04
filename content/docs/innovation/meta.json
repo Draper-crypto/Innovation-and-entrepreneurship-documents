@@ -6,9 +6,6 @@
   "pages": [
     "index",
     "start",
-    "businessplan",
-    "math-example",
-    "mermaid-example",
-    "twoslash-example"
+    "businessplan"
   ]
 }

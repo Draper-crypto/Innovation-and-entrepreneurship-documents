@@ -38,6 +38,26 @@ function sortByOrder(a, b) {
   return normalizeName(a).localeCompare(normalizeName(b), 'zh-Hans');
 }
 
+// Merge existing custom order with computed pages (dedup), keeping 'index' first when present
+function mergeOrder(existingPages = [], computedPages = []) {
+  const computedSet = new Set(computedPages);
+  // keep only items that still exist
+  const filteredExisting = existingPages.filter((p) => computedSet.has(p));
+  const res = [];
+  const pushIfNew = (p) => {
+    if (!res.includes(p)) res.push(p);
+  };
+  // ensure index first if it exists
+  if (computedSet.has('index')) pushIfNew('index');
+  // then existing order excluding index
+  for (const p of filteredExisting) {
+    if (p !== 'index') pushIfNew(p);
+  }
+  // then append remaining computed pages
+  for (const p of computedPages) pushIfNew(p);
+  return res;
+}
+
 async function ensureDir(p) {
   await fs.mkdir(p, { recursive: true });
 }
@@ -82,18 +102,24 @@ async function buildMetaForDir(dir, isRootChild = false) {
     .map((x) => x.name)
     .sort(sortByOrder);
 
-  const pages = [];
-  // index first if exists
-  if (items.some((d) => d.isFile() && d.name === 'index.mdx')) pages.push('index');
-  // then subdirs, then other mdx files
-  pages.push(...subdirs);
-  pages.push(...mdxFiles);
+  // computed pages: index, subdirs, mdx files
+  const computedPages = [];
+  if (items.some((d) => d.isFile() && d.name === 'index.mdx')) computedPages.push('index');
+  computedPages.push(...subdirs);
+  computedPages.push(...mdxFiles);
 
   const metaPath = path.join(dir, 'meta.json');
   const existing = await readJSON(metaPath);
 
   let title = existing?.title;
   if (!title) title = (await extractTitleFromIndex(dir)) || path.basename(dir);
+
+  let pages;
+  if (Array.isArray(existing?.pages) && existing.pages.length > 0) {
+    pages = mergeOrder(existing.pages, computedPages);
+  } else {
+    pages = computedPages;
+  }
 
   const result = { ...(existing || {}), title, pages };
   if (isRootChild) result.root = true;
@@ -111,11 +137,10 @@ async function walkDocs(root) {
   const tasks = [];
   const entries = await fs.readdir(root, { withFileTypes: true });
 
-  // Update root meta if exists, but do not overwrite custom fields except pages
+  // Update root meta if exists, but preserve custom pages order if provided
   const rootMetaPath = path.join(root, 'meta.json');
   const rootExisting = await readJSON(rootMetaPath);
   if (rootExisting) {
-    // Build pages as top-level directories that contain MDX
     const rootSubDirs = (await Promise.all(
       entries
         .filter((d) => d.isDirectory())
@@ -125,7 +150,10 @@ async function walkDocs(root) {
       .map((x) => x.name)
       .sort(sortByOrder);
 
-    const rootPages = rootSubDirs;
+    const rootPages = Array.isArray(rootExisting.pages) && rootExisting.pages.length > 0
+      ? mergeOrder(rootExisting.pages, rootSubDirs)
+      : rootSubDirs;
+
     const newRoot = { ...rootExisting, pages: rootPages };
     if (JSON.stringify(rootExisting) !== JSON.stringify(newRoot)) {
       await writeJSON(rootMetaPath, newRoot);
@@ -139,7 +167,6 @@ async function walkDocs(root) {
     const res = await buildMetaForDir(abs, true);
     tasks.push(res);
 
-    // Recurse into subdirectories
     const subEntries = await fs.readdir(abs, { withFileTypes: true });
     for (const sd of subEntries) {
       if (!sd.isDirectory()) continue;

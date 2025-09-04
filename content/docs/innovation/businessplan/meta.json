@@ -3,16 +3,17 @@
   "description": "项目计划书模板与写作指南",
   "icon": "IconNotes",
   "pages": [
-    "01-摘要",
-    "02-产品与方案",
-    "03-市场与用户",
-    "04-商业模式",
-    "05-竞争与壁垒",
-    "06-市场进入与增长",
-    "07-产品研发与里程碑",
-    "08-团队与组织",
-    "09-风险与对策",
-    "10-财务计划",
-    "11-融资计划"
+    "01-abstract",
+    "02-product-and-solution",
+    "03-market-and-users",
+    "04-business-model",
+    "05-competition-and-moat",
+    "06-go-to-market-and-growth",
+    "07-product-rd-and-milestones",
+    "08-team-and-organization",
+    "09-risks-and-mitigations",
+    "10-financial-plan",
+    "11-fundraising-plan",
+    "abstract"
   ]
 }

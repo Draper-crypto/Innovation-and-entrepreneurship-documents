@@ -40,7 +40,7 @@ export default function Layout({ children }: LayoutProps) {
           className="sticky top-0 z-50"
           autoCloseDelay={5000}
         >
-          🎉 欢迎来到文档站！探索技术文档与示例代码。
+          🎉 欢迎访问 ElexvxAI Lab ！我们是一个专注于多模态智能模型、创新创业、自有资金投资、资产管理的研究中心。
         </AutoCloseBanner>
         <div className="flex flex-1 flex-col">
           <Theme>
