@@ -3,7 +3,6 @@
 import { Github, MessageCircle } from 'lucide-react'
 import { IconBrandX } from '@tabler/icons-react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 
 const socials = [
   {
@@ -24,9 +23,6 @@ const socials = [
 ]
 
 export function Footer() {
-  const pathname = usePathname()
-  if (pathname?.startsWith('/docs')) return null
-
   return (
     <footer className="mt-0 border-t bg-fd-card text-fd-card-foreground dark:border-neutral-800">
       <div className="mx-auto max-w-[var(--spacing-fd-container)] px-4 py-6 md:px-6">
@@ -91,7 +87,7 @@ export function Footer() {
 
         {/* Bottom bar: copyright */}
         <div className="mt-6 flex flex-col items-center justify-center gap-1 border-t pt-4 text-center text-sm text-muted-foreground dark:border-neutral-800">
-          <div className="w-full">本站许可遵循 <a className="text-blue-500 underline" href='https://creativecommons.org/licenses/by-nc-nd/4.0/' target="_blank"> CC BY-NC-ND 4.0</a> 协议 | 网站状态：<a className="text-blue-500 underline" href='https://status.elexvx.com/'>正常</a></div>
+          <div className="w-full">本站遵循 <a className="text-blue-500 underline" href='https://creativecommons.org/licenses/by-nc-nd/4.0/' target="_blank"> CC BY-NC-ND 4.0</a> 协议 | 网站状态：<a className="text-blue-500 underline" href='https://status.elexvx.com/'>正常</a></div>
           <div className="w-full">Copyright © 2024 ElexvxAI Lab | 隶属于 <a className="text-blue-500 underline" href='https://www.elexvx.com/'>宏翔商道（南京）科技发展有限公司</a> | ICP备案：<a className="text-blue-500 underline" href='https://beian.miit.gov.cn/'>苏ICP备2025160017号</a></div>
         </div>
       </div>

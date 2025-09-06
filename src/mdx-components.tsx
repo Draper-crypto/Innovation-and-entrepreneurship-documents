@@ -1,5 +1,6 @@
 import defaultMdxComponents from 'fumadocs-ui/mdx';
 import { Mermaid } from '@/components/mdx/mermaid';
+import { Steps } from 'fumadocs-ui/components/steps';
 
 import * as Twoslash from 'fumadocs-twoslash/ui';
 import type { MDXComponents } from 'mdx/types';
@@ -21,6 +22,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     TabsList,
     TabsTrigger,
     TabsContent,
+    Steps,
     ...components,
   } as MDXComponents;
 }

@@ -1,20 +1,19 @@
 import '@/app/global.css'
-import 'katex/dist/katex.css'
-import '@radix-ui/themes/styles.css'
-import { Theme } from '@radix-ui/themes'
-import { HeroUIProvider } from '@heroui/react'
+// 移除全局 KaTeX 与 Radix 样式，按需在子路由加载可降低首屏阻塞
+// import 'katex/dist/katex.css'
+// import '@radix-ui/themes/styles.css'
 import { RootProvider } from 'fumadocs-ui/provider'
 import type { Translations } from 'fumadocs-ui/i18n'
 import type { Metadata } from 'next'
+import type React from 'react'
 import { AutoCloseBanner } from '@/components/auto-close-banner'
-import { Analytics } from '@vercel/analytics/react'
-import { SpeedInsights } from '@vercel/speed-insights/next'
-import { Footer } from '@/components/footer'
+import { BackToHomeButton } from '@/components/ui/back-to-home'
+import { ClientMetrics } from '@/components/client-metrics'
 
 export const metadata: Metadata = {
-  title: 'ElexvxAI Lab - 宏翔商道创新研究中心',
+  title: 'ElexvxAI Lab - 宏翔商道创新产业研发中心',
   description:
-    'ElexvxAI Lab（宏翔商道创新研究中心）成立于2025年7月，隶属于 宏翔商道（南京）科技发展有限公司，研究方向包括多模态智能模型、创新创业、自有资金投资、资产管理。',
+    'ElexvxAI Lab（宏翔商道创新产业研发中心）成立于2025年7月，隶属于宏翔商道（南京）科技发展有限公司，研究方向包括多模态智能模型、创新创业、自有资金投资、资产管理。',
 }
 
 const zh: Partial<Translations> = {
@@ -31,6 +30,10 @@ interface LayoutProps {
 }
 
 export default function Layout({ children }: LayoutProps) {
+  const isProd = process.env.NODE_ENV === 'production'
+  const isVercel = process.env.VERCEL === '1'
+  const enableMetrics = isProd && isVercel
+
   return (
     <html lang="zh" className="font-sans" suppressHydrationWarning>
       <body className="flex min-h-screen flex-col">
@@ -40,24 +43,20 @@ export default function Layout({ children }: LayoutProps) {
           className="sticky top-0 z-50"
           autoCloseDelay={5000}
         >
-          🎉 欢迎访问 ElexvxAI Lab ！我们是一个专注于多模态智能模型、创新创业、自有资金投资、资产管理的研究中心。
+          🎉 欢迎访问 ElexvxAI Lab ！我们是一个专注于多模态智能模型、创新创业、投资的研究机构。
         </AutoCloseBanner>
         <div className="flex flex-1 flex-col">
-          <Theme>
-            <HeroUIProvider>
-              <RootProvider
-                i18n={{ locale: 'zh', locales, translations: zh }}
-                theme={{ defaultTheme: 'light', attribute: 'class' }}
-              >
-                <div className="flex-1">{children}</div>
-              </RootProvider>
-            </HeroUIProvider>
-          </Theme>
-          <Footer />
+          {/* 移除未使用的 Radix Theme 与 HeroUIProvider，减少 hydration 与样式注入 */}
+          <RootProvider
+            i18n={{ locale: 'zh', locales, translations: zh }}
+            theme={{ defaultTheme: 'light', attribute: 'class' }}
+          >
+            <div className="flex-1">{children}</div>
+            <BackToHomeButton />
+          </RootProvider>
         </div>
-        {/* Vercel Analytics & Speed Insights */}
-        <Analytics />
-        <SpeedInsights />
+        {/* 客户端指标脚本：仅在 Vercel 生产环境注入，避免本地/_vercel 脚本错误 */}
+        {enableMetrics ? <ClientMetrics /> : null}
       </body>
     </html>
   )

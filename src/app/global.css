@@ -12,13 +12,29 @@
 }
 
 :root {
-  --color-fd-primary: #6A66F4;
-  --app-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-    'Noto Color Emoji', sans-serif;
+  /* 覆盖主色为 7B81AD */
+  --color-fd-primary: #7B81AD;
 }
 
-.dark { --color-fd-primary: #6A66F4; }
+/* 返回按钮主题色（明暗适配） */
+:root {
+  --back-btn-bg: color-mix(in oklab, #7B81AD 86%, black 12%);
+  --back-btn-hover-bg: color-mix(in oklab, #7B81AD 95%, white 5%);
+  --back-btn-ring: color-mix(in oklab, #7B81AD 40%, transparent);
+  --back-btn-text: #fff;
+}
+.dark {
+  --back-btn-bg: color-mix(in oklab, #7B81AD 75%, black 25%);
+  --back-btn-hover-bg: color-mix(in oklab, #7B81AD 85%, black 10%);
+  --back-btn-ring: color-mix(in oklab, #7B81AD 50%, transparent);
+  --back-btn-text: #fff;
+}
+
+/* 隐藏状态（在页面顶部或不可滚动时） */
+.back-home-container.is-hidden { display: none; }
+
+/* 将提示文案改为“返回顶部” */
+.back-home-container .button::before { content: "返回顶部"; }
 
 html { font-family: var(--app-sans); }
 body { font-feature-settings: 'ss01' on, 'cv05' on; }
@@ -28,10 +44,24 @@ body { font-feature-settings: 'ss01' on, 'cv05' on; }
   --toc-rail: color-mix(in oklab, var(--color-fd-primary) 20%, transparent);
   /* 表头背景（固定为 #F1F1F1） */
   --table-header-bg: #F1F1F1;
+
+  /* 返回首页按钮（可调色，不改动样式） */
+  --back-btn-bg: color-mix(in oklab, #7B81AD 86%, black 12%);
+  --back-btn-hover-bg: color-mix(in oklab, var(--color-fd-primary) 65%, white 10%);
+  --back-btn-ring: color-mix(in oklab, var(--color-fd-primary) 40%, transparent);
+  --back-btn-text: #fff;
 }
 
 /* 暗色模式下的表头背景，避免出现白底白字 */
 .dark { --table-header-bg: color-mix(in oklab, white 8%, transparent); }
+
+/* 暗色模式下优化按钮配色（不改变结构样式，仅颜色） */
+.dark {
+  --back-btn-bg: color-mix(in oklab, #000 80%, white 8%);
+  --back-btn-hover-bg: color-mix(in oklab, var(--color-fd-primary) 70%, #000 20%);
+  --back-btn-ring: color-mix(in oklab, var(--color-fd-primary) 45%, transparent);
+  --back-btn-text: #fff;
+}
 
 /* =============== Inline TOC 目录凹凸线条样式（恢复） =============== */
 nav[aria-label="Table of contents"],
@@ -210,6 +240,31 @@ article table tbody tr td strong {
   color: #1D1D1F;
 }
 
+/* Utility: gradient text with safe fallback */
+.gradient-text { color: currentColor; }
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .gradient-text {
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+}
+
+/* Stable gradient text utility to pair with bg-clip-text, used by HomePage */
+.gradient-text-stable { color: currentColor; }
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .gradient-text-stable {
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+}
+/* Prefer using this in conjunction with Tailwind bg-gradient-to-* utilities.
+   We intentionally DO NOT set -webkit-text-fill-color: transparent to avoid
+   fully transparent text in environments where background-clip fails. */
+
 /* Ensure typical text utility variables align with this base where used by Fumadocs */
 :root :is(main[data-home]) {
   --fd-foreground: #1D1D1F;
@@ -272,4 +327,69 @@ article blockquote::before,
 article blockquote::after {
   content: none !important;
   display: none !important;
+}
+
+/* === Back to Home Button Styles === */
+.back-home-container {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 9999; /* 确保高于任何内容/抽屉/对话框 */
+  pointer-events: auto;
+}
+
+/* 按钮主体（作用域到 back-home-container，避免与其他 .button 样式冲突） */
+.back-home-container .button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--back-btn-bg);
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 0px 4px var(--back-btn-ring);
+  cursor: pointer;
+  transition-duration: 0.3s;
+  overflow: hidden;
+  position: relative;
+}
+
+/* 图标样式（作用域化） */
+.back-home-container .svgIcon {
+  width: 12px;
+  transition-duration: 0.3s;
+}
+
+.back-home-container .svgIcon path { fill: var(--back-btn-text); }
+
+/* 悬停时展开 */
+.back-home-container .button:hover {
+  width: 140px;
+  border-radius: 50px;
+  transition-duration: 0.3s;
+  background-color: var(--back-btn-hover-bg);
+  align-items: center;
+}
+
+.back-home-container .button:hover .svgIcon {
+  transition-duration: 0.3s;
+  transform: translateY(-200%);
+}
+
+/* 文案 */
+.back-home-container .button::before {
+  position: absolute;
+  bottom: -20px;
+  content: "返回首页";
+  color: var(--back-btn-text);
+  font-size: 0px;
+}
+
+.back-home-container .button:hover::before {
+  font-size: 13px;
+  opacity: 1;
+  bottom: unset;
+  transition-duration: 0.3s;
 }
