@@ -84,7 +84,7 @@ export default function HomePage() {
     },
     {
       icon: <FolderKanban />,
-      value: '100',
+      value: '10',
       label: '研究项目',
       suffix: '+',
     },
@@ -233,9 +233,9 @@ export default function HomePage() {
         <motion.div {...fadeIn} className="relative z-10 mx-auto mt-8 w-full max-w-[var(--spacing-fd-container)] px-4 md:mt-10 md:px-6">
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 sm:gap-4">
             {[
-              { icon: '🎨', title: '多模态智能', desc: '视觉、语音、文本一体化模型' },
+              { icon: '🎨', title: 'LLM研发', desc: '视觉、语音、文本一体化模型' },
               { icon: '⚡', title: '创新创业', desc: '链接产业，快速孵化与落地' },
-              { icon: '🌓', title: '自有资金投资', desc: '长期主义、稳健回报' },
+              { icon: '🌓', title: '创业投资', desc: '长期主义、稳健回报' },
               { icon: '🔌', title: '资产管理', desc: '结构化配置与风险控制' },
             ].map((i) => (
               <div key={i.title} className="rounded-xl border bg-fd-card p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md">

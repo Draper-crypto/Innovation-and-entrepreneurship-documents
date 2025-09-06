@@ -14,19 +14,21 @@
 :root {
   /* 覆盖主色为 7B81AD */
   --color-fd-primary: #7B81AD;
+  /* 新增：置顶按钮主色 */
+  --back-btn-color: #2e59a7;
 }
 
 /* 返回按钮主题色（明暗适配） */
 :root {
-  --back-btn-bg: color-mix(in oklab, #7B81AD 86%, black 12%);
-  --back-btn-hover-bg: color-mix(in oklab, #7B81AD 95%, white 5%);
-  --back-btn-ring: color-mix(in oklab, #7B81AD 40%, transparent);
+  --back-btn-bg: color-mix(in oklab, var(--back-btn-color) 86%, black 12%);
+  --back-btn-hover-bg: color-mix(in oklab, var(--back-btn-color) 95%, white 5%);
+  --back-btn-ring: color-mix(in oklab, var(--back-btn-color) 40%, transparent);
   --back-btn-text: #fff;
 }
 .dark {
-  --back-btn-bg: color-mix(in oklab, #7B81AD 75%, black 25%);
-  --back-btn-hover-bg: color-mix(in oklab, #7B81AD 85%, black 10%);
-  --back-btn-ring: color-mix(in oklab, #7B81AD 50%, transparent);
+  --back-btn-bg: color-mix(in oklab, var(--back-btn-color) 75%, black 25%);
+  --back-btn-hover-bg: color-mix(in oklab, var(--back-btn-color) 85%, black 10%);
+  --back-btn-ring: color-mix(in oklab, var(--back-btn-color) 50%, transparent);
   --back-btn-text: #fff;
 }
 
@@ -46,9 +48,9 @@ body { font-feature-settings: 'ss01' on, 'cv05' on; }
   --table-header-bg: #F1F1F1;
 
   /* 返回首页按钮（可调色，不改动样式） */
-  --back-btn-bg: color-mix(in oklab, #7B81AD 86%, black 12%);
-  --back-btn-hover-bg: color-mix(in oklab, var(--color-fd-primary) 65%, white 10%);
-  --back-btn-ring: color-mix(in oklab, var(--color-fd-primary) 40%, transparent);
+  --back-btn-bg: color-mix(in oklab, var(--back-btn-color) 86%, black 12%);
+  --back-btn-hover-bg: color-mix(in oklab, var(--back-btn-color) 65%, white 10%);
+  --back-btn-ring: color-mix(in oklab, var(--back-btn-color) 40%, transparent);
   --back-btn-text: #fff;
 }
 
@@ -57,9 +59,9 @@ body { font-feature-settings: 'ss01' on, 'cv05' on; }
 
 /* 暗色模式下优化按钮配色（不改变结构样式，仅颜色） */
 .dark {
-  --back-btn-bg: color-mix(in oklab, #000 80%, white 8%);
-  --back-btn-hover-bg: color-mix(in oklab, var(--color-fd-primary) 70%, #000 20%);
-  --back-btn-ring: color-mix(in oklab, var(--color-fd-primary) 45%, transparent);
+  --back-btn-bg: color-mix(in oklab, var(--back-btn-color) 80%, #000 20%);
+  --back-btn-hover-bg: color-mix(in oklab, var(--back-btn-color) 70%, #000 20%);
+  --back-btn-ring: color-mix(in oklab, var(--back-btn-color) 45%, transparent);
   --back-btn-text: #fff;
 }
 
