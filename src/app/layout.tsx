@@ -9,6 +9,7 @@ import type React from 'react'
 import { AutoCloseBanner } from '@/components/auto-close-banner'
 import { BackToHomeButton } from '@/components/ui/back-to-home'
 import { ClientMetrics } from '@/components/client-metrics'
+import { ConditionalFooter } from '@/components/conditional-footer'
 
 export const metadata: Metadata = {
   title: 'ElexvxAI Lab - 宏翔商道创新产业研发中心',
@@ -55,6 +56,8 @@ export default function Layout({ children }: LayoutProps) {
             <BackToHomeButton />
           </RootProvider>
         </div>
+        {/* 条件渲染footer：只在非文档页面显示 */}
+        <ConditionalFooter />
         {/* 客户端指标脚本：仅在 Vercel 生产环境注入，避免本地/_vercel 脚本错误 */}
         {enableMetrics ? <ClientMetrics /> : null}
       </body>
