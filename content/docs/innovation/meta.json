@@ -5,6 +5,7 @@
   "icon": "IconSparkles",
   "pages": [
     "index",
+    "info",
     "start",
     "businessplan"
   ]

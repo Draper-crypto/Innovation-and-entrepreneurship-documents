@@ -42,9 +42,9 @@ export default function Layout({ children }: LayoutProps) {
           id="welcome-banner" 
           variant="rainbow" 
           className="sticky top-0 z-50"
-          autoCloseDelay={9999}
+          autoCloseDelay={10000}
         >
-          🎉 欢迎访问 ElexvxAI Lab ！我们是一个专注于LLM模型、创新创业比赛、创业投资的研究机构。
+          🎉 欢迎访问 ElexvxAI Lab ！我们是一家专注于LLM模型、创新创业比赛、创业投资的研究机构。
         </AutoCloseBanner>
         <div className="flex flex-1 flex-col">
           {/* 移除未使用的 Radix Theme 与 HeroUIProvider，减少 hydration 与样式注入 */}

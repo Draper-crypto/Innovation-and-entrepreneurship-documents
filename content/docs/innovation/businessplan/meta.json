@@ -3,6 +3,7 @@
   "description": "项目计划书模板与写作指南",
   "icon": "IconNotes",
   "pages": [
+    "00-statement",
     "01-abstract",
     "02-product-and-solution",
     "03-market-and-users",
@@ -13,7 +14,6 @@
     "08-team-and-organization",
     "09-risks-and-mitigations",
     "10-financial-plan",
-    "11-fundraising-plan",
-    "abstract"
+    "11-fundraising-plan"
   ]
 }

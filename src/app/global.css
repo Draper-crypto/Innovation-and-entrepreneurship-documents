@@ -496,3 +496,126 @@ article :is(h1,h2,h3,h4,h5,h6) a:hover {
   bottom: unset;
   transition-duration: 0.3s;
 }
+
+/* 目录切换（通用 TabList 适配）：无论 a 或 button，均显示底部蓝色条 */
+[role="tablist"] > * { position: relative; padding-bottom: 6px; }
+[role="tablist"] [aria-selected="true"]::after,
+[role="tablist"] [data-active="true"]::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 2px;
+  background: var(--color-fd-primary);
+  border-radius: 9999px;
+}
+
+/* 恢复：侧边栏标签页激活态的蓝色指示条（使用主色） */
+[data-sidebar-tabs] a,
+.fd-sidebar-tabs a { position: relative; padding-bottom: 6px; }
+
+[data-sidebar-tabs] a::after,
+.fd-sidebar-tabs a::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 2px;
+  background: transparent;
+  border-radius: 9999px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+[data-sidebar-tabs] a[data-active="true"]::after,
+.fd-sidebar-tabs a[data-active="true"]::after,
+[data-sidebar-tabs] a[aria-current="page"]::after,
+.fd-sidebar-tabs a[aria-current="page"]::after {
+  background: var(--color-fd-primary);
+  transform: scaleX(1);
+}
+
+/* =============== 统一文档标题颜色（不影响其他元素） =============== */
+.prose :is(h1,h2,h3,h4,h5,h6),
+.fd-article :is(h1,h2,h3,h4,h5,h6),
+article :is(h1,h2,h3,h4,h5,h6) {
+  color: var(--fd-foreground, #000) !important;
+}
+
+/* 确保标题中的锚点链接颜色与标题一致（不被全局链接色覆盖） */
+.prose :is(h1,h2,h3,h4,h5,h6) a,
+.fd-article :is(h1,h2,h3,h4,h5,h6) a,
+article :is(h1,h2,h3,h4,h5,h6) a {
+  color: inherit !important;
+}
+
+.prose :is(h1,h2,h3,h4,h5,h6) a:hover,
+.fd-article :is(h1,h2,h3,h4,h5,h6) a:hover,
+article :is(h1,h2,h3,h4,h5,h6) a:hover {
+  color: inherit !important;
+  opacity: 1;
+}
+
+/* === Back to Home Button Styles === */
+.back-home-container {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 9999; /* 确保高于任何内容/抽屉/对话框 */
+  pointer-events: auto;
+}
+
+/* 按钮主体（作用域到 back-home-container，避免与其他 .button 样式冲突） */
+.back-home-container .button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--back-btn-bg);
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 0px 4px var(--back-btn-ring);
+  cursor: pointer;
+  transition-duration: 0.3s;
+  overflow: hidden;
+  position: relative;
+}
+
+/* 图标样式（作用域化） */
+.back-home-container .svgIcon {
+  width: 12px;
+  transition-duration: 0.3s;
+}
+
+.back-home-container .svgIcon path { fill: var(--back-btn-text); }
+
+/* 悬停时展开 */
+.back-home-container .button:hover {
+  width: 140px;
+  border-radius: 50px;
+  transition-duration: 0.3s;
+  background-color: var(--back-btn-hover-bg);
+  align-items: center;
+}
+
+.back-home-container .button:hover .svgIcon {
+  transition-duration: 0.3s;
+  transform: translateY(-200%);
+}
+
+/* 文案 */
+.back-home-container .button::before {
+  position: absolute;
+  bottom: -20px;
+  content: "返回首页";
+  color: var(--back-btn-text);
+  font-size: 0px;
+}
+
+.back-home-container .button:hover::before {
+  font-size: 13px;
+  opacity: 1;
+  bottom: unset;
+  transition-duration: 0.3s;
+}
