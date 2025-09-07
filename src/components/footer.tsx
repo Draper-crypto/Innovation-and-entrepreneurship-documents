@@ -27,7 +27,7 @@ export function Footer() {
     <footer className="mt-0 border-t bg-fd-card text-fd-card-foreground dark:border-neutral-800">
       <div className="mx-auto max-w-[var(--spacing-fd-container)] px-4 py-6 md:px-6">
         {/* Upper grid: brand + quick links */}
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:grid-cols-3">
           <div>
             <div className="text-lg font-semibold">ElexvxAI Lab</div>
             <p className="mt-2 max-w-xs text-sm text-fd-muted-foreground">
@@ -47,41 +47,43 @@ export function Footer() {
               ))}
             </div>
           </div>
-          <div>
-            <div className="text-sm font-medium">文档</div>
-            <ul className="mt-3 space-y-2 text-sm text-fd-muted-foreground">
-              <li>
-                <Link href="/docs/innovation" className="hover:text-fd-foreground">
-                  创赛指南
-                </Link>
-              </li>
-              <li>
-                <Link href="/docs/standards" className="hover:text-fd-foreground">
-                  规范文档
-                </Link>
-              </li>
-            </ul>
-          </div>
+          <div className="grid grid-cols-2 gap-6 sm:contents">
+            <div>
+              <div className="text-sm font-medium">文档</div>
+              <ul className="mt-3 space-y-2 text-sm text-fd-muted-foreground">
+                <li>
+                  <Link href="/docs/innovation" className="hover:text-fd-foreground">
+                    创赛指南
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/docs/standards" className="hover:text-fd-foreground">
+                    规范文档
+                  </Link>
+                </li>
+              </ul>
+            </div>
 
-          <div>
-            <div className="text-sm font-medium">访问</div>
-            <ul className="mt-3 space-y-2 text-sm text-fd-muted-foreground">
-              <li>
-                <Link href="/blog" className="hover:text-fd-foreground">
-                  博客
-                </Link>
-              </li>
-              <li>
-                <Link href="/changelog" className="hover:text-fd-foreground">
-                  更新日志
-                </Link>
-              </li>
-              <li>
-                <Link href="/sponsors" className="hover:text-fd-foreground">
-                  赞助商
-                </Link>
-              </li>
-            </ul>
+            <div>
+              <div className="text-sm font-medium">访问</div>
+              <ul className="mt-3 space-y-2 text-sm text-fd-muted-foreground">
+                <li>
+                  <Link href="/blog" className="hover:text-fd-foreground">
+                    博客
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/changelog" className="hover:text-fd-foreground">
+                    更新日志
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/sponsors" className="hover:text-fd-foreground">
+                    赞助商
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 

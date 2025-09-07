@@ -235,7 +235,7 @@ export default function HomePage() {
 
       {/* HERO: Left text + Right collage */}
       <section className="relative overflow-hidden pt-6 pb-12 sm:pt-8 md:pt-8 lg:pt-12 md:pb-20">
-        <div className="relative z-10 mx-auto grid max-w-[var(--spacing-fd-container)] grid-cols-1 items-center gap-10 px-4 md:grid-cols-2 md:gap-6 md:px-6">
+        <div className="relative z-10 mx-auto grid max-w-[var(--spacing-fd-container)] grid-cols-1 items-center gap-6 px-4 md:grid-cols-2 md:gap-6 md:px-6">
           {/* LEFT: Heading & CTA */}
           <div className="text-left">
             <FadeIn className="mb-6 inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/90 px-4 py-2 text-xs font-medium text-gray-700 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5 dark:text-gray-300">
@@ -349,7 +349,7 @@ export default function HomePage() {
             与高校、企业及投资机构共建生态，推动技术创新、产业落地与长期价值增长。
           </p>
         </div>
-        <div className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-8 lg:gap-12">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-8 lg:gap-12">
           {stats.map((stat) => (
             <div key={stat.label}>
               <StatsCard {...stat} />
