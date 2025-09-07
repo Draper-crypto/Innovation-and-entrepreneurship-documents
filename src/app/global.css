@@ -7,15 +7,15 @@
 @import 'fumadocs-twoslash/twoslash.css';
 
 @theme {
-  --color-fd-primary: #6A66F4;
+  --color-fd-primary: #6966EC;
   --color-primary: var(--color-fd-primary);
 }
 
 :root {
-  /* 覆盖主色为 7B81AD */
-  --color-fd-primary: #7B81AD;
-  /* 新增：置顶按钮主色 */
-  --back-btn-color: #2e59a7;
+  /* 覆盖主色为 6966EC */
+  --color-fd-primary: #6966EC;
+  /* 新增：置顶按钮主色（与链接色一致） */
+  --back-btn-color: #6866E4;
 }
 
 /* 返回按钮主题色（明暗适配） */
@@ -287,14 +287,14 @@ article table tbody tr td strong {
 .prose ol > li::marker,
 .fd-article ol > li::marker,
 article ol > li::marker {
-  color: #6A66F4;
+  color: #6966EC;
 }
 
 /* 无序列表符号颜色 */
 .prose ul > li::marker,
 .fd-article ul > li::marker,
 article ul > li::marker {
-  color: #6A66F4;
+  color: #6966EC;
 }
 
 /* 嵌套列表也应用相同样式 */
@@ -310,7 +310,7 @@ article ol ol > li::marker,
 article ol ul > li::marker,
 article ul ol > li::marker,
 article ul ul > li::marker {
-  color: #6A66F4;
+  color: #6966EC;
 }
 
 /* =============== Blockquote 引用样式 - 去除引号 =============== */
@@ -329,6 +329,107 @@ article blockquote::before,
 article blockquote::after {
   content: none !important;
   display: none !important;
+}
+
+/* =============== 文档页面链接颜色统一（仅正文区域 .prose 内） =============== */
+/* 文档正文中的链接，仅限 .prose，避免影响“上一篇/下一篇”等非正文卡片 */
+.prose a,
+.fd-article .prose a,
+article .prose a {
+  color: #6966EC !important;
+}
+
+.prose a:hover,
+.fd-article .prose a:hover,
+article .prose a:hover {
+  color: #6966EC !important;
+  opacity: 0.8;
+}
+
+/* 侧边栏链接颜色统一 */
+[data-sidebar] a,
+.fd-sidebar a,
+nav[data-sidebar] a {
+  color: inherit;
+}
+
+[data-sidebar] a:hover,
+.fd-sidebar a:hover,
+nav[data-sidebar] a:hover {
+  color: #6966EC !important;
+}
+
+[data-sidebar] a[data-active="true"],
+.fd-sidebar a[data-active="true"],
+nav[data-sidebar] a[data-active="true"],
+[data-sidebar] a[aria-current="page"],
+.fd-sidebar a[aria-current="page"],
+nav[data-sidebar] a[aria-current="page"] {
+  color: #6966EC !important;
+}
+
+/* 侧边栏标签页链接 */
+[data-sidebar-tabs] a,
+.fd-sidebar-tabs a {
+  color: inherit;
+}
+
+[data-sidebar-tabs] a:hover,
+.fd-sidebar-tabs a:hover {
+  color: #6966EC !important;
+}
+
+[data-sidebar-tabs] a[data-active="true"],
+.fd-sidebar-tabs a[data-active="true"],
+[data-sidebar-tabs] a[aria-current="page"],
+.fd-sidebar-tabs a[aria-current="page"] {
+  color: #6966EC !important;
+}
+
+/* 恢复：侧边栏标签页激活态的蓝色指示条（使用主色） */
+[data-sidebar-tabs] a,
+.fd-sidebar-tabs a { position: relative; padding-bottom: 6px; }
+
+[data-sidebar-tabs] a::after,
+.fd-sidebar-tabs a::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 2px;
+  background: transparent;
+  border-radius: 9999px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+[data-sidebar-tabs] a[data-active="true"]::after,
+.fd-sidebar-tabs a[data-active="true"]::after,
+[data-sidebar-tabs] a[aria-current="page"]::after,
+.fd-sidebar-tabs a[aria-current="page"]::after {
+  background: var(--color-fd-primary);
+  transform: scaleX(1);
+}
+
+/* =============== 统一文档标题颜色（不影响其他元素） =============== */
+.prose :is(h1,h2,h3,h4,h5,h6),
+.fd-article :is(h1,h2,h3,h4,h5,h6),
+article :is(h1,h2,h3,h4,h5,h6) {
+  color: var(--fd-foreground, #000) !important;
+}
+
+/* 确保标题中的锚点链接颜色与标题一致（不被全局链接色覆盖） */
+.prose :is(h1,h2,h3,h4,h5,h6) a,
+.fd-article :is(h1,h2,h3,h4,h5,h6) a,
+article :is(h1,h2,h3,h4,h5,h6) a {
+  color: inherit !important;
+}
+
+.prose :is(h1,h2,h3,h4,h5,h6) a:hover,
+.fd-article :is(h1,h2,h3,h4,h5,h6) a:hover,
+article :is(h1,h2,h3,h4,h5,h6) a:hover {
+  color: inherit !important;
+  opacity: 1;
 }
 
 /* === Back to Home Button Styles === */

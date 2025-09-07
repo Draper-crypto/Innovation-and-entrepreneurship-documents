@@ -48,7 +48,7 @@ export default function Layout({ children }: LayoutProps<'/docs'>) {
         sidebar={{
           tabs: [
             {
-              title: '创新创业文档',
+              title: '创赛指南',
               description: '创新创业文档',
               url: '/docs/innovation',
               icon: <IconNotes size={16} />,

@@ -36,7 +36,7 @@ export function baseOptions(): BaseLayoutProps {
         text: '文档',
         items: [
           {
-            text: '创新大赛',
+            text: '创赛指南',
             description: '入门、核心概念与最佳实践',
             url: '/docs/innovation',
             icon: <IconBook size={16} />,
