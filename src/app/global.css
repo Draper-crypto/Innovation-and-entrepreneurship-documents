@@ -346,6 +346,19 @@ article .prose a:hover {
   opacity: 0.8;
 }
 
+/* 标题内链接继承标题颜色，不额外着色，保持与标题一致 */
+.prose :is(h1,h2,h3,h4,h5,h6) a,
+.fd-article :is(h1,h2,h3,h4,h5,h6) a,
+article :is(h1,h2,h3,h4,h5,h6) a {
+  color: inherit !important;
+}
+.prose :is(h1,h2,h3,h4,h5,h6) a:hover,
+.fd-article :is(h1,h2,h3,h4,h5,h6) a:hover,
+article :is(h1,h2,h3,h4,h5,h6) a:hover {
+  color: inherit !important;
+  opacity: 1;
+}
+
 /* 侧边栏链接颜色统一 */
 [data-sidebar] a,
 .fd-sidebar a,
@@ -411,26 +424,7 @@ nav[data-sidebar] a[aria-current="page"] {
   transform: scaleX(1);
 }
 
-/* =============== 统一文档标题颜色（不影响其他元素） =============== */
-.prose :is(h1,h2,h3,h4,h5,h6),
-.fd-article :is(h1,h2,h3,h4,h5,h6),
-article :is(h1,h2,h3,h4,h5,h6) {
-  color: var(--fd-foreground, #000) !important;
-}
-
-/* 确保标题中的锚点链接颜色与标题一致（不被全局链接色覆盖） */
-.prose :is(h1,h2,h3,h4,h5,h6) a,
-.fd-article :is(h1,h2,h3,h4,h5,h6) a,
-article :is(h1,h2,h3,h4,h5,h6) a {
-  color: inherit !important;
-}
-
-.prose :is(h1,h2,h3,h4,h5,h6) a:hover,
-.fd-article :is(h1,h2,h3,h4,h5,h6) a:hover,
-article :is(h1,h2,h3,h4,h5,h6) a:hover {
-  color: inherit !important;
-  opacity: 1;
-}
+/* （已移除：标题颜色强制覆盖，交由主题变量控制） */
 
 /* === Back to Home Button Styles === */
 .back-home-container {
@@ -485,7 +479,7 @@ article :is(h1,h2,h3,h4,h5,h6) a:hover {
 .back-home-container .button::before {
   position: absolute;
   bottom: -20px;
-  content: "返回首页";
+  content: "返回顶部";
   color: var(--back-btn-text);
   font-size: 0px;
 }
@@ -534,26 +528,7 @@ article :is(h1,h2,h3,h4,h5,h6) a:hover {
   transform: scaleX(1);
 }
 
-/* =============== 统一文档标题颜色（不影响其他元素） =============== */
-.prose :is(h1,h2,h3,h4,h5,h6),
-.fd-article :is(h1,h2,h3,h4,h5,h6),
-article :is(h1,h2,h3,h4,h5,h6) {
-  color: var(--fd-foreground, #000) !important;
-}
-
-/* 确保标题中的锚点链接颜色与标题一致（不被全局链接色覆盖） */
-.prose :is(h1,h2,h3,h4,h5,h6) a,
-.fd-article :is(h1,h2,h3,h4,h5,h6) a,
-article :is(h1,h2,h3,h4,h5,h6) a {
-  color: inherit !important;
-}
-
-.prose :is(h1,h2,h3,h4,h5,h6) a:hover,
-.fd-article :is(h1,h2,h3,h4,h5,h6) a:hover,
-article :is(h1,h2,h3,h4,h5,h6) a:hover {
-  color: inherit !important;
-  opacity: 1;
-}
+/* （已移除：重复的标题颜色覆盖块） */
 
 /* === Back to Home Button Styles === */
 .back-home-container {
@@ -608,7 +583,7 @@ article :is(h1,h2,h3,h4,h5,h6) a:hover {
 .back-home-container .button::before {
   position: absolute;
   bottom: -20px;
-  content: "返回首页";
+  content: "返回顶部";
   color: var(--back-btn-text);
   font-size: 0px;
 }

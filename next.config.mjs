@@ -19,7 +19,8 @@ const config = {
 
   // 性能优化设置
   experimental: {
-    optimizeCss: true,
+    // 关闭 optimizeCss 以避免在 Windows 环境下偶发的 webpack-runtime chunk 缺失问题
+    optimizeCss: false,
   },
 
   // 编译器优化

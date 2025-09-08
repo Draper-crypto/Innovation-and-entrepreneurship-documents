@@ -4,8 +4,9 @@
   "icon": "IconNotes",
   "pages": [
     "00-statement",
-    "01-abstract",
-    "02-product-and-solution",
+    "01-Abstract",
+    "02-Product",
+  
     "03-market-and-users",
     "04-business-model",
     "05-competition-and-moat",
