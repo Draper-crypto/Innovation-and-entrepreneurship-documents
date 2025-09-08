@@ -594,3 +594,398 @@ nav[data-sidebar] a[aria-current="page"] {
   bottom: unset;
   transition-duration: 0.3s;
 }
+
+.astro-404 .astronaut {
+  width: 250px; height: 300px; position: absolute; z-index: 11; top: calc(50% - 150px); left: calc(50% - 125px); animation: astro-rotate 5s linear infinite; pointer-events: none;
+}
+.astro-404 .schoolbag {
+  width: 100px; height: 150px; position: absolute; z-index: 1; top: calc(50% - 75px); left: calc(50% - 50px); background-color: #94b7ca; border-radius: 50px 50px 0 0 / 30px 30px 0 0;
+}
+.astro-404 .head {
+  width: 97px; height: 80px; position: absolute; z-index: 3; background: linear-gradient(90deg,#e3e8eb 0%,#e3e8eb 50%,#fbfdfa 50%,#fbfdfa 100%); border-radius: 50%; top: 34px; left: calc(50% - 47.5px);
+}
+.astro-404 .head:after {
+  content: ""; width: 60px; height: 50px; position: absolute; top: calc(50% - 25px); left: calc(50% - 30px); background: linear-gradient(#15aece 0%,#15aece 50%,#0391bf 50%,#0391bf 100%); border-radius: 15px;
+}
+.astro-404 .head:before {
+  content: ""; width: 12px; height: 25px; position: absolute; top: calc(50% - 12.5px); left: -4px; background-color: #618095; border-radius: 5px; box-shadow: 92px 0 0 #618095;
+}
+.astro-404 .body {
+  width: 85px; height: 100px; position: absolute; z-index: 2; background-color: #fffbff; border-radius: 40px / 20px; top: 105px; left: calc(50% - 41px); background: linear-gradient(90deg,#e3e8eb 0%,#e3e8eb 50%,#fbfdfa 50%,#fbfdfa 100%);
+}
+.astro-404 .panel {
+  width: 60px; height: 40px; position: absolute; top: 20px; left: calc(50% - 30px); background-color: #b7cceb;
+}
+.astro-404 .panel:before {
+  content: ""; width: 30px; height: 5px; position: absolute; top: 9px; left: 7px; background-color: #fbfdfa; box-shadow: 0 9px 0 #fbfdfa, 0 18px 0 #fbfdfa;
+}
+.astro-404 .panel:after {
+  content: ""; width: 8px; height: 8px; position: absolute; top: 9px; right: 7px; background-color: #fbfdfa; border-radius: 50%; box-shadow: 0 14px 0 2px #fbfdfa;
+}
+.astro-404 .arm { width: 80px; height: 30px; position: absolute; top: 121px; z-index: 2; }
+.astro-404 .arm-left { left: 30px; background-color: #e3e8eb; border-radius: 0 0 0 39px; }
+.astro-404 .arm-right { right: 30px; background-color: #fbfdfa; border-radius: 0 0 39px 0; }
+.astro-404 .arm-left:before,
+.astro-404 .arm-right:before { content: ""; width: 30px; height: 70px; position: absolute; top: -40px; }
+.astro-404 .arm-left:before { border-radius: 50px 50px 0 120px / 50px 50px 0 110px; left: 0; background: #e3e8eb; }
+.astro-404 .arm-right:before { border-radius: 50px 50px 120px 0 / 50px 50px 110px 0; right: 0; background: #fbfdfa; }
+.astro-404 .leg { width: 30px; height: 40px; position: absolute; z-index: 2; top: 188px; }
+.astro-404 .leg-left { left: 63px; background: #e3e8eb; transform: rotate(20deg); }
+.astro-404 .leg-right { right: 63px; background: #fbfdfa; transform: rotate(-20deg); }
+
+/* 细节优化：在暗色下整体更清晰 */
+@media (prefers-color-scheme: dark) {
+  .astro-404 .star { opacity: .8; }
+}
+
+/* =============== Blockquote 引用样式 - 取消自动加粗，仅语义加粗 =============== */
+/* 重置引用区域及其常见内联元素的 font-weight，避免未加粗标记的文本被默认加粗 */
+.prose blockquote,
+.prose blockquote :where(p, a, span, li, code, em, i),
+.fd-article blockquote,
+.fd-article blockquote :where(p, a, span, li, code, em, i),
+article blockquote,
+article blockquote :where(p, a, span, li, code, em, i) {
+  font-weight: inherit !important; /* 取消自动加粗 */
+}
+
+/* 仅当语义上使用 strong/b 时才加粗 */
+.prose blockquote strong,
+.prose blockquote b,
+.fd-article blockquote strong,
+.fd-article blockquote b,
+article blockquote strong,
+article blockquote b {
+  font-weight: 700 !important;
+}
+.prose blockquote::before,
+.prose blockquote::after,
+.fd-article blockquote::before,
+.fd-article blockquote::after,
+article blockquote::before,
+article blockquote::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* =============== 文档页面链接颜色统一（仅正文区域 .prose 内） =============== */
+/* 文档正文中的链接，仅限 .prose，避免影响“上一篇/下一篇”等非正文卡片 */
+.prose a,
+.fd-article .prose a,
+article .prose a {
+  color: #6966EC !important;
+}
+
+.prose a:hover,
+.fd-article .prose a:hover,
+article .prose a:hover {
+  color: #6966EC !important;
+  opacity: 0.8;
+}
+
+/* 标题内链接继承标题颜色，不额外着色，保持与标题一致 */
+.prose :is(h1,h2,h3,h4,h5,h6) a,
+.fd-article :is(h1,h2,h3,h4,h5,h6) a,
+article :is(h1,h2,h3,h4,h5,h6) a {
+  color: inherit !important;
+}
+.prose :is(h1,h2,h3,h4,h5,h6) a:hover,
+.fd-article :is(h1,h2,h3,h4,h5,h6) a:hover,
+article :is(h1,h2,h3,h4,h5,h6) a:hover {
+  color: inherit !important;
+  opacity: 1;
+}
+
+/* 侧边栏链接颜色统一 */
+[data-sidebar] a,
+.fd-sidebar a,
+nav[data-sidebar] a {
+  color: inherit;
+}
+
+[data-sidebar] a:hover,
+.fd-sidebar a:hover,
+nav[data-sidebar] a:hover {
+  color: #6966EC !important;
+}
+
+[data-sidebar] a[data-active="true"],
+.fd-sidebar a[data-active="true"],
+nav[data-sidebar] a[data-active="true"],
+[data-sidebar] a[aria-current="page"],
+.fd-sidebar a[aria-current="page"],
+nav[data-sidebar] a[aria-current="page"] {
+  color: #6966EC !important;
+}
+
+/* 侧边栏标签页链接 */
+[data-sidebar-tabs] a,
+.fd-sidebar-tabs a {
+  color: inherit;
+}
+
+[data-sidebar-tabs] a:hover,
+.fd-sidebar-tabs a:hover {
+  color: #6966EC !important;
+}
+
+[data-sidebar-tabs] a[data-active="true"],
+.fd-sidebar-tabs a[data-active="true"],
+[data-sidebar-tabs] a[aria-current="page"],
+.fd-sidebar-tabs a[aria-current="page"] {
+  color: #6966EC !important;
+}
+
+/* 恢复：侧边栏标签页激活态的蓝色指示条（使用主色） */
+[data-sidebar-tabs] a,
+.fd-sidebar-tabs a { position: relative; padding-bottom: 6px; }
+
+[data-sidebar-tabs] a::after,
+.fd-sidebar-tabs a::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 2px;
+  background: transparent;
+  border-radius: 9999px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+[data-sidebar-tabs] a[data-active="true"]::after,
+.fd-sidebar-tabs a[data-active="true"]::after,
+[data-sidebar-tabs] a[aria-current="page"]::after,
+.fd-sidebar-tabs a[aria-current="page"]::after {
+  background: var(--color-fd-primary);
+  transform: scaleX(1);
+}
+
+/* （已移除：标题颜色强制覆盖，交由主题变量控制） */
+
+/* === Back to Home Button Styles === */
+.back-home-container {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 9999; /* 确保高于任何内容/抽屉/对话框 */
+  pointer-events: auto;
+}
+
+/* 按钮主体（作用域到 back-home-container，避免与其他 .button 样式冲突） */
+.back-home-container .button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--back-btn-bg);
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 0px 4px var(--back-btn-ring);
+  cursor: pointer;
+  transition-duration: 0.3s;
+  overflow: hidden;
+  position: relative;
+}
+
+/* 图标样式（作用域化） */
+.back-home-container .svgIcon {
+  width: 12px;
+  transition-duration: 0.3s;
+}
+
+.back-home-container .svgIcon path { fill: var(--back-btn-text); }
+
+/* 悬停时展开 */
+.back-home-container .button:hover {
+  width: 140px;
+  border-radius: 50px;
+  transition-duration: 0.3s;
+  background-color: var(--back-btn-hover-bg);
+  align-items: center;
+}
+
+.back-home-container .button:hover .svgIcon {
+  transition-duration: 0.3s;
+  transform: translateY(-200%);
+}
+
+/* 文案 */
+.back-home-container .button::before {
+  position: absolute;
+  bottom: -20px;
+  content: "返回顶部";
+  color: var(--back-btn-text);
+  font-size: 0px;
+}
+
+.back-home-container .button:hover::before {
+  font-size: 13px;
+  opacity: 1;
+  bottom: unset;
+  transition-duration: 0.3s;
+}
+
+/* 目录切换（通用 TabList 适配）：无论 a 或 button，均显示底部蓝色条 */
+[role="tablist"] > * { position: relative; padding-bottom: 6px; }
+[role="tablist"] [aria-selected="true"]::after,
+[role="tablist"] [data-active="true"]::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 2px;
+  background: var(--color-fd-primary);
+  border-radius: 9999px;
+}
+
+/* 恢复：侧边栏标签页激活态的蓝色指示条（使用主色） */
+[data-sidebar-tabs] a,
+.fd-sidebar-tabs a { position: relative; padding-bottom: 6px; }
+
+[data-sidebar-tabs] a::after,
+.fd-sidebar-tabs a::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 2px;
+  background: transparent;
+  border-radius: 9999px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+[data-sidebar-tabs] a[data-active="true"]::after,
+.fd-sidebar-tabs a[data-active="true"]::after,
+[data-sidebar-tabs] a[aria-current="page"]::after,
+.fd-sidebar-tabs a[aria-current="page"]::after {
+  background: var(--color-fd-primary);
+  transform: scaleX(1);
+}
+
+/* （已移除：重复的标题颜色覆盖块） */
+
+/* === Back to Home Button Styles === */
+.back-home-container {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 9999; /* 确保高于任何内容/抽屉/对话框 */
+  pointer-events: auto;
+}
+
+/* 按钮主体（作用域到 back-home-container，避免与其他 .button 样式冲突） */
+.back-home-container .button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--back-btn-bg);
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 0px 4px var(--back-btn-ring);
+  cursor: pointer;
+  transition-duration: 0.3s;
+  overflow: hidden;
+  position: relative;
+}
+
+/* 图标样式（作用域化） */
+.back-home-container .svgIcon {
+  width: 12px;
+  transition-duration: 0.3s;
+}
+
+.back-home-container .svgIcon path { fill: var(--back-btn-text); }
+
+/* 悬停时展开 */
+.back-home-container .button:hover {
+  width: 140px;
+  border-radius: 50px;
+  transition-duration: 0.3s;
+  background-color: var(--back-btn-hover-bg);
+  align-items: center;
+}
+
+.back-home-container .button:hover .svgIcon {
+  transition-duration: 0.3s;
+  transform: translateY(-200%);
+}
+
+/* 文案 */
+.back-home-container .button::before {
+  position: absolute;
+  bottom: -20px;
+  content: "返回顶部";
+  color: var(--back-btn-text);
+  font-size: 0px;
+}
+
+.back-home-container .button:hover::before {
+  font-size: 13px;
+  opacity: 1;
+  bottom: unset;
+  transition-duration: 0.3s;
+}
+
+/* ========================= 404 星空与宇航员动画 ========================= */
+/* 尽量使用局部选择器，避免污染全站。容器：.astro-404 */
+.astro-404 .box-of-star1,
+.astro-404 .box-of-star2,
+.astro-404 .box-of-star3,
+.astro-404 .box-of-star4 {
+  width: 100%;
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  transform: translateY(0);
+  height: 700px;
+  pointer-events: none;
+}
+
+@keyframes astro-snow {
+  0% { opacity: 0; transform: translateY(0); }
+  20% { opacity: 1; }
+  100% { opacity: 1; transform: translateY(650px); }
+}
+
+.astro-404 .box-of-star1 { animation: astro-snow 5s linear infinite; }
+.astro-404 .box-of-star2 { animation: astro-snow 5s -1.64s linear infinite; }
+.astro-404 .box-of-star3 { animation: astro-snow 5s -2.30s linear infinite; }
+.astro-404 .box-of-star4 { animation: astro-snow 5s -3.30s linear infinite; }
+
+.astro-404 .star {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background-color: #fff;
+  position: absolute;
+  z-index: 10;
+  opacity: .7;
+}
+.astro-404 .star:before {
+  content: "";
+  width: 6px; height: 6px; border-radius: 50%; background-color: #fff; position: absolute; z-index: 10; top: 80px; left: 70px; opacity: .7;
+}
+.astro-404 .star:after {
+  content: "";
+  width: 8px; height: 8px; border-radius: 50%; background-color: #fff; position: absolute; z-index: 10; top: 8px; left: 170px; opacity: .9;
+}
+.astro-404 .star-position1 { top: 30px; left: 20px; }
+.astro-404 .star-position2 { top: 110px; left: 250px; }
+.astro-404 .star-position3 { top: 60px; left: 570px; }
+.astro-404 .star-position4 { top: 120px; left: 900px; }
+.astro-404 .star-position5 { top: 20px; left: 1120px; }
+.astro-404 .star-position6 { top: 90px; left: 1280px; }
+.astro-404 .star-position7 { top: 30px; left: 1480px; }
+
+@keyframes astro-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
