@@ -6,7 +6,7 @@ const sponsors = [
     name: 'Elexvx Inc',
     description: '发起公司、主要投资方',
     cover: '/images/sponsors/elexvx.svg',
-    url: 'https://www.elexvx.com/',
+    url: 'https://ai.elexvx.com/',
   },
   {
     name: '全国大学生创新创业实践大赛',

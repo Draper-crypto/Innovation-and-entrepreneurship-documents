@@ -28,23 +28,46 @@ export function LLMCopyButton({
   markdownUrl: string;
 }) {
   const [isLoading, setLoading] = useState(false);
+  const writeToClipboard = async (content: string) => {
+    if (typeof navigator !== 'undefined' && 'clipboard' in navigator) {
+      try {
+        await navigator.clipboard.writeText(content);
+        return;
+      } catch {
+        // Fallback to execCommand below when the asynchronous clipboard API is unavailable
+      }
+    }
+
+    const textarea = document.createElement('textarea');
+    textarea.value = content;
+    textarea.setAttribute('readonly', '');
+    textarea.style.position = 'absolute';
+    textarea.style.left = '-9999px';
+    document.body.appendChild(textarea);
+    textarea.select();
+    textarea.setSelectionRange(0, textarea.value.length);
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+  };
   const [checked, onClick] = useCopyButton(async () => {
     const cached = cache.get(markdownUrl);
-    if (cached) return navigator.clipboard.writeText(cached);
+    if (cached) {
+      await writeToClipboard(cached);
+      return;
+    }
 
     setLoading(true);
 
     try {
-      await navigator.clipboard.write([
-        new ClipboardItem({
-          'text/plain': fetch(markdownUrl).then(async (res) => {
-            const content = await res.text();
-            cache.set(markdownUrl, content);
+      const response = await fetch(markdownUrl);
 
-            return content;
-          }),
-        }),
-      ]);
+      if (!response.ok) {
+        throw new Error(`Failed to load markdown content: ${response.status}`);
+      }
+
+      const content = await response.text();
+      cache.set(markdownUrl, content);
+      await writeToClipboard(content);
     } finally {
       setLoading(false);
     }
