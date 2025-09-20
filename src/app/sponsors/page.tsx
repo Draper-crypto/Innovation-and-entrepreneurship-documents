@@ -14,6 +14,18 @@ const sponsors = [
     cover: '/images/sponsors/cxcysj.svg',
     url: 'https://new.saikr.com/vse/51382?type=notice&id=32747',
   },
+  {
+    name: '南京市建邺区韶华工坊',
+    description: '合作伙伴、省级大学生创业示范园',
+    cover: '/images/sponsors/jyqrmzf.png',
+    url: 'https://www.njjy.gov.cn/ztzl/yshjzl/202401/t20240129_4158107.html',
+  },
+  {
+    name: '江宁沉梦亿联软件科技工作室',
+    description: '合作伙伴',
+    cover: '/images/sponsors/cmyl.png',
+    url: 'https://aiqicha.baidu.com/company_detail_58792301623482',
+  },
 ];
 
 export default function SponsorsPage() {

@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import Link from 'next/link';
+import { BackLink } from '@/components/ui/back-link';
 import { InlineTOC } from 'fumadocs-ui/components/inline-toc';
 import { blog } from '@/lib/source';
 import { getMDXComponents } from '@/mdx-components';
@@ -19,7 +19,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
     <>
       {/* 返回按钮放在标题区上方，并与内容对齐 */}
       <div className="container px-4 pt-6">
-        <Link href="/" className="text-sm text-fd-muted-foreground hover:underline">返回首页</Link>
+        <BackLink fallbackHref="/blog">返回上一页</BackLink>
       </div>
 
       {/* 标题区：对齐并在顶部预留距离，将作者与发布时间放入其中 */}

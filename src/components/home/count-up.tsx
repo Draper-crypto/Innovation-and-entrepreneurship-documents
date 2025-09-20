@@ -6,13 +6,14 @@ interface CountUpProps {
   value: string | number;
   duration?: number;
   delay?: number;
+  className?: string;
 }
 
 /**
  * Minimal count-up animation that only runs when visible.
  * Keeps bundle size small compared to external libraries.
  */
-export function CountUp({ value, duration = 1.6, delay = 0 }: CountUpProps) {
+export function CountUp({ value, duration = 1.6, delay = 0, className }: CountUpProps) {
   const spanRef = useRef<HTMLSpanElement | null>(null);
 
   useEffect(() => {
@@ -64,5 +65,5 @@ export function CountUp({ value, duration = 1.6, delay = 0 }: CountUpProps) {
     };
   }, [value, duration, delay]);
 
-  return <span ref={spanRef} aria-label={String(value)} />;
+  return <span ref={spanRef} className={className} aria-label={String(value)} />;
 }

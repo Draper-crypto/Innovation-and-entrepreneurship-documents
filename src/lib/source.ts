@@ -1,8 +1,18 @@
-import { docs, blog as blogPosts } from '@/.source';
+import { docs, blog as blogPosts, changelog as changelogPosts } from '@/.source';
 import { loader } from 'fumadocs-core/source';
 import { createMDXSource } from 'fumadocs-mdx';
-import { icons as TablerIcons } from '@tabler/icons-react';
+import { IconBulb, IconNotes, IconSparkles } from '@tabler/icons-react';
 import * as React from 'react';
+
+type TablerIcon = React.ComponentType<React.ComponentProps<typeof IconBulb>>;
+
+// 预定义常用图标，避免一次性打包整套 Icon 集合
+const DEFAULT_ICON: TablerIcon = IconBulb;
+const ICON_REGISTRY: Record<string, TablerIcon> = {
+  IconBulb,
+  IconNotes,
+  IconSparkles,
+};
 
 // See https://fumadocs.vercel.app/docs/headless/source-api for more info
 export const source = loader({
@@ -11,10 +21,8 @@ export const source = loader({
   source: docs.toFumadocsSource(),
   icon: (icon: string | undefined) => {
     if (!icon) return undefined;
-    const iconMap = TablerIcons as any;
-    const Cmp = iconMap[icon] || iconMap.IconBulb; // 安全兜底
-    if (Cmp) return React.createElement(Cmp, { size: 16 });
-    return React.createElement('span', null, icon);
+    const IconComponent = ICON_REGISTRY[icon] ?? DEFAULT_ICON;
+    return React.createElement(IconComponent, { size: 16 });
   },
 });
 
@@ -23,8 +31,6 @@ export const blog = loader({
   source: createMDXSource(blogPosts),
 });
 
-// 新增：changelog 源
-import { changelog as changelogPosts } from '@/.source';
 export const changelog = loader({
   baseUrl: '/changelog',
   source: createMDXSource(changelogPosts),

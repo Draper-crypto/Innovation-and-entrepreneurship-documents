@@ -13,25 +13,25 @@ const HERO_CARDS = [
 
 const STATS = [
   {
-    icon: <Users />,
+    icon: <Users className="h-6 w-6" />,
     value: '5',
     label: '服务用户',
     suffix: 'K+',
   },
   {
-    icon: <FolderKanban />,
+    icon: <FolderKanban className="h-6 w-6" />,
     value: '10',
     label: '研究项目',
     suffix: '+',
   },
   {
-    icon: <Globe />,
+    icon: <Globe className="h-6 w-6" />,
     value: '12',
     label: '合作机构',
     suffix: '+',
   },
   {
-    icon: <UserCheck />,
+    icon: <UserCheck className="h-6 w-6" />,
     value: '95',
     label: '合作满意度',
     suffix: '%',
@@ -83,12 +83,12 @@ type StatsCardProps = {
 
 function StatsCard({ icon, value, label, suffix }: StatsCardProps) {
   return (
-    <div className="flex flex-col items-center gap-2 p-6 text-center">
-      <div className="text-fd-muted-foreground">{icon}</div>
-      <div className="text-4xl font-semibold md:text-5xl tabular-nums leading-none">
-        <CountUp value={value} />
+    <div className="flex flex-col items-center gap-3 p-6 text-center md:gap-4">
+      <div className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 text-fd-muted-foreground dark:border-white/10">{icon}</div>
+      <div className="flex items-end justify-center gap-2 text-4xl font-semibold leading-none tabular-nums md:text-5xl">
+        <CountUp value={value} className="leading-none" />
         {suffix ? (
-          <span className="ml-1 align-top text-[0.7em] font-semibold text-fd-foreground">{suffix}</span>
+          <span className="text-base font-semibold text-fd-muted-foreground md:text-lg">{suffix}</span>
         ) : null}
       </div>
       <div className="text-sm text-fd-muted-foreground">{label}</div>

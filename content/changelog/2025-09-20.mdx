@@ -1,0 +1,10 @@
+---
+title: AstriDocs V1.7
+description: 加快构建速度并优化商业计划书文档
+date: 2025-09-20
+tags:
+  - 更新
+---
+
+- next.config.mjs:21 启用了 experimental.optimizePackageImports（lucide-react、@tabler/icons-react、@heroui/react），在不改动功能前提下减少打包解析量，同时保留现有的图片与拆包策略。
+- src/lib/source.ts:1 只按需引入 IconBulb/IconNotes/IconSparkles 并建立轻量注册表，移除了对整套 Tabler 图标的动态加载；保持原有兜底逻辑，因此现有文档的图标展示不受影响。

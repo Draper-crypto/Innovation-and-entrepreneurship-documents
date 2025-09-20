@@ -32,7 +32,7 @@ export default function BlogIndexPage() {
             <Link
               key={post.url}
               href={post.url}
-              className="group rounded-xl border bg-background overflow-hidden hover:shadow-md transition-shadow"
+              className="group relative overflow-hidden rounded-2xl border border-black/5 bg-fd-card text-fd-card-foreground transition-all hover:-translate-y-1 hover:shadow-xl dark:border-white/10"
             >
               {cover ? (
                 <div className="relative aspect-[16/9]">

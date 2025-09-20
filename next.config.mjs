@@ -21,6 +21,8 @@ const config = {
   experimental: {
     // 关闭 optimizeCss 以避免在 Windows 环境下偶发的 webpack-runtime chunk 缺失问题
     optimizeCss: false,
+    // 针对大型依赖启用按需导入，降低编译和打包成本
+    optimizePackageImports: ['lucide-react', '@tabler/icons-react', '@heroui/react'],
   },
 
   // 编译器优化
@@ -28,12 +30,12 @@ const config = {
     removeConsole: process.env.NODE_ENV === 'production',
   },
   webpack: (cfg, { dev }) => {
-    // Use in-memory cache in development to avoid Windows FS rename issues
+    // 开发环境使用内存缓存，规避 Windows 文件系统 rename 限制
     if (dev) {
       cfg.cache = { type: 'memory' };
     }
 
-    // 启用代码分割优化
+    // 生产环境优化代码分割
     if (!dev) {
       cfg.optimization = {
         ...cfg.optimization,
