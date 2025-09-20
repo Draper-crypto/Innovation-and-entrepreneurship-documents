@@ -65,7 +65,7 @@ export function baseOptions(): BaseLayoutProps {
         // 新增：外链图标按钮 — 放在导航栏右侧区域
         type: 'icon',
         on: 'nav',
-        url: 'https://www.elexvx.com',
+        url: 'https://ai.elexvx.com',
         external: true,
         label: '访问 Elexvx 官网',
         icon: <IconCompass size={24} />,
