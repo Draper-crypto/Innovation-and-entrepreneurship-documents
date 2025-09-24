@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { blog } from '@/lib/source';
+import { normalizeImageSrc } from '@/lib/normalize-image-src';
 
 function parseDate(d: unknown): number {
   if (!d) return 0;
@@ -25,7 +26,7 @@ export default function BlogIndexPage() {
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {posts.map((post) => {
-          const cover = (post.data as any).cover as string | undefined;
+          const cover = normalizeImageSrc((post.data as any).cover as string | undefined);
           const author = (post.data as any).author as string | undefined;
           const date = (post.data as any).date as string | Date | undefined;
           return (
@@ -36,8 +37,8 @@ export default function BlogIndexPage() {
             >
               {cover ? (
                 <div className="relative aspect-[16/9]">
-                  <Image 
-                    src={cover} 
+                  <Image
+                    src={cover}
                     alt={post.data.title} 
                     fill
                     className="object-cover" 

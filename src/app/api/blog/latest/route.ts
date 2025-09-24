@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { blog } from '@/lib/source';
+import { normalizeImageSrc } from '@/lib/normalize-image-src';
 
 export const dynamic = 'force-static';
 
@@ -24,7 +25,7 @@ export async function GET() {
         title: p.data.title as string,
         description: p.data.description as string | undefined,
         url: p.url,
-        cover: data.cover as string | undefined,
+        cover: normalizeImageSrc(data.cover as string | undefined),
         author: data.author as string | undefined,
         date: data.date ? new Date(data.date).toISOString() : undefined,
         _dateNum: parseDate(data.date),
